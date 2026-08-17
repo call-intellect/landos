@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Три сайта «Контент-завод» — выбор варианта</title>
+<style>
+:root{
+  --bg:#0e0f12;--bg2:#15171c;--line:rgba(235,238,245,.13);--line2:rgba(235,238,245,.26);
+  --ink:#eceff5;--mut:#98a0b0;--dim:#666e7e;--acc:#7df9c4;--warn:#ffcf6b;--bad:#ff7a8a;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --ease:cubic-bezier(.165,.84,.44,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.06}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+section{padding:70px 0;border-top:1px solid var(--line)}
+.head{padding:76px 0 60px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:18px}
+h1{font-size:clamp(32px,5.4vw,60px);font-weight:790;max-width:20ch}
+.lead{margin-top:22px;max-width:70ch;color:var(--mut);font-size:clamp(15px,1.8vw,18px)}
+h2{font-size:clamp(24px,3.4vw,38px);font-weight:750;max-width:22ch}
+.sub{margin-top:14px;max-width:70ch;color:var(--mut);font-size:15.5px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+@media (max-width:940px){.grid{grid-template-columns:1fr}}
+.card{
+  border:1px solid var(--line);border-radius:10px;background:var(--bg2);overflow:clip;
+  display:flex;flex-direction:column;transition:border-color 200ms var(--ease),transform 200ms var(--ease);
+}
+@media (hover:hover) and (pointer:fine){.card:hover{border-color:var(--line2);transform:translateY(-3px)}}
+.prev{height:150px;position:relative;overflow:clip;border-bottom:1px solid var(--line)}
+.prev.p1{background:linear-gradient(140deg,#f2efe8,#e4e0d5)}
+.prev.p2{background:linear-gradient(140deg,#0d1118,#18202e)}
+.prev.p3{background:linear-gradient(140deg,#121214,#241410)}
+.prev .bars{position:absolute;left:20px;right:20px;top:26px;display:grid;gap:9px}
+.prev .bars i{display:block;height:9px;border-radius:2px}
+.p1 .bars i{background:rgba(20,23,28,.82)}
+.p1 .bars i:nth-child(2){background:#1c46c9;width:62%}
+.p1 .bars i:nth-child(3){background:rgba(20,23,28,.24);width:80%}
+.p1 .bars i:nth-child(4){background:rgba(20,23,28,.18);width:44%}
+.p2 .bars i{background:rgba(232,237,247,.85)}
+.p2 .bars i:nth-child(2){background:#a8ff5e;width:58%}
+.p2 .bars i:nth-child(3){background:rgba(140,168,220,.3);width:76%}
+.p2 .bars i:nth-child(4){background:rgba(140,168,220,.22);width:40%}
+.p3 .bars i{background:rgba(242,240,236,.9);height:13px}
+.p3 .bars i:nth-child(2){background:#ff5a1f;width:66%}
+.p3 .bars i:nth-child(3){background:rgba(242,240,236,.22);width:82%;height:9px}
+.p3 .bars i:nth-child(4){background:rgba(242,240,236,.16);width:48%;height:9px}
+.card-b{padding:24px 22px;display:flex;flex-direction:column;flex:1}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.card h3{margin-top:11px;font-size:22px;font-weight:740}
+.card .an{margin-top:12px;font-size:14.4px;color:var(--mut);flex:1}
+.card .meta{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--dim);line-height:1.8}
+.card .meta b{color:var(--mut);font-weight:600}
+.open{
+  margin-top:16px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  background:var(--ink);color:var(--bg);padding:11px 17px;border-radius:6px;font-weight:660;font-size:14.5px;
+}
+@media (hover:hover) and (pointer:fine){.open:hover{background:var(--acc)}}
+.rec{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#0e0f12;background:var(--acc);border-radius:999px;padding:4px 9px;margin-left:8px;vertical-align:middle}
+
+.tblwrap{margin-top:34px;overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13.6px;min-width:760px}
+th,td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;background:var(--bg2)}
+thead th{position:sticky;top:0;z-index:2;background:#191c22;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);font-weight:500}
+tbody td:first-child{color:var(--ink)}
+td{color:var(--mut)}
+.y{color:var(--acc);font-weight:600}
+.n{color:var(--bad)}
+.h{color:var(--warn)}
+tfoot td{font-weight:700;color:var(--ink);background:#191c22}
+
+.notes{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:860px){.notes{grid-template-columns:1fr}}
+.note{border:1px solid var(--line);border-radius:10px;padding:22px 20px;background:var(--bg2)}
+.note h3{font-size:17px;font-weight:700}
+.note p{margin-top:10px;color:var(--mut);font-size:14.3px}
+.note ul{margin:12px 0 0;padding-left:20px;color:var(--mut);font-size:14.3px}
+.note li{margin-top:8px}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition-duration:1ms!important;animation-duration:1ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap head">
+  <div class="kick">Прототипы · 17 августа 2026</div>
+  <h1>Три сайта под одну услугу — три разных способа её продать</h1>
+  <p class="lead">Услуга одна: производство SEO-контента под ключ с запуском за 7 рабочих дней. Отличаются якорь (что вынесено главным обещанием), структура блоков и визуальный язык. Все три собраны на одном фактическом материале — рыночном разборе девяти конкурентов, каталоге визуальных приёмов и юридическом минимуме РФ.</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Варианты</h2>
+    <p class="sub">Каждый — рабочая страница в одном файле: без внешних библиотек, шрифтов и картинок. Кнопки нажимаются, калькулятор считает, панель пересчитывается.</p>
+    <div class="grid">
+
+      <article class="card">
+        <div class="prev p1"><div class="bars"><i></i><i></i><i></i><i></i></div></div>
+        <div class="card-b">
+          <div class="tag">Вариант 1 · срок</div>
+          <h3>Семь дней<span class="rec">рекомендую</span></h3>
+          <p class="an">Якорь — дата запуска: единственное обещание, которое целиком в нашей власти. Главный блок — календарь по дням, у каждого дня свой проверяемый результат. Плюс калькулятор точки безубыточности с открытой формулой.</p>
+          <div class="meta">
+            стиль · <b>инженерная бумага, светлая</b><br>
+            движение · <b>уровень 2 из 7</b><br>
+            интерактив · <b>калькулятор нагрузки на канал</b><br>
+            текста · <b>8 951 знак</b>
+          </div>
+          <a class="open" href="01-seven-days.html">Открыть вариант →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="prev p2"><div class="bars"><i></i><i></i><i></i><i></i></div></div>
+        <div class="card-b">
+          <div class="tag">Вариант 2 · доказательство</div>
+          <h3>Панель</h3>
+          <p class="an">Якорь — контроль и проверяемость: вы видите каждую страницу до публикации и её результат после. Главный блок — работающая демонстрация панели с очередью на утверждение и контрольной группой страниц. Отдельная секция «что мы сами считаем провалом».</p>
+          <div class="meta">
+            стиль · <b>тёмная приборная панель</b><br>
+            движение · <b>уровень 3 из 7</b><br>
+            интерактив · <b>три экрана панели, утверждение материалов</b><br>
+            текста · <b>5 241 знак</b>
+          </div>
+          <a class="open" href="02-dashboard.html">Открыть вариант →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="prev p3"><div class="bars"><i></i><i></i><i></i><i></i></div></div>
+        <div class="card-b">
+          <div class="tag">Вариант 3 · механика</div>
+          <h3>Конвейер</h3>
+          <p class="an">Якорь — устройство производства: девять участков и три точки разворота брака. Главный блок — лента конвейера, едущая вбок вместе со скроллом. Отбраковка показана как достоинство, а не умолчание.</p>
+          <div class="meta">
+            стиль · <b>индустриальный, крупная типографика</b><br>
+            движение · <b>уровень 5 из 7</b><br>
+            интерактив · <b>горизонтальный ход по скроллу, 1746 px</b><br>
+            текста · <b>5 941 знак</b>
+          </div>
+          <a class="open" href="03-conveyor.html">Открыть вариант →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Чем они сильнее разобранных конкурентов</h2>
+    <p class="sub">Чек-лист из 13 элементов собран из разбора девяти сайтов до того, как что-либо рисовалось — чтобы оценка не подгонялась под результат. Колонки конкурентов заполнены по видимым на их страницах блокам на 17 августа 2026.</p>
+    <div class="tblwrap">
+      <table>
+        <thead>
+          <tr><th>Элемент</th><th>INTEC</th><th>Viora</th><th>SEOmatic</th><th>В1</th><th>В2</th><th>В3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Обещание в заявках, не в трафике</td><td class="n">нет</td><td class="h">частично</td><td class="n">нет</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Дата запуска в первом экране</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td><td class="y">да</td><td class="h">упомянута</td><td class="y">да</td></tr>
+          <tr><td>Календарь работ по дням</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td><td class="y">да</td></tr>
+          <tr><td>Механика производства показана</td><td class="h">списком</td><td class="n">нет</td><td class="y">да</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Доказательство эффекта (контрольная группа)</td><td class="n">нет</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td></tr>
+          <tr><td>Контроль клиента над публикацией</td><td class="n">нет</td><td class="n">нет</td><td class="y">да</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Ответ на «понизят за AI-контент?»</td><td class="n">нет</td><td class="h">строка в FAQ</td><td class="n">нет</td><td class="y">секция</td><td class="y">секция</td><td class="y">секция</td></tr>
+          <tr><td>Открытая цена</td><td class="y">да</td><td class="y">да</td><td class="y">да</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Калькулятор с видимой формулой</td><td class="h">без формулы</td><td class="n">нет</td><td class="n">нет</td><td class="y">да</td><td class="n">нет</td><td class="n">нет</td></tr>
+          <tr><td>Гарантия, которой можно управлять</td><td class="n">нет</td><td class="n">нет</td><td class="h">пробный период</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Сравнение с альтернативой в деньгах</td><td class="n">нет</td><td class="n">нет</td><td class="y">да</td><td class="y">да</td><td class="n">нет</td><td class="n">нет</td></tr>
+          <tr><td>Реквизиты, политика ПДн, чекбокс, оговорка</td><td class="h">частично</td><td class="h">частично</td><td class="n">н/п</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+          <tr><td>Ноль недоказуемых обещаний</td><td class="h">«45 лидов»</td><td class="h">кейсы без метода</td><td class="h">«7002+»</td><td class="y">да</td><td class="y">да</td><td class="y">да</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Полных «да»</td><td>2</td><td>3</td><td>5</td><td>11</td><td>9</td><td>9</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h3>Что здесь считается доказательством</h3>
+        <p>Не «нам кажется красивее». Проверяемые вещи:</p>
+        <ul>
+          <li>покрытие чек-листа: 11 из 13 у лучшего варианта против 5 из 13 у сильнейшего конкурента;</li>
+          <li>ноль обещаний, попадающих под ст. 5 ФЗ «О рекламе» — ни позиций, ни числа лидов; у трёх конкурентов такие есть;</li>
+          <li>ноль скрытого без JavaScript текста и ноль ошибок в консоли на всех трёх — замерено прогоном браузера, не на глаз;</li>
+          <li>ноль горизонтальной прокрутки на 375 px;</li>
+          <li>ноль внешних запросов: ни шрифта, ни картинки, ни библиотеки.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Чего здесь честно нет</h3>
+        <p>Границы, которые не стоит переступать при доработке:</p>
+        <ul>
+          <li>кейсов и цифр результата нет ни на одном варианте — их неоткуда взять, а рисовать нельзя;</li>
+          <li>цена 90 000 ₽ + 45 000 ₽/мес — рабочая гипотеза из рынка, а не ваше решение;</li>
+          <li>реквизиты, телефон и юрлицо — заглушки, помечены пунктиром;</li>
+          <li>числа в панели варианта 2 и пропорции отбраковки в варианте 3 подписаны как условные прямо на странице;</li>
+          <li>порядок блоков опирается на бюджет внимания и стадию осознанности, а не на измерение последовательности — таких измерений не существует.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Разбор рынка — <code>plans/analysis/2026-08-17-content-factory-landing.md</code> · визуальные приёмы — <code>second-brain/02_architecture/visual-methods-catalog.md</code> · грабли — <code>second-brain/02_architecture/code-pitfalls.md</code>
+  </div>
+</footer>
+</body>
+</html>
