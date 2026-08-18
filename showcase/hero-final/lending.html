@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>АйТи-Цех — SEO-продвижение и контент-завод</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#15161b; --ink:#eeebe4; --sub:#a9a69e; --mut:#98958d; --dim:#6f6d68;
+  --acc:#d8a24a; --acc-soft:rgba(216,162,74,.11);
+  --paper:#1d1e25; --paper-2:#22232b; --line:#3b3c44; --line-soft:rgba(255,255,255,.08);
+  --ok:#7cb489; --warn:#d98a63;
+  --disp:"Playfair Display",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --shadow:rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.07) 1px,transparent 0);background-size:4px 4px}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.015em;line-height:1.08}
+p{margin:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.top{position:sticky;top:0;z-index:900;background:rgba(21,22,27,.86);
+  backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line-soft)}
+.top-in{max-width:1320px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:20px}
+.brand{font-family:var(--disp);font-size:19px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.brand i{font-style:normal;color:var(--acc)}
+.top nav{display:flex;gap:22px;margin-left:auto;font-family:var(--mono);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.top nav a{padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.top nav a:hover{color:var(--acc);border-color:var(--acc)}
+.top .go{font-family:var(--body);font-size:14px;padding:9px 20px;border-radius:4px;
+  background:var(--acc);color:#15161b;white-space:nowrap;transition:transform .18s,box-shadow .18s}
+.top .go:hover{transform:translateY(-1px);box-shadow:0 10px 22px -12px var(--acc)}
+
+.wrap{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 20px}
+
+.hero{position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:rgba(255,255,255,.06);pointer-events:none}
+.hero .wrap{padding-top:84px;padding-bottom:92px}
+.split{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);gap:62px;align-items:center}
+.kick{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--mut)}
+.kick:before{content:"";width:44px;height:1px;background:var(--line)}
+h1{font-size:clamp(38px,4.4vw,64px);line-height:1.04;letter-spacing:-.018em;margin-top:22px;max-width:14ch}
+h1 em{font-style:italic;font-weight:500;color:var(--acc)}
+.utp{font-size:clamp(17px,1.5vw,22px);line-height:1.58;color:var(--sub);margin-top:26px;max-width:42ch;
+  border-left:2px solid var(--line);padding-left:20px}
+.utp b{font-weight:600;color:var(--acc)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;align-items:center}
+.b1{font-size:15px;letter-spacing:.02em;padding:15px 32px;background:var(--acc);color:#15161b;border-radius:4px;
+  transition:transform .18s,box-shadow .18s}
+.b1:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px var(--acc)}
+.b2{font-size:15px;padding:15px 6px;color:var(--mut);border-bottom:1px solid var(--line);
+  transition:color .18s,border-color .18s}
+.b2:hover{color:var(--acc);border-color:var(--acc)}
+.trust{margin-top:26px;font-size:13.5px;font-style:italic;line-height:1.62;color:var(--mut);max-width:48ch}
+.trust b{font-style:normal;font-weight:600;color:var(--ink)}
+.shot{margin:0;position:relative}
+.shot-back{position:absolute;inset:26px -26px -30px 30px;border-radius:28px;background:var(--acc);
+  opacity:.18;transform:rotate(3.2deg)}
+.shot-frame{position:relative;transform:rotate(-2.1deg);border-radius:22px;overflow:hidden;
+  background:var(--paper);border:1px solid var(--line);
+  box-shadow:0 34px 70px -34px var(--shadow),0 2px 0 var(--paper)}
+.shot-frame img{border-radius:21px}
+.shot figcaption{margin-top:26px;font-size:11.5px;line-height:1.6;color:var(--mut);opacity:.8}
+.shot-badge{position:absolute;z-index:3;left:-20px;bottom:34px;transform:rotate(-5deg);background:var(--acc);
+  color:#15161b;padding:10px 15px;border-radius:4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 14px 28px -14px var(--shadow)}
+
+.sec{position:relative;border-top:1px solid var(--line-soft)}
+.sec .wrap{padding-top:94px;padding-bottom:96px}
+.head{display:grid;grid-template-columns:96px minmax(0,1fr);gap:34px;align-items:start;margin-bottom:54px}
+.head-n{font-family:var(--disp);font-size:62px;line-height:.8;color:var(--line);font-weight:500}
+.rub{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);
+  display:flex;align-items:center;gap:12px}
+.rub:after{content:"";height:1px;flex:1;background:var(--line);max-width:200px}
+h2{font-size:clamp(28px,3.2vw,44px);margin-top:16px;max-width:22ch;text-wrap:balance}
+h2 em{font-style:italic;font-weight:500;color:var(--acc)}
+.lead{margin-top:20px;font-size:18px;line-height:1.66;color:var(--sub);max-width:64ch}
+.lead b{font-weight:600;color:var(--ink)}
+
+.steps{display:flex;flex-direction:column;border-top:1px solid var(--line-soft)}
+.step{display:grid;grid-template-columns:96px minmax(0,1.06fr) minmax(0,.8fr);gap:44px;
+  padding:30px 0;border-bottom:1px solid var(--line-soft);align-items:start;transition:background .25s}
+.step:hover{background:rgba(216,162,74,.045)}
+.step-d{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
+  padding-top:6px}
+.step h3{font-size:23px;font-weight:600;letter-spacing:-.01em}
+.step p{margin-top:11px;font-size:16px;line-height:1.64;color:var(--sub)}
+.out{border-left:2px solid var(--acc);padding:2px 0 2px 16px;font-size:14.5px;line-height:1.55;color:var(--mut)}
+.out span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--acc);margin-bottom:6px}
+.out b{font-weight:600;color:var(--ink)}
+
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:56px;align-items:start}
+.fstep{display:grid;grid-template-columns:112px minmax(0,1fr);gap:20px;align-items:baseline;position:relative;
+  background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:19px 24px}
+.fstep+.fstep{margin-top:16px}
+.fstep+.fstep:before{content:"";position:absolute;left:52px;top:-13px;width:1px;height:12px;background:var(--line)}
+.fstep>b{font-family:var(--disp);font-size:32px;font-weight:600;color:var(--acc);line-height:1;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.fstep p b{font-family:var(--body);font-size:inherit;font-weight:600;color:var(--ink)}
+.fstep .fl{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut)}
+.fstep p{margin-top:5px;font-size:15px;line-height:1.55;color:var(--sub)}
+.tree{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:24px 26px;
+  font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--sub)}
+.t-h{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+.tree i{font-style:normal;color:var(--dim)}
+.tree u{text-decoration:none;color:var(--ink)}
+.tree em{font-style:normal;color:var(--dim);font-size:12px}
+.note{margin-top:20px;font-size:14.5px;font-style:italic;line-height:1.6;color:var(--mut)}
+
+.belt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:4px;overflow:hidden}
+.post{background:var(--bg);padding:28px 26px 30px;position:relative;transition:background .25s}
+.post:hover{background:var(--paper)}
+.post .pn{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--acc)}
+.post h3{font-size:21px;font-weight:600;margin-top:14px}
+.post p{margin-top:10px;font-size:15.5px;line-height:1.6;color:var(--sub)}
+.post .veto{margin-top:14px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);
+  border:1px solid rgba(217,138,99,.35);border-radius:999px;padding:4px 10px}
+.post .veto:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.tally{margin-top:26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;
+  border-top:1px solid var(--line-soft);padding-top:28px}
+.tally div b{display:block;font-family:var(--disp);font-size:clamp(32px,3.4vw,46px);font-weight:600;
+  color:var(--acc);line-height:1;font-variant-numeric:tabular-nums}
+.tally div span{display:block;margin-top:10px;font-size:14.5px;line-height:1.5;color:var(--mut)}
+
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:24px 26px 26px}
+.card h3{font-size:18px;font-weight:600;letter-spacing:0}
+.card ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.card li{position:relative;padding-left:22px;font-size:15px;line-height:1.55;color:var(--sub)}
+.card li:before{content:"";position:absolute;left:0;top:9px;width:9px;height:1px;background:var(--acc)}
+.card li b{font-weight:600;color:var(--ink)}
+.card code{font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--acc-soft);
+  padding:1px 5px;border-radius:3px}
+.snip{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.snip-h{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--mut)}
+.snip-h b{color:var(--acc);font-weight:400}
+.snip pre{margin:0;padding:20px 22px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+  line-height:1.75;color:var(--sub);tab-size:2}
+.snip .k{color:var(--acc)}
+.snip .s{color:var(--ink)}
+.snip .c{color:var(--dim)}
+
+.log{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.log-h{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:14px 22px;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mut)}
+.live{display:inline-flex;align-items:center;gap:8px;color:var(--ok)}
+.live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.log-h .right{margin-left:auto}
+.row{display:grid;grid-template-columns:78px 128px minmax(0,1fr);gap:20px;align-items:baseline;
+  padding:13px 22px;border-bottom:1px solid var(--line-soft);font-size:15px;line-height:1.55;color:var(--sub);
+  transition:background .2s}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--paper-2)}
+.row .t{font-family:var(--mono);font-size:13px;color:var(--dim);font-variant-numeric:tabular-nums}
+.row .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--acc)}
+.row.g .who{color:var(--ok)}
+.row.w .who{color:var(--warn)}
+.row b{font-weight:600;color:var(--ink)}
+.row q{font-style:italic;quotes:"«" "»"}
+
+.cab{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px;align-items:start}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-bottom:26px}
+.tile{background:var(--paper);padding:20px 20px 22px}
+.tile b{display:block;font-family:var(--disp);font-size:clamp(26px,2.8vw,36px);font-weight:600;line-height:1;
+  font-variant-numeric:tabular-nums}
+.tile span{display:block;margin-top:9px;font-size:13.5px;line-height:1.45;color:var(--mut)}
+.tile em{display:block;margin-top:8px;font-style:normal;font-family:var(--mono);font-size:11px;
+  letter-spacing:.04em;color:var(--ok)}
+.chart{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:24px 24px 20px}
+.chart h3{font-size:17px;font-weight:600}
+.chart .sub{margin-top:6px;font-size:13.5px;color:var(--mut)}
+.chart svg{margin-top:18px;width:100%;height:auto;overflow:visible}
+.gl{stroke:var(--line);stroke-width:1}
+.ga{fill:var(--acc);opacity:.13}
+.gp{fill:none;stroke:var(--acc);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.gd{fill:var(--acc);stroke:var(--paper);stroke-width:2}
+.gt{font-family:var(--mono);font-size:11px;fill:var(--dim)}
+.gv{font-family:var(--mono);font-size:12px;fill:var(--acc)}
+.feed{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 24px 24px}
+.feed h3{font-size:17px;font-weight:600}
+.feed ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.feed li{border-bottom:1px solid var(--line-soft);padding-bottom:14px;font-size:15px;line-height:1.5}
+.feed li:last-child{border-bottom:none;padding-bottom:0}
+.feed .st{display:block;margin-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ok)}
+.feed .st.wait{color:var(--dim)}
+.open{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:15px;color:var(--acc);
+  border-bottom:1px solid var(--line);padding-bottom:3px;transition:border-color .2s}
+.open:hover{border-color:var(--acc)}
+
+.final{border-top:1px solid var(--line-soft)}
+.final .wrap{padding-top:96px;padding-bottom:104px;text-align:center}
+.final h2{margin:18px auto 0;max-width:18ch;text-align:center}
+.final .lead{margin:22px auto 0;text-align:center}
+.final .trust{max-width:58ch;margin-top:30px}
+.final .cta{justify-content:center;margin-top:36px}
+.final .rub{justify-content:center}
+.final .rub:after,.final .rub:before{content:"";height:1px;width:60px;background:var(--line);flex:none}
+
+.foot{border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  color:var(--dim)}
+.foot .wrap{padding-top:26px;padding-bottom:34px;display:flex;flex-wrap:wrap;gap:16px;
+  align-items:center;justify-content:space-between}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,.84,.44,1),
+  transform .7s cubic-bezier(.16,.84,.44,1)}
+.rv.on{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.r{animation:rise .8s cubic-bezier(.16,.84,.44,1) both}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}}
+
+@media(max-width:1080px){
+  .split,.duo,.cab{grid-template-columns:1fr;gap:44px}
+  .hero:after{display:none}
+  .belt{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step{grid-template-columns:80px minmax(0,1fr);gap:24px}
+  .step .out{grid-column:2}
+  .top nav{display:none}
+}
+@media(max-width:780px){
+  body{font-size:16px}
+  .sec .wrap{padding-top:64px;padding-bottom:66px}
+  .hero .wrap{padding-top:56px;padding-bottom:62px}
+  .head{grid-template-columns:1fr;gap:14px;margin-bottom:36px}
+  .head-n{font-size:40px}
+  .belt,.checks,.tiles,.tally{grid-template-columns:1fr}
+  .tally{gap:20px}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step{grid-template-columns:1fr;gap:12px;padding:24px 0}
+  .step .out{grid-column:1}
+  .row{grid-template-columns:1fr;gap:5px;padding:14px 18px}
+  .gy,.gx.mid{display:none}
+  .gt{font-size:22px}
+  .gv{font-size:24px}
+  .gd{r:5}
+  .shot-back{inset:18px -14px -18px 16px}
+  .shot-badge{position:static;display:inline-block;margin-top:16px;transform:rotate(-1.6deg)}
+  .shot figcaption{margin-top:12px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#top">АйТи<i>·</i>Цех</a>
+    <nav>
+      <a href="#razvedka">Разведка</a>
+      <a href="#yadro">Ядро</a>
+      <a href="#zavod">Завод</a>
+      <a href="#stranica">Страница</a>
+      <a href="#smena">Смена</a>
+      <a href="#kabinet">Кабинет</a>
+    </nav>
+    <a class="go" href="#nachat">Обсудить проект</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#nachat">Обсудить проект</a>
+          <a class="b2" href="#razvedka">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий" loading="eager" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="razvedka">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">01</div>
+      <div>
+        <div class="rub">Этап первый · дни 1–7</div>
+        <h2>Ни строчки контента, пока не ясно — <em>о чём писать</em></h2>
+        <p class="lead">Первая неделя уходит на разведку. Из неё выходит не презентация, а рабочие документы,
+        по которым дальше живёт производство: ядро запросов, структура сайта и очередь публикаций.
+        <b>Всё остаётся у вас</b> — на ваших аккаунтах и в вашем кабинете.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-d">День 1</div>
+        <div>
+          <h3>Ниша под лупой</h3>
+          <p>Разбираем спрос: кто и какими словами ищет, что покупают сразу, а что читают и уходят,
+          как двигается сезон, сколько стоит тот же клик в контексте. Отделяем запросы с деньгами
+          от красивого, но пустого трафика.</p>
+        </div>
+        <div class="out"><span>На выходе</span>Карта спроса: <b>где деньги, где чтение, где пусто</b></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-d">Дни 1–2</div>
+        <div>
+          <h3>Топ-10 выдачи под разбор</h3>
+          <p>Снимаем первую десятку Яндекса по ключевым запросам и разбираем каждого:
+          структура разделов, сколько страниц в индексе, по каким запросам они реально ранжируются,
+          какие темы закрыты, а какие — нет. Дыры конкурентов становятся вашими первыми страницами.</p>
+        </div>
+        <div class="out"><span>На выходе</span>Разбор <b>10 конкурентов</b> и полный список их запросов</div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-d">Дни 2–3</div>
+        <div>
+          <h3>Полное семантическое ядро</h3>
+          <p>Собираем всё: Wordstat, поисковые подсказки, запросы конкурентов, длинные хвосты.
+          Чистим мусор, снимаем частотность, размечаем интент — купить, узнать, сравнить, найти рядом.
+          Близкие запросы сводим в кластеры: один кластер — одна будущая страница.</p>
+        </div>
+        <div class="out"><span>На выходе</span>Ядро: <b>тысячи запросов</b> по кластерам, с частотностью и интентом</div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-d">День 4</div>
+        <div>
+          <h3>Структура сайта и контент-план</h3>
+          <p>Кластеры собираются в разделы, разделы — в дерево сайта: услуги, задачи, отрасли, города,
+          база знаний. Дальше выстраиваем очередь: сначала то, что быстрее принесёт трафик и заявки,
+          потом то, что работает вдолгую.</p>
+        </div>
+        <div class="out"><span>На выходе</span>Дерево разделов и <b>очередь публикаций на месяцы вперёд</b></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-d">День 5</div>
+        <div>
+          <h3>Приборы: Вебмастер и Метрика</h3>
+          <p>Подключаем Яндекс Вебмастер и Метрику, ставим счётчик и цели, отдаём карту сайта и robots,
+          настраиваем отправку страниц на переобход. Аккаунты заводятся на вас, доступы остаются у вас —
+          уйдём мы, приборы останутся.</p>
+        </div>
+        <div class="out"><span>На выходе</span>Подключённая аналитика и <b>доступ в ваш кабинет</b></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-d">Дни 6–7</div>
+        <div>
+          <h3>Пуск конвейера</h3>
+          <p>Первые кластеры уходят в производство. С этого дня счётчик не останавливается:
+          шесть готовых страниц в сутки, без выходных и праздников.</p>
+        </div>
+        <div class="out"><span>На выходе</span><b>Завод работает</b>, первые страницы уходят в индекс</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="yadro">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">02</div>
+      <div>
+        <div class="rub">Ядро → структура → план</div>
+        <h2>Из вороха запросов — <em>в дерево страниц</em></h2>
+        <p class="lead">Ядро не лежит мёртвым файлом в отчёте. Оно превращается в структуру сайта,
+        структура — в очередь публикаций, а очередь — в ежедневную норму завода.
+        Ниже — как это считается на среднем проекте.</p>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div class="rv">
+        <div class="fstep">
+          <b>3 214</b>
+          <div>
+            <div class="fl">Собрано запросов</div>
+            <p>Wordstat, подсказки, хвосты и всё, по чему живут конкуренты из топ-10.</p>
+          </div>
+        </div>
+        <div class="fstep">
+          <b>2 180</b>
+          <div>
+            <div class="fl">Осталось после чистки</div>
+            <p>Убрали мусор, дубли, чужие бренды и запросы без спроса и смысла.</p>
+          </div>
+        </div>
+        <div class="fstep">
+          <b>486</b>
+          <div>
+            <div class="fl">Кластеров по смыслу</div>
+            <p>Запросы, которые поиск считает одной темой, сведены вместе.</p>
+          </div>
+        </div>
+        <div class="fstep">
+          <b>486</b>
+          <div>
+            <div class="fl">Страниц в контент-плане</div>
+            <p>Один кластер — одна страница. При шести в сутки это <b>около трёх месяцев</b> непрерывной публикации.</p>
+          </div>
+        </div>
+        <p class="note">Ядро живое: Wordstat пересматривается постоянно, новые запросы и подсказки
+        добавляются в план, а темы, где спрос вырос, поднимаются в очереди.</p>
+      </div>
+
+      <div class="rv">
+      <div class="tree">
+        <div class="t-h">Структура сайта — фрагмент</div>
+        <div><u>/uslugi/</u> <em>— 14 страниц</em></div>
+        <div><i>├─</i> montazh-ventilyacii <em>— 2 400 показов</em></div>
+        <div><i>├─</i> proektirovanie <em>— 880</em></div>
+        <div><i>└─</i> obsluzhivanie <em>— 1 150</em></div>
+        <div><u>/zadachi/</u> <em>— 96 страниц</em></div>
+        <div><i>├─</i> ventilyaciya-dlya-kafe</div>
+        <div><i>├─</i> ventilyaciya-sklada</div>
+        <div><i>└─</i> …</div>
+        <div><u>/goroda/</u> <em>— 212 страниц</em></div>
+        <div><i>├─</i> moskva <em>— LocalBusiness + geo</em></div>
+        <div><i>└─</i> …</div>
+        <div><u>/baza-znaniy/</u> <em>— 164 страницы</em></div>
+        <div><i>├─</i> raschet-vozduhoobmena</div>
+        <div><i>└─</i> …</div>
+      </div>
+      <p class="note">Каждая строка — будущая страница с собственным набором запросов.
+      Разделы «Задачи» и «Города» обычно и дают основной рост: именно туда конкуренты чаще всего не доходят.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="zavod">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">03</div>
+      <div>
+        <div class="rub">Этап второй · круглосуточно</div>
+        <h2>Шесть страниц в сутки. Каждая проходит <em>шесть рук</em></h2>
+        <p class="lead">Контент-завод — это не «нейросеть пишет тексты». Это конвейер, где у каждого
+        поста своя работа и своё право остановить страницу. Двадцать четыре агента работают посменно,
+        без пауз на ночь и выходные; за смену завод выпускает шесть готовых к индексации страниц.</p>
+      </div>
+    </div>
+
+    <div class="belt rv">
+      <div class="post">
+        <div class="pn">Пост 01</div>
+        <h3>Наборщик</h3>
+        <p>Берёт следующий кластер из плана, заново снимает частотность в Wordstat на сегодня,
+        смотрит, что сейчас в топ-10 по этим запросам, и собирает бриф: интент, структура заголовков,
+        что обязано быть на странице.</p>
+      </div>
+      <div class="post">
+        <div class="pn">Пост 02</div>
+        <h3>Автор</h3>
+        <p>Пишет по брифу: конкретика, цифры, порядок работ, цены и сроки, реальные примеры.
+        Никаких «в современном динамичном мире» — такой абзац не проходит дальше.</p>
+      </div>
+      <div class="post">
+        <div class="pn">Пост 03</div>
+        <h3>Судья фактов</h3>
+        <p>Проверяет каждое утверждение и каждое число: нормы, ссылки, единицы измерения,
+        внутренние противоречия. Не сошлось — страница уходит обратно автору, а не «как-нибудь» в публикацию.</p>
+        <span class="veto">Право вето</span>
+      </div>
+      <div class="post">
+        <div class="pn">Пост 04</div>
+        <h3>Редактор живой речи</h3>
+        <p>Очеловечивает: ломает штампы и одинаковые конструкции, выравнивает ритм, добавляет то,
+        что знает только практик. Текст должен читаться как написанный человеком, который делал это руками.</p>
+        <span class="veto">Право вето</span>
+      </div>
+      <div class="post">
+        <div class="pn">Пост 05</div>
+        <h3>SEO-цех</h3>
+        <p>Собирает техническую часть страницы: заголовки под кластер, мета-теги, микроразметку,
+        перелинковку с уже вышедшими страницами, alt у картинок, адрес и хлебные крошки.</p>
+      </div>
+      <div class="post">
+        <div class="pn">Пост 06</div>
+        <h3>Выпускающий</h3>
+        <p>Публикует, обновляет карту сайта, отправляет страницу на переобход в Яндекс Вебмастер
+        и ставит её на наблюдение: индексация, позиции, поведение людей.</p>
+      </div>
+    </div>
+
+    <div class="tally rv">
+      <div><b>24</b><span>агента в сменах, круглые сутки</span></div>
+      <div><b>6</b><span>готовых страниц каждый день</span></div>
+      <div><b>~180</b><span>страниц в месяц без пауз</span></div>
+      <div><b>2</b><span>судьи с правом вернуть страницу</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="stranica">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">04</div>
+      <div>
+        <div class="rub">Что стоит в каждой странице</div>
+        <h2>Поиск видит не только текст — <em>и мы это заполняем</em></h2>
+        <p class="lead">Хороший текст без разметки — половина работы. Ниже — обязательный набор,
+        который проставляется на каждой из шести ежедневных страниц. Не выборочно, не «когда дойдут руки»,
+        а <b>на каждой</b>: это часть выпуска, без неё выпускающий страницу не отпустит.</p>
+      </div>
+    </div>
+
+    <div class="checks">
+      <div class="card rv">
+        <h3>Мета и заголовки</h3>
+        <ul>
+          <li><b>Title и description</b> под конкретный кластер, без шаблонных клонов на весь сайт</li>
+          <li>Один <code>H1</code>, дальше <code>H2</code>–<code>H3</code> по структуре интента</li>
+          <li>Читаемый адрес страницы на латинице, без мусорных параметров</li>
+          <li>Хлебные крошки — и в вёрстке, и в разметке</li>
+          <li><code>canonical</code> на себя, чтобы дубли не растаскивали вес</li>
+          <li>Открытый граф: <code>og:title</code>, <code>og:description</code>, <code>og:image</code> — для ссылок в мессенджерах</li>
+        </ul>
+      </div>
+
+      <div class="card rv">
+        <h3>Микроразметка Schema.org</h3>
+        <ul>
+          <li><code>Article</code> — автор, дата публикации и обновления, раздел</li>
+          <li><code>FAQPage</code> — блок вопросов и ответов, тот самый, что разворачивается прямо в выдаче</li>
+          <li><code>BreadcrumbList</code> — путь до страницы вместо голого адреса в сниппете</li>
+          <li><code>Service</code> и <code>Product</code> — услуга, цена, что входит в работу</li>
+          <li><code>Organization</code> — компания, логотип, контакты, профили</li>
+          <li>Всё — форматом <b>JSON-LD</b>, отдельным блоком, как рекомендует и Яндекс, и Google</li>
+        </ul>
+      </div>
+
+      <div class="card rv">
+        <h3>Гео и локальные страницы</h3>
+        <ul>
+          <li><code>LocalBusiness</code> с адресом, телефоном и часами работы</li>
+          <li><code>geo</code> — координаты точки, <code>areaServed</code> — города и районы выезда</li>
+          <li>Отдельная страница под город: свой заголовок, свои цены, свои примеры работ</li>
+          <li>Связка с карточкой в Яндекс Бизнесе — чтобы карты и поиск говорили одно и то же</li>
+          <li>Разметка отзывов и рейтинга там, где отзывы настоящие</li>
+        </ul>
+      </div>
+
+      <div class="card rv">
+        <h3>Техника и вес</h3>
+        <ul>
+          <li><b>sitemap.xml</b> обновляется в момент публикации, не раз в месяц</li>
+          <li><b>robots.txt</b> и директивы индексации — под контролем, служебное закрыто</li>
+          <li>Перелинковка: новая страница получает ссылки со старых по смыслу — <b>кластер не висит сиротой</b></li>
+          <li>Картинки в WebP с заданными размерами, <code>alt</code> — по делу, а не набор слов</li>
+          <li>Скорость и Core Web Vitals: страница не должна прыгать и тормозить на телефоне</li>
+          <li>Отправка на переобход в Вебмастер сразу после выпуска</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="snip rv">
+      <div class="snip-h"><span>Фрагмент разметки страницы</span><b>JSON-LD · Schema.org</b></div>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@graph"</span>: [
+    {
+      <span class="k">"@type"</span>: <span class="s">"Article"</span>,
+      <span class="k">"headline"</span>: <span class="s">"Монтаж вентиляции в кафе: нормы, расчёт и цена"</span>,
+      <span class="k">"datePublished"</span>: <span class="s">"2026-08-18"</span>,
+      <span class="k">"dateModified"</span>: <span class="s">"2026-08-18"</span>,
+      <span class="k">"author"</span>: { <span class="k">"@type"</span>: <span class="s">"Organization"</span>, <span class="k">"name"</span>: <span class="s">"АйТи-Цех"</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"FAQPage"</span>,
+      <span class="k">"mainEntity"</span>: [{
+        <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+        <span class="k">"name"</span>: <span class="s">"Сколько стоит вентиляция для кафе на 60 мест?"</span>,
+        <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"От 480 000 ₽ под ключ…"</span> }
+      }]
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"LocalBusiness"</span>,
+      <span class="k">"name"</span>: <span class="s">"АйТи-Цех"</span>,
+      <span class="k">"telephone"</span>: <span class="s">"+7 495 000-00-00"</span>,
+      <span class="k">"address"</span>: { <span class="k">"@type"</span>: <span class="s">"PostalAddress"</span>, <span class="k">"addressLocality"</span>: <span class="s">"Москва"</span> },
+      <span class="k">"geo"</span>: { <span class="k">"@type"</span>: <span class="s">"GeoCoordinates"</span>, <span class="k">"latitude"</span>: 55.7558, <span class="k">"longitude"</span>: 37.6173 },
+      <span class="k">"areaServed"</span>: [<span class="s">"Москва"</span>, <span class="s">"Московская область"</span>],
+      <span class="k">"openingHours"</span>: <span class="s">"Mo-Fr 09:00-19:00"</span>
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"BreadcrumbList"</span>,   <span class="c">// путь вместо голого адреса в сниппете</span>
+      <span class="k">"itemListElement"</span>: [ <span class="c">…</span> ]
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="smena">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">05</div>
+      <div>
+        <div class="rub">Круглосуточный контур · 24 / 7</div>
+        <h2>Пока вы спите, <em>смена не заканчивается</em></h2>
+        <p class="lead">Завод не только пишет. Он всё время сверяется с реальностью: перепроверяет частотность
+        в Wordstat, забирает данные из Вебмастера, смотрит, какие страницы вошли в индекс и как двигаются позиции,
+        и сам решает, что поднять в очереди, а что отправить на доработку. Вот как выглядит одни сутки.</p>
+      </div>
+    </div>
+
+    <div class="log rv">
+      <div class="log-h">
+        <span class="live">Смена в эфире</span>
+        <span>Журнал производства · вторник</span>
+        <span class="right">Пример записи за сутки</span>
+      </div>
+
+      <div class="row"><span class="t">02:14</span><span class="who">Wordstat</span>
+        <span>Запрос <q>монтаж вентиляции цена</q> прибавил <b>+38%</b> за месяц — кластер поднят в очереди на 12 позиций.</span></div>
+      <div class="row"><span class="t">03:06</span><span class="who">Редакция</span>
+        <span>Страница <q>Расчёт воздухообмена: формулы и таблицы</q> написана и передана судье фактов.</span></div>
+      <div class="row w"><span class="t">04:20</span><span class="who">Судья</span>
+        <span>В тексте про нормы найдена <b>устаревшая редакция СП</b> — страница возвращена автору, публикация отложена.</span></div>
+      <div class="row g"><span class="t">05:41</span><span class="who">Вебмастер</span>
+        <span>Из вчерашних шести страниц <b>4 уже в индексе</b>, 2 стоят в очереди на обход.</span></div>
+      <div class="row g"><span class="t">06:55</span><span class="who">Выдача</span>
+        <span>По запросу <q>промывка теплообменника</q> страница поднялась <b>с 14 на 9 место</b> — вошла в топ-10.</span></div>
+      <div class="row"><span class="t">07:30</span><span class="who">Сводка</span>
+        <span>Утренний отчёт собран и отправлен вам: что вышло, что в индексе, что выросло.</span></div>
+      <div class="row w"><span class="t">11:02</span><span class="who">Просадка</span>
+        <span>По <q>вентиляция для кафе</q> минус 6 позиций — страница поставлена на доработку и переписывание блока цен.</span></div>
+      <div class="row"><span class="t">14:37</span><span class="who">Редакция</span>
+        <span>Три страницы прошли очеловечивание, снято 28 шаблонных оборотов, добавлены расчёты из практики.</span></div>
+      <div class="row g"><span class="t">16:48</span><span class="who">Переобход</span>
+        <span>Шесть сегодняшних страниц опубликованы, карта сайта обновлена, всё отправлено в Вебмастер.</span></div>
+      <div class="row"><span class="t">23:10</span><span class="who">Ядро</span>
+        <span>Из подсказок добавлено <b>27 новых запросов</b>, из них собрано 3 новых кластера — план вырос на три страницы.</span></div>
+    </div>
+
+    <p class="note rv">Ни одно из этих действий не требует вашего участия. Вы видите результат утром —
+    и в любой момент можете открыть кабинет и посмотреть, что происходит прямо сейчас.</p>
+  </div>
+</section>
+
+<section class="sec" id="kabinet">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head-n">06</div>
+      <div>
+        <div class="rub">Ваш кабинет · каждый день</div>
+        <h2>Каждое утро вы видите, <em>что именно сделано</em></h2>
+        <p class="lead">Никаких «работы ведутся». В кабинете видно поимённо: какие страницы вышли вчера,
+        какие уже в индексе, по каким запросам вы попали в топ-10, как растёт трафик из поиска
+        и что стоит в очереди на завтра. Те же цифры приходят утренним письмом.</p>
+      </div>
+    </div>
+
+    <div class="cab">
+      <div class="rv">
+        <div class="tiles">
+          <div class="tile"><b>486</b><span>страниц опубликовано</span><em>+6 за сутки</em></div>
+          <div class="tile"><b>412</b><span>страниц в индексе Яндекса</span><em>85% от выпущенных</em></div>
+          <div class="tile"><b>137</b><span>запросов в топ-10</span><em>+11 за неделю</em></div>
+          <div class="tile"><b>10 400</b><span>визитов из поиска за месяц</span><em>+44% к прошлому</em></div>
+        </div>
+
+        <div class="chart">
+          <h3>Визиты из поиска по месяцам работы</h3>
+          <p class="sub">Один проект, восемь месяцев производства. Данные на макете демонстрационные.</p>
+          <svg viewBox="0 0 720 250" role="img" aria-label="График визитов из поиска: рост с 40 в первый месяц до 10 400 в восьмой">
+            <line class="gl" x1="62" y1="210" x2="704" y2="210"></line>
+            <line class="gl" x1="62" y1="146.7" x2="704" y2="146.7" opacity=".45"></line>
+            <line class="gl" x1="62" y1="83.3" x2="704" y2="83.3" opacity=".45"></line>
+            <line class="gl" x1="62" y1="20" x2="704" y2="20" opacity=".45"></line>
+            <text class="gt gy" x="54" y="214" text-anchor="end">0</text>
+            <text class="gt gy" x="54" y="150.7" text-anchor="end">4 000</text>
+            <text class="gt gy" x="54" y="87.3" text-anchor="end">8 000</text>
+            <text class="gt gy" x="54" y="24" text-anchor="end">12 000</text>
+            <path class="ga" d="M70,209.4 L158.6,206.7 L247.1,199.2 L335.7,185.6 L424.3,164.1 L512.9,135.6 L601.4,96 L690,45.3 L690,210 L70,210 Z"></path>
+            <path class="gp" d="M70,209.4 L158.6,206.7 L247.1,199.2 L335.7,185.6 L424.3,164.1 L512.9,135.6 L601.4,96 L690,45.3"></path>
+            <circle class="gd" cx="70" cy="209.4" r="4"><title>1-й месяц — 40 визитов</title></circle>
+            <circle class="gd" cx="158.6" cy="206.7" r="4"><title>2-й месяц — 210 визитов</title></circle>
+            <circle class="gd" cx="247.1" cy="199.2" r="4"><title>3-й месяц — 680 визитов</title></circle>
+            <circle class="gd" cx="335.7" cy="185.6" r="4"><title>4-й месяц — 1 540 визитов</title></circle>
+            <circle class="gd" cx="424.3" cy="164.1" r="4"><title>5-й месяц — 2 900 визитов</title></circle>
+            <circle class="gd" cx="512.9" cy="135.6" r="4"><title>6-й месяц — 4 700 визитов</title></circle>
+            <circle class="gd" cx="601.4" cy="96" r="4"><title>7-й месяц — 7 200 визитов</title></circle>
+            <circle class="gd" cx="690" cy="45.3" r="5.5"><title>8-й месяц — 10 400 визитов</title></circle>
+            <text class="gv" x="690" y="30" text-anchor="end">10 400</text>
+            <text class="gt gx" x="70" y="232" text-anchor="middle">1 мес</text>
+            <text class="gt gx mid" x="158.6" y="232" text-anchor="middle">2</text>
+            <text class="gt gx mid" x="247.1" y="232" text-anchor="middle">3</text>
+            <text class="gt gx" x="335.7" y="232" text-anchor="middle">4</text>
+            <text class="gt gx mid" x="424.3" y="232" text-anchor="middle">5</text>
+            <text class="gt gx mid" x="512.9" y="232" text-anchor="middle">6</text>
+            <text class="gt gx mid" x="601.4" y="232" text-anchor="middle">7</text>
+            <text class="gt gx" x="690" y="232" text-anchor="middle">8 мес</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feed rv">
+        <h3>Что вышло вчера</h3>
+        <ul>
+          <li>Монтаж вентиляции в кафе: нормы, расчёт и цена
+            <span class="st">В индексе · топ-10 по 3 запросам</span></li>
+          <li>Расчёт воздухообмена: формулы и таблицы
+            <span class="st">В индексе · 12 место</span></li>
+          <li>Вентиляция склада: что требует Роспотребнадзор
+            <span class="st wait">Отправлена на обход</span></li>
+          <li>Промывка теплообменника: когда пора
+            <span class="st">В индексе · 9 место</span></li>
+          <li>Вентиляция под ключ в Москве: цены и сроки
+            <span class="st wait">Опубликована сегодня</span></li>
+          <li>Проектирование приточной системы: этапы
+            <span class="st wait">У судьи фактов</span></li>
+        </ul>
+        <a class="open" href="2026-08-18-maket-kabineta-klienta.html">Открыть полный макет кабинета →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="nachat">
+  <div class="wrap">
+    <div class="rv">
+      <div class="rub">Начнём с разведки</div>
+      <h2>Первая неделя решает <em>всё остальное</em></h2>
+      <p class="lead">Разберём вашу нишу, снимем топ-10 конкурентов и покажем ядро со структурой сайта.
+      После этого будет видно, сколько страниц у вас впереди и за какой срок завод их закроет.</p>
+      <div class="cta">
+        <a class="b1" href="#">Обсудить проект</a>
+        <a class="b2" href="#razvedka">Ещё раз посмотреть, как устроено производство →</a>
+      </div>
+      <p class="trust" style="margin-left:auto;margin-right:auto">Срок запуска закреплён договором: не уложились по нашей вине —
+      <b>следующий месяц производства бесплатно</b>.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>АйТи-Цех · поисковое продвижение и производство контента</span>
+    <span>Ночная редакция · макет от 18 августа 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var items = document.querySelectorAll(".rv");
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(function(el){ el.classList.add("on"); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+  items.forEach(function(el, i){
+    el.style.transitionDelay = Math.min(i % 6, 4) * 60 + "ms";
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
