@@ -6,7 +6,7 @@
 <title>Первый экран — пять характеров</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Cormorant+Garamond:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&family=Karla:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Sora:wght@200;300;400;600;700&family=Spectral:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800;900&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Caveat:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;700;800&family=Cormorant+Garamond:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&family=Karla:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Sora:wght@200;300;400;600;700&family=Spectral:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -20,7 +20,7 @@ a{text-decoration:none;color:inherit}
 .deck-in{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;
   font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .deck-t{color:#8a8f9c;white-space:nowrap}
-.deck-nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.deck-nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
 .deck-nav a{padding:6px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#c9ced9;
   transition:background .18s ease,color .18s ease,border-color .18s ease}
 .deck-nav a:hover{background:#f2f4f8;color:#0a0a0c;border-color:#f2f4f8}
@@ -249,12 +249,162 @@ a{text-decoration:none;color:inherit}
 .v5-trust b{color:#a8582f;font-weight:700}
 .v5-art{position:relative}
 
+.v6{background:#f2f1ed;color:#111}
+.v6-bg{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(90deg,rgba(17,17,17,.055) 1px,transparent 1px);background-size:74px 100%}
+.v6 .hero-in{position:relative;z-index:2}
+.v6 .split{gap:56px}
+.v6-kick{display:flex;align-items:center;gap:12px;font-family:"Manrope",system-ui,sans-serif;font-weight:800;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#111}
+.v6-kick b{background:#e2261b;color:#fff;padding:4px 9px;font-weight:800;letter-spacing:.12em}
+.v6 h1{font-family:"Archivo",system-ui,sans-serif;font-weight:900;font-size:clamp(38px,4.5vw,66px);
+  line-height:.98;letter-spacing:-.032em;margin:26px 0 0;max-width:14ch;text-transform:uppercase}
+.v6 h1 span{color:#e2261b}
+.v6-sub{font-family:"Manrope",system-ui,sans-serif;font-weight:400;font-size:clamp(15px,1.2vw,17px);
+  line-height:1.62;color:#4a4a48;margin:24px 0 0;max-width:44ch}
+.v6-sub b{color:#111;font-weight:700}
+.v6-cta{display:flex;flex-wrap:wrap;margin-top:32px;border:2px solid #111;width:fit-content}
+.v6-b1{font-family:"Manrope",system-ui,sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;
+  text-transform:uppercase;padding:16px 30px;background:#111;color:#f2f1ed;transition:background .16s ease}
+.v6-b1:hover{background:#e2261b}
+.v6-b2{font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;
+  text-transform:uppercase;padding:16px 26px;color:#111;border-left:2px solid #111;transition:background .16s ease}
+.v6-b2:hover{background:#ffd400}
+.v6-trust{margin-top:32px;display:flex;flex-wrap:wrap;gap:0;width:fit-content;
+  border-top:2px solid #111;font-family:"Manrope",system-ui,sans-serif;font-size:11.5px;color:#4a4a48}
+.v6-trust div{padding:12px 26px 0 0;max-width:19ch;line-height:1.5}
+.v6-trust b{display:block;font-family:"Archivo",system-ui,sans-serif;font-weight:900;font-size:23px;
+  color:#111;line-height:1;margin-bottom:6px}
+.v6-art{position:relative}
+
+.v7{background:#16171a;color:#eae7e0}
+.v7-bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 560px at 74% 26%,rgba(198,164,96,.14),transparent 66%)}
+.v7-bg2{position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:repeating-linear-gradient(74deg,rgba(198,164,96,.06) 0 1px,transparent 1px 44px)}
+.v7 .hero-in{position:relative;z-index:2}
+.v7 .split{gap:70px}
+.v7-kick{display:flex;align-items:center;gap:14px;font-family:"Jost",system-ui,sans-serif;font-weight:300;
+  font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:#c6a460}
+.v7-kick:before{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#c6a460)}
+.v7 h1{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;font-size:clamp(38px,4.6vw,68px);
+  line-height:1.1;letter-spacing:-.008em;margin:28px 0 0;max-width:15ch;color:#f3f0e9}
+.v7 h1 i{font-style:italic;color:#c6a460}
+.v7-sub{font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:clamp(15px,1.2vw,17.5px);
+  line-height:1.8;color:#9d9a94;margin:28px 0 0;max-width:45ch;letter-spacing:.01em}
+.v7-cta{display:flex;flex-wrap:wrap;gap:28px;margin-top:42px;align-items:center}
+.v7-b1{font-family:"Jost",system-ui,sans-serif;font-weight:400;font-size:14px;letter-spacing:.18em;
+  text-transform:uppercase;padding:17px 40px;border:1px solid #c6a460;color:#f0e7d4;position:relative;
+  isolation:isolate;overflow:hidden;transition:color .3s ease}
+.v7-b1:before{content:"";position:absolute;inset:0;background:#c6a460;transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .38s cubic-bezier(.16,.84,.44,1);z-index:-1}
+.v7-b1:hover{color:#16171a}
+.v7-b1:hover:before{transform:scaleX(1)}
+.v7-b2{font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:14px;letter-spacing:.14em;
+  text-transform:uppercase;color:#8d8a84;transition:color .3s ease}
+.v7-b2:hover{color:#c6a460}
+.v7-trust{margin-top:46px;padding-top:22px;border-top:1px solid rgba(198,164,96,.24);
+  font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:13px;line-height:1.75;color:#87847e;max-width:50ch}
+.v7-trust b{color:#c6a460;font-weight:400}
+.v7-art{position:relative}
+
+.v8{background:#0d2b4e;color:#dfe9f5}
+.v8-bg{position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(rgba(140,190,255,.14) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(140,190,255,.14) 1px,transparent 1px),
+                   linear-gradient(rgba(140,190,255,.07) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(140,190,255,.07) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.v8-bg2{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(900px 600px at 30% 40%,rgba(255,255,255,.09),transparent 70%)}
+.v8 .hero-in{position:relative;z-index:2}
+.v8-kick{display:inline-flex;align-items:center;gap:10px;font-family:"JetBrains Mono",Consolas,monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8fb8e8;
+  border:1px solid rgba(143,184,232,.35);padding:6px 12px}
+.v8 h1{font-family:"Manrope",system-ui,sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,64px);
+  line-height:1.05;letter-spacing:-.028em;margin:24px 0 0;max-width:15ch;color:#f2f7ff}
+.v8 h1 span{position:relative;white-space:nowrap;color:#ffd76a}
+.v8-hand{font-family:"Caveat",cursive;font-size:clamp(21px,1.9vw,29px);color:#ffd76a;
+  transform:rotate(-3deg);display:inline-block;margin:18px 0 0}
+.v8-sub{font-family:"Manrope",system-ui,sans-serif;font-weight:400;font-size:clamp(14.5px,1.15vw,17px);
+  line-height:1.68;color:#a9c1de;margin:16px 0 0;max-width:47ch}
+.v8-sub b{color:#eaf2fd;font-weight:700}
+.v8-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+.v8-b1{font-family:"Manrope",system-ui,sans-serif;font-weight:800;font-size:14.5px;padding:16px 30px;
+  background:#ffd76a;color:#0d2b4e;transition:transform .18s ease,box-shadow .18s ease}
+.v8-b1:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(255,215,106,.8)}
+.v8-b2{font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:14.5px;padding:16px 26px;
+  border:1px solid rgba(175,205,240,.4);color:#dfe9f5;transition:background .18s ease,border-color .18s ease}
+.v8-b2:hover{background:rgba(175,205,240,.1);border-color:#8fb8e8}
+.v8-trust{margin-top:28px;font-family:"JetBrains Mono",Consolas,monospace;font-size:11.5px;line-height:1.75;
+  color:#7f9dc2;max-width:52ch}
+.v8-trust b{color:#ffd76a;font-weight:500}
+.v8-art{position:relative}
+
+.v9{background:#07080b;color:#eef1f6}
+.v9-bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(1100px 700px at 68% 42%,rgba(86,116,190,.34),transparent 64%),
+             radial-gradient(760px 520px at 22% 78%,rgba(28,60,110,.4),transparent 66%),
+             linear-gradient(180deg,#07080b,#0a0d16 60%,#07080b)}
+.v9-bg2{position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-size:200px 200px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.v9 .hero-in{position:relative;z-index:2}
+.v9 .split{gap:60px}
+.v9-kick{font-family:"Manrope",system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.34em;
+  text-transform:uppercase;color:#8e9ab6}
+.v9 h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(44px,5.6vw,86px);
+  line-height:1.02;letter-spacing:-.014em;margin:26px 0 0;max-width:13ch;color:#f6f8fc}
+.v9 h1 i{font-style:italic;color:#a9bce8}
+.v9-sub{font-family:"Manrope",system-ui,sans-serif;font-weight:300;font-size:clamp(15px,1.2vw,17.5px);
+  line-height:1.74;color:#98a1b8;margin:26px 0 0;max-width:44ch}
+.v9-cta{display:flex;flex-wrap:wrap;gap:24px;margin-top:38px;align-items:center}
+.v9-b1{font-family:"Manrope",system-ui,sans-serif;font-weight:600;font-size:14.5px;padding:16px 34px;
+  border-radius:999px;background:#f2f5fb;color:#0a0d16;transition:transform .2s ease,box-shadow .2s ease}
+.v9-b1:hover{transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(242,245,251,.5)}
+.v9-b2{font-family:"Manrope",system-ui,sans-serif;font-weight:400;font-size:14.5px;color:#9aa5bd;
+  display:inline-flex;align-items:center;gap:9px;transition:color .2s ease,gap .2s ease}
+.v9-b2:hover{color:#f2f5fb;gap:15px}
+.v9-trust{margin-top:40px;font-family:"Manrope",system-ui,sans-serif;font-weight:300;font-size:12.5px;
+  line-height:1.7;color:#727d95;max-width:50ch}
+.v9-trust b{color:#c3cee6;font-weight:500}
+.v9-art{position:relative}
+
+.v10{background:#fff;color:#0b0d12}
+.v10-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.v10-bg:before{content:"";position:absolute;right:-12%;top:-30%;width:70%;height:180%;
+  background:linear-gradient(150deg,#1f3bff,#0a1ccb);transform:skewX(-11deg)}
+.v10 .hero-in{position:relative;z-index:2}
+.v10 .split{gap:50px}
+.v10-kick{display:inline-flex;align-items:center;gap:9px;font-family:"Manrope",system-ui,sans-serif;
+  font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#1f3bff}
+.v10-kick:before{content:"";width:26px;height:3px;background:#1f3bff}
+.v10 h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;
+  font-size:clamp(40px,4.9vw,74px);line-height:.99;letter-spacing:-.03em;margin:22px 0 0;max-width:13ch}
+.v10 h1 span{display:inline-block;background:#1f3bff;color:#fff;padding:0 .12em;transform:rotate(-1.4deg)}
+.v10-sub{font-family:"Manrope",system-ui,sans-serif;font-weight:400;font-size:clamp(15px,1.2vw,17.5px);
+  line-height:1.64;color:#4b5163;margin:26px 0 0;max-width:43ch}
+.v10-sub b{color:#0b0d12;font-weight:700}
+.v10-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.v10-b1{font-family:"Manrope",system-ui,sans-serif;font-weight:800;font-size:15px;padding:17px 34px;
+  border-radius:8px;background:#1f3bff;color:#fff;
+  box-shadow:0 14px 30px -14px rgba(31,59,255,.8);transition:transform .18s ease,box-shadow .18s ease}
+.v10-b1:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(31,59,255,.95)}
+.v10-b2{font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:15px;padding:17px 26px;
+  border-radius:8px;border:2px solid #e2e5ee;color:#0b0d12;transition:border-color .18s ease}
+.v10-b2:hover{border-color:#1f3bff}
+.v10-trust{margin-top:28px;display:flex;align-items:flex-start;gap:10px;max-width:48ch;
+  font-family:"Manrope",system-ui,sans-serif;font-size:13px;line-height:1.65;color:#5c6376}
+.v10-trust b{color:#1f3bff;font-weight:800}
+.v10-art{position:relative}
+
 @media(max-width:680px){
   body{padding-top:40px}
   .deck-in{padding:8px 14px;gap:10px}
   .deck-t{display:none}
-  .deck-nav{gap:5px}
-  .deck-nav a{padding:5px 9px;font-size:10px}
+  .deck-nav{gap:5px;flex-wrap:nowrap;overflow-x:auto;margin-left:0;scrollbar-width:none}
+  .deck-nav::-webkit-scrollbar{display:none}
+  .deck-nav a{padding:5px 9px;font-size:10px;flex:0 0 auto}
   .deck-nav a span{display:none}
   .tag-in{grid-template-columns:40px 1fr;gap:12px;padding:20px 16px 18px}
   .tag-n{font-size:26px}
@@ -266,6 +416,8 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:1000px){
   .split{grid-template-columns:1fr;gap:44px}
+  .v10-bg:before{right:-20%;top:auto;bottom:-10%;width:150%;height:44%;transform:skewY(-7deg)}
+  .v6 .split,.v7 .split,.v9 .split{gap:44px}
   .hero{min-height:0}
   .hero-in{padding:56px 20px}
 }
@@ -274,13 +426,17 @@ a{text-decoration:none;color:inherit}
 <body>
 <header class="deck">
   <div class="deck-in">
-    <span class="deck-t">Первый экран · 5 характеров</span>
+    <span class="deck-t">Первый экран · 10 характеров</span>
     <nav class="deck-nav">
       <a href="#v1">01<span> Редакция</span></a>
       <a href="#v2">02<span> Плакат</span></a>
       <a href="#v3">03<span> Тишина</span></a>
       <a href="#v4">04<span> Витрина</span></a>
-      <a href="#v5">05<span> Студия</span></a>
+      <a href="#v6">06<span> Сетка</span></a>
+      <a href="#v7">07<span> Люкс</span></a>
+      <a href="#v8">08<span> Чертёж</span></a>
+      <a href="#v9">09<span> Кадр</span></a>
+      <a href="#v10">10<span> Синий</span></a>
     </nav>
   </div>
 </header>
@@ -560,8 +716,8 @@ a{text-decoration:none;color:inherit}
   <div class="tag-in">
     <div class="tag-n">05</div>
     <div>
-      <div class="tag-h">ТЁПЛАЯ СТУДИЯ</div>
-      <div class="tag-d">Продаёт <b>человечностью</b>: тёплая палитра, округлые формы, иллюстрация вместо интерфейса, разговорный тон. Прямая отстройка от «AI-мусора» — видно, что работают люди. Риск: мягкость может читаться как «небольшая студия», если рядом нет цифр.</div>
+      <div class="tag-h" style="color:#6b7080;text-decoration:line-through">ТЁПЛАЯ СТУДИЯ</div>
+      <div class="tag-d"><b style="color:#e2726a">Отклонено владельцем 18 августа — цвет и характер не подошли; всё близкое к этой линии не предлагаем.</b><br>Продаёт <b>человечностью</b>: тёплая палитра, округлые формы, иллюстрация вместо интерфейса, разговорный тон. Прямая отстройка от «AI-мусора» — видно, что работают люди. Риск: мягкость может читаться как «небольшая студия», если рядом нет цифр.</div>
     </div>
   </div>
 </div>
@@ -629,6 +785,346 @@ a{text-decoration:none;color:inherit}
             <path d="M388 216 q -30 6 -46 14"/>
             <path d="M188 388 q 40 -20 62 -46"/>
           </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v6">
+  <div class="tag-in">
+    <div class="tag-n">06</div>
+    <div>
+      <div class="tag-h">ШВЕЙЦАРСКАЯ СЕТКА</div>
+      <div class="tag-d">Продаёт <b>системой</b>: жёсткая сетка, чистый красный, тяжёлый гротеск, инфографика вместо украшений. Говорит «у нас метод, а не вдохновение». Риск: рационально до сухости — эмоции не даёт совсем.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v6">
+  <div class="v6-bg"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v6-kick r" style="animation-delay:.05s"><b>SEO</b><span>система, а не магия</span></div>
+        <h1 class="r" style="animation-delay:.13s">Спрос уже есть. Мы ведём его <span>к вам</span></h1>
+        <p class="v6-sub r" style="animation-delay:.21s">Три шага, каждый с измеримым выходом: разбираем спрос → выпускаем страницы под него → считаем обращения. <b>Никакой магии, только повторяемый процесс.</b></p>
+        <div class="v6-cta r" style="animation-delay:.29s">
+          <a class="v6-b1" href="#">Разобрать мой спрос</a>
+          <a class="v6-b2" href="#">Цена</a>
+        </div>
+        <div class="v6-trust r" style="animation-delay:.37s">
+          <div><b>7</b>рабочих дней до первой публикации</div>
+          <div><b>100%</b>публикаций после вашего согласия</div>
+          <div><b>0</b>обещаний по позициям</div>
+        </div>
+      </div>
+      <div class="v6-art r" style="animation-delay:.3s">
+        <svg viewBox="0 0 560 480" aria-hidden="true">
+          <rect x="0" y="0" width="560" height="480" fill="#e7e5df"/>
+          <circle cx="140" cy="130" r="86" fill="#e2261b"/>
+          <rect x="248" y="44" width="172" height="172" fill="#ffd400"/>
+          <path d="M448 216 L536 216 L492 130 Z" fill="#111"/>
+          <g font-family="Archivo,system-ui,sans-serif" font-weight="900" font-size="15" fill="#111">
+            <text x="40" y="292">01</text><text x="248" y="292">02</text><text x="448" y="292">03</text>
+          </g>
+          <g stroke="#111" stroke-width="2">
+            <line x1="40" y1="304" x2="212" y2="304"/><line x1="248" y1="304" x2="420" y2="304"/><line x1="448" y1="304" x2="536" y2="304"/>
+          </g>
+          <g font-family="Manrope,system-ui,sans-serif" font-weight="700" font-size="14.5" fill="#111">
+            <text x="40" y="332">Спрос</text><text x="248" y="332">Страницы</text><text x="448" y="332">Заявки</text>
+          </g>
+          <g font-family="Manrope,system-ui,sans-serif" font-size="12" fill="#5a5a57">
+            <text x="40" y="354">что и как ищут</text><text x="40" y="372">ваши покупатели</text>
+            <text x="248" y="354">по одной теме</text><text x="248" y="372">на каждый запрос</text>
+            <text x="448" y="354">звонок,</text><text x="448" y="372">форма, письмо</text>
+          </g>
+          <g fill="#111">
+            <rect x="40" y="404" width="82" height="14"/>
+            <rect x="140" y="404" width="140" height="14" fill="#e2261b"/>
+            <rect x="298" y="404" width="238" height="14" fill="#111"/>
+          </g>
+          <text x="40" y="446" font-family="Manrope,system-ui,sans-serif" font-size="11.5" fill="#5a5a57"
+                letter-spacing="1.4">НЕДЕЛЯ 1 → НЕДЕЛЯ 4 → ДАЛЬШЕ КАЖДУЮ НЕДЕЛЮ</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v7">
+  <div class="tag-in">
+    <div class="tag-n">07</div>
+    <div>
+      <div class="tag-h">ГРАФИТ И ЗОЛОТО</div>
+      <div class="tag-d">Продаёт <b>статусом</b>: графит, тонкое золото, дидон с высоким контрастом, много воздуха. Работает на высокий чек и длинный договор. Риск: при низкой цене выглядит как обман ожиданий.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v7">
+  <div class="v7-bg"></div>
+  <div class="v7-bg2"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v7-kick r" style="animation-delay:.05s">Поисковое продвижение</div>
+        <h1 class="r" style="animation-delay:.14s">Поиск, который работает на <i>репутацию</i>, а не на счётчик</h1>
+        <p class="v7-sub r" style="animation-delay:.22s">Страницы, которые не стыдно показать клиенту: разобранный спрос, живые тексты, редактор и ваша приёмка. Видимость приходит следствием — вместе с доверием.</p>
+        <div class="v7-cta r" style="animation-delay:.3s">
+          <a class="v7-b1" href="#">Обсудить сотрудничество</a>
+          <a class="v7-b2" href="#">Условия →</a>
+        </div>
+        <p class="v7-trust r" style="animation-delay:.38s">Производство запускаем за <b>7 рабочих дней</b>, срок закреплён договором. Позиций и числа заявок не обещаем: обещаем то, чем управляем сами.</p>
+      </div>
+      <div class="v7-art r" style="animation-delay:.32s">
+        <svg viewBox="0 0 560 470" aria-hidden="true">
+          <defs>
+            <linearGradient id="v7g" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#8a6f38"/><stop offset=".55" stop-color="#c6a460"/><stop offset="1" stop-color="#f0dfae"/>
+            </linearGradient>
+            <path id="v7arc" d="M280,300 m-96,0 a96,96 0 1,1 192,0 a96,96 0 1,1 -192,0"/>
+          </defs>
+          <rect x="18" y="18" width="524" height="434" fill="none" stroke="rgba(198,164,96,.28)"/>
+          <rect x="30" y="30" width="500" height="410" fill="none" stroke="rgba(198,164,96,.14)"/>
+          <path d="M62 400 C 150 392, 196 368, 250 330 S 372 236, 500 92"
+                fill="none" stroke="url(#v7g)" stroke-width="1.4"
+                stroke-dasharray="700" stroke-dashoffset="700" style="animation:draw 2.6s .5s cubic-bezier(.4,0,.2,1) forwards"/>
+          <g opacity="0" style="animation:fade 1s 2.6s ease forwards">
+            <circle cx="500" cy="92" r="5" fill="#c6a460"/>
+            <circle cx="500" cy="92" r="16" fill="none" stroke="#c6a460" stroke-width=".8" opacity=".5"/>
+          </g>
+          <g opacity="0" style="animation:fade 1.2s 1.6s ease forwards">
+            <circle cx="280" cy="300" r="96" fill="none" stroke="rgba(198,164,96,.32)" stroke-width="1"/>
+            <circle cx="280" cy="300" r="74" fill="none" stroke="rgba(198,164,96,.18)" stroke-width="1"/>
+            <text font-family="Jost,system-ui,sans-serif" font-size="11" letter-spacing="5.4" fill="#c6a460" opacity=".9">
+              <textPath href="#v7arc" startOffset="3%">ЗАПУСК ЗА 7 ДНЕЙ · СРОК В ДОГОВОРЕ · </textPath>
+            </text>
+            <text x="280" y="292" text-anchor="middle" font-family="Bodoni Moda,Didot,serif" font-size="52" fill="#f0dfae">VII</text>
+            <text x="280" y="320" text-anchor="middle" font-family="Jost,system-ui,sans-serif" font-size="10.5"
+                  letter-spacing="4.4" fill="#c6a460">ДНЕЙ</text>
+          </g>
+          <g font-family="Jost,system-ui,sans-serif" font-size="10.5" letter-spacing="2.6" fill="#7d7a74"
+             opacity="0" style="animation:fade 1s 3s ease forwards">
+            <text x="62" y="428">ДЕНЬ 7</text>
+            <text x="500" y="72" text-anchor="end">ВИДИМОСТЬ</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v8">
+  <div class="tag-in">
+    <div class="tag-n">08</div>
+    <div>
+      <div class="tag-h">ЧЕРТЁЖ</div>
+      <div class="tag-d">Продаёт <b>прозрачностью замысла</b>: синяя калька, размерные линии, пометки от руки. «Сначала покажем схему, потом возьмём деньги». Риск: инженерный язык ближе производственнику, чем рознице.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v8">
+  <div class="v8-bg"></div>
+  <div class="v8-bg2"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v8-kick r" style="animation-delay:.05s">SEO · схема работ</div>
+        <h1 class="r" style="animation-delay:.13s">Сначала чертёж линии, потом <span>стройка</span></h1>
+        <div class="v8-hand r" style="animation-delay:.19s">схему показываем до оплаты</div>
+        <p class="v8-sub r" style="animation-delay:.25s">Вы видите весь маршрут: какие запросы берём, какие страницы выходят, кто проверяет и в какой день. <b>Ни одного этапа «мы поработали над продвижением».</b></p>
+        <div class="v8-cta r" style="animation-delay:.31s">
+          <a class="v8-b1" href="#">Получить схему по своему сайту</a>
+          <a class="v8-b2" href="#">Что входит</a>
+        </div>
+        <p class="v8-trust r" style="animation-delay:.39s">Линия запускается за <b>7 рабочих дней</b>. Сорвём срок по своей вине — месяц производства бесплатно.</p>
+      </div>
+      <div class="v8-art r" style="animation-delay:.3s">
+        <svg viewBox="0 0 560 480" aria-hidden="true">
+          <g fill="none" stroke="#bcd6f2" stroke-width="1.4">
+            <rect x="30" y="120" width="118" height="86"/>
+            <rect x="221" y="120" width="118" height="86"/>
+            <rect x="412" y="120" width="118" height="86"/>
+            <rect x="126" y="290" width="118" height="86"/>
+            <rect x="317" y="290" width="118" height="86"/>
+          </g>
+          <g stroke="#8fb8e8" stroke-width="1.4" stroke-dasharray="6 5" fill="none">
+            <path d="M148 163 L221 163"/><path d="M339 163 L412 163"/>
+            <path d="M471 206 L471 250 L185 250 L185 290"/>
+            <path d="M244 333 L317 333"/>
+          </g>
+          <g font-family="Manrope,system-ui,sans-serif" font-weight="700" font-size="13" fill="#eaf3ff">
+            <text x="89" y="158" text-anchor="middle">Спрос</text>
+            <text x="280" y="158" text-anchor="middle">План</text>
+            <text x="471" y="158" text-anchor="middle">Тексты</text>
+            <text x="185" y="328" text-anchor="middle">Проверка</text>
+            <text x="376" y="328" text-anchor="middle">Публикация</text>
+          </g>
+          <g font-family="JetBrains Mono,Consolas,monospace" font-size="10" fill="#8fb8e8">
+            <text x="89" y="180" text-anchor="middle">д. 1–2</text>
+            <text x="280" y="180" text-anchor="middle">д. 3</text>
+            <text x="471" y="180" text-anchor="middle">д. 4–6</text>
+            <text x="185" y="350" text-anchor="middle">машина + редактор</text>
+            <text x="376" y="350" text-anchor="middle">д. 7 · ваше «да»</text>
+          </g>
+          <g stroke="#ffd76a" stroke-width="1" fill="none">
+            <path d="M30 90 L530 90"/><path d="M30 82 L30 98"/><path d="M530 82 L530 98"/>
+          </g>
+          <text x="280" y="76" text-anchor="middle" font-family="JetBrains Mono,Consolas,monospace"
+                font-size="11" fill="#ffd76a" letter-spacing="1.6">7 РАБОЧИХ ДНЕЙ</text>
+          <g opacity="0" style="animation:fade 1s 1.1s ease forwards">
+            <path d="M352 396 q 34 26 62 8" stroke="#ffd76a" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M414 404 l -14 -2 l 8 -11" stroke="#ffd76a" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <text x="292" y="438" font-family="Caveat,cursive" font-size="22" fill="#ffd76a">здесь вы жмёте «выпустить»</text>
+          </g>
+          <g opacity="0" style="animation:fade 1s 1.4s ease forwards">
+            <text x="34" y="432" font-family="Caveat,cursive" font-size="23" fill="#ffd76a">у каждого узла своя приёмка</text>
+            <path d="M40 440 L268 440" stroke="#ffd76a" stroke-width="1.4" opacity=".5"/>
+          </g>
+          <rect x="18" y="18" width="524" height="444" fill="none" stroke="rgba(188,214,242,.5)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v9">
+  <div class="tag-in">
+    <div class="tag-n">09</div>
+    <div>
+      <div class="tag-h">КИНОКАДР</div>
+      <div class="tag-d">Продаёт <b>эмоцией и масштабом</b>: широкий кадр, холодный свет, огромный тонкий шрифт, почти нет текста. Ощущение «большой бренд». Риск: мало конкретики на первом экране — доказательства уезжают ниже.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v9">
+  <div class="v9-bg"></div>
+  <div class="v9-bg2"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v9-kick r" style="animation-delay:.05s">Поиск · контент · заявки</div>
+        <h1 class="r" style="animation-delay:.14s">Каждый день кто-то ищет то, что вы <i>продаёте</i></h1>
+        <p class="v9-sub r" style="animation-delay:.24s">Мы делаем так, чтобы в этот момент он находил вас — и получал ответ, после которого пишут, а не закрывают вкладку.</p>
+        <div class="v9-cta r" style="animation-delay:.32s">
+          <a class="v9-b1" href="#">Начать</a>
+          <a class="v9-b2" href="#">Как это работает <span>→</span></a>
+        </div>
+        <p class="v9-trust r" style="animation-delay:.4s">Производство запускаем за <b>7 рабочих дней</b>. Позиции и число заявок не обещаем — обещаем срок, объём и то, что каждую страницу вы утверждаете сами.</p>
+      </div>
+      <div class="v9-art r" style="animation-delay:.34s">
+        <svg viewBox="0 0 560 400" aria-hidden="true">
+          <defs>
+            <radialGradient id="v9glow" cx="50%" cy="62%" r="58%">
+              <stop offset="0" stop-color="#cfe0ff" stop-opacity=".85"/>
+              <stop offset=".45" stop-color="#6f8fd8" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#0a0d16" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="v9c" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#1b2540"/><stop offset=".55" stop-color="#33456f"/>
+              <stop offset="1" stop-color="#8aa6e8"/>
+            </linearGradient>
+            <linearGradient id="v9h" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#7f9ae0" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#dae6ff"/>
+              <stop offset="1" stop-color="#7f9ae0" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="560" height="400" fill="#0a0d16"/>
+          <ellipse cx="280" cy="286" rx="330" ry="150" fill="url(#v9glow)"/>
+          <g fill="url(#v9c)">
+            <rect x="76" y="228" width="16" height="60"/><rect x="104" y="204" width="16" height="84"/>
+            <rect x="132" y="246" width="16" height="42"/><rect x="160" y="188" width="16" height="100"/>
+            <rect x="188" y="216" width="16" height="72"/><rect x="216" y="168" width="16" height="120"/>
+            <rect x="244" y="200" width="16" height="88"/><rect x="272" y="140" width="16" height="148"/>
+            <rect x="300" y="182" width="16" height="106"/><rect x="328" y="212" width="16" height="76"/>
+            <rect x="356" y="176" width="16" height="112"/><rect x="384" y="222" width="16" height="66"/>
+            <rect x="412" y="196" width="16" height="92"/><rect x="440" y="238" width="16" height="50"/>
+            <rect x="468" y="214" width="16" height="74"/>
+          </g>
+          <line x1="20" y1="288" x2="540" y2="288" stroke="url(#v9h)" stroke-width="1.4"/>
+          <g fill="#dae6ff">
+            <circle cx="150" cy="116" r="1.5" opacity=".6"/><circle cx="212" cy="92" r="1.2" opacity=".45"/>
+            <circle cx="280" cy="76" r="2.2" opacity=".95"/><circle cx="352" cy="98" r="1.3" opacity=".5"/>
+            <circle cx="424" cy="120" r="1.5" opacity=".6"/><circle cx="98" cy="136" r="1.1" opacity=".4"/>
+            <circle cx="474" cy="104" r="1.1" opacity=".45"/>
+          </g>
+          <path d="M150 116 L212 92 L280 76 L352 98 L424 120" fill="none"
+                stroke="rgba(218,230,255,.34)" stroke-width="1"/>
+          <g opacity="0" style="animation:fade 1.4s 1s ease forwards">
+            <circle cx="280" cy="76" r="12" fill="none" stroke="#dae6ff" stroke-width="1" opacity=".55"/>
+            <circle cx="280" cy="76" r="25" fill="none" stroke="#dae6ff" stroke-width="1" opacity=".22"/>
+            <line x1="280" y1="88" x2="280" y2="140" stroke="#dae6ff" stroke-width="1" opacity=".3"/>
+          </g>
+          <g font-family="Manrope,system-ui,sans-serif" font-size="10.5" letter-spacing="3" fill="#93a1c4"
+             opacity="0" style="animation:fade 1.2s 1.6s ease forwards">
+            <text x="280" y="52" text-anchor="middle" fill="#dae6ff">ВАШ ОТВЕТ НА ЕГО ВОПРОС</text>
+            <text x="30" y="322">ЗАПРОС</text>
+            <text x="530" y="322" text-anchor="end">ЗАЯВКА</text>
+          </g>
+          <rect x="0" y="0" width="560" height="34" fill="#07080b"/>
+          <rect x="0" y="366" width="560" height="34" fill="#07080b"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v10">
+  <div class="tag-in">
+    <div class="tag-n">10</div>
+    <div>
+      <div class="tag-h">УЛЬТРАМАРИН</div>
+      <div class="tag-d">Продаёт <b>скоростью и уверенностью</b>: белое поле, синий скос во весь экран, тяжёлый гротеск, конкретика цифрами. Универсален для холодного трафика, читается «современная компания». Риск: синий — самый частый цвет в digital, отстройка держится на композиции, а не на палитре.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v10">
+  <div class="v10-bg"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v10-kick r" style="animation-delay:.05s">SEO + производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">Из поиска — <span>в заявки</span>. Без пауз и отчётов ни о чём</h1>
+        <p class="v10-sub r" style="animation-delay:.21s">Разбираем спрос, чиним сайт, каждую неделю выпускаем страницы под запросы ваших покупателей. <b>Первая публикация — на седьмой рабочий день.</b></p>
+        <div class="v10-cta r" style="animation-delay:.29s">
+          <a class="v10-b1" href="#">Рассчитать мой запуск</a>
+          <a class="v10-b2" href="#">Смотреть тарифы</a>
+        </div>
+        <p class="v10-trust r" style="animation-delay:.37s"><span>Срок запуска стоит <b>в договоре</b>. Не уложились по своей вине — следующий месяц производства бесплатно. Позиции и количество лидов не обещаем.</span></p>
+      </div>
+      <div class="v10-art r" style="animation-delay:.3s">
+        <svg viewBox="0 0 560 470" aria-hidden="true">
+          <g opacity=".2" stroke="#fff" stroke-width="1.4" fill="none">
+            <path d="M96 470 L306 40"/><path d="M186 470 L396 40"/><path d="M276 470 L486 40"/>
+          </g>
+          <g transform="rotate(-2 300 150)">
+            <rect x="112" y="60" width="378" height="132" rx="12" fill="#fff"
+                  style="filter:drop-shadow(0 22px 40px rgba(6,20,90,.35))"/>
+            <text x="144" y="116" font-family="Bricolage Grotesque,system-ui,sans-serif" font-weight="800"
+                  font-size="46" fill="#0b0d12">7 дней</text>
+            <text x="144" y="144" font-family="Manrope,system-ui,sans-serif" font-size="13.5" fill="#5c6376">от договора до первой публикации</text>
+            <rect x="144" y="160" width="314" height="6" rx="3" fill="#e8ebf4"/>
+            <rect x="144" y="160" width="238" height="6" rx="3" fill="#1f3bff"/>
+          </g>
+          <g transform="rotate(1.6 300 300)">
+            <rect x="58" y="226" width="286" height="112" rx="12" fill="#fff"
+                  style="filter:drop-shadow(0 18px 34px rgba(6,20,90,.28))"/>
+            <text x="88" y="264" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="12"
+                  letter-spacing="1.6" fill="#1f3bff">КАЖДУЮ НЕДЕЛЮ</text>
+            <text x="88" y="298" font-family="Bricolage Grotesque,system-ui,sans-serif" font-weight="800"
+                  font-size="29" fill="#0b0d12">новые страницы</text>
+            <text x="88" y="320" font-family="Manrope,system-ui,sans-serif" font-size="12.5" fill="#5c6376">и ни одной без вашего согласия</text>
+          </g>
+          <g transform="rotate(-1.2 380 400)">
+            <rect x="280" y="356" width="242" height="92" rx="12" fill="#0b0d12"
+                  style="filter:drop-shadow(0 18px 34px rgba(6,20,90,.4))"/>
+            <text x="308" y="392" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="12"
+                  letter-spacing="1.6" fill="#8b9bff">ЧТО МЕРЯЕМ</text>
+            <text x="308" y="424" font-family="Bricolage Grotesque,system-ui,sans-serif" font-weight="800"
+                  font-size="27" fill="#fff">обращения</text>
+          </g>
+          <path d="M462 320 L510 272 M510 272 L510 312 M510 272 L468 272" fill="none" stroke="#fff"
+                stroke-width="7" stroke-linecap="round" opacity=".95"/>
         </svg>
       </div>
     </div>
