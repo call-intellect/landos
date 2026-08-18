@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Первый экран — пять цветовых гамм</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-top:48px;background:#0a0a0c;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+
+.deck{position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(10,10,12,.85);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
+  border-bottom:1px solid rgba(255,255,255,.09)}
+.deck-in{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;
+  font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.deck-t{color:#8a8f9c;white-space:nowrap}
+.deck-nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+.deck-nav a{padding:6px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#c9ced9;
+  transition:background .18s ease,color .18s ease,border-color .18s ease}
+.deck-nav a:hover{background:#f2f4f8;color:#0a0a0c;border-color:#f2f4f8}
+
+.tag{border-top:1px solid rgba(255,255,255,.1);background:#0a0a0c;
+  font-family:ui-monospace,"Cascadia Mono",Consolas,monospace}
+.tag-in{max-width:1320px;margin:0 auto;padding:24px 20px 20px;display:grid;grid-template-columns:56px 1fr;gap:18px}
+.tag-n{font-size:32px;line-height:.9;color:#2f333d}
+.tag-h{font-size:15px;letter-spacing:.02em;color:#eef1f6;font-family:"Spectral",Georgia,serif;font-weight:600}
+.tag-d{margin-top:5px;font-size:12px;line-height:1.65;color:#787f8d;max-width:78ch}
+.tag-d b{color:#a8b0bf;font-weight:500}
+.sw{display:inline-flex;gap:5px;margin-left:10px;vertical-align:-2px}
+.sw i{width:12px;height:12px;border-radius:3px;display:block;border:1px solid rgba(255,255,255,.2)}
+
+.hero{position:relative;overflow:hidden;background:var(--bg);color:var(--ink)}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--grain,.5);
+  background-image:radial-gradient(circle at 1px 1px,var(--dot,rgba(29,26,21,.16)) 1px,transparent 0);background-size:4px 4px}
+.hero:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--fold,rgba(29,26,21,.08));pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:84px 20px 88px}
+.split{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);gap:62px;align-items:center}
+
+.kick{display:flex;align-items:center;gap:14px;font-family:"Spectral",Georgia,serif;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--mut)}
+.kick:before{content:"";width:44px;height:1px;background:var(--line)}
+h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(38px,4.4vw,64px);
+  line-height:1.04;letter-spacing:-.018em;margin:22px 0 0;max-width:14ch}
+h1 em{font-style:italic;font-weight:500;color:var(--acc)}
+.utp{font-family:"Spectral",Georgia,serif;font-weight:300;font-size:clamp(17px,1.5vw,22px);line-height:1.58;
+  color:var(--sub,var(--mut));margin:26px 0 0;max-width:42ch;border-left:2px solid var(--line);padding-left:20px}
+.utp b{font-weight:600;color:var(--acc)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;align-items:center}
+.b1{font-family:"Spectral",Georgia,serif;font-size:15px;letter-spacing:.02em;padding:15px 32px;
+  background:var(--btn,var(--ink));color:var(--btn-ink,var(--bg));border-radius:var(--rad,3px);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.b1:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px var(--shadow,rgba(0,0,0,.45))}
+.b2{font-family:"Spectral",Georgia,serif;font-size:15px;padding:15px 6px;color:var(--mut);
+  border-bottom:1px solid var(--line);transition:color .18s ease,border-color .18s ease}
+.b2:hover{color:var(--acc);border-color:var(--acc)}
+.trust{margin-top:26px;font-family:"Spectral",Georgia,serif;font-size:13.5px;font-style:italic;line-height:1.62;
+  color:var(--mut);max-width:48ch}
+.trust b{font-style:normal;font-weight:600;color:var(--ink)}
+
+.shot{margin:0;position:relative}
+.shot-back{position:absolute;inset:26px -26px -30px 30px;border-radius:28px;background:var(--acc);
+  opacity:var(--back-op,.13);transform:rotate(3.2deg)}
+.shot-frame{position:relative;transform:rotate(-2.1deg);border-radius:22px;overflow:hidden;
+  background:var(--paper);border:1px solid var(--line);
+  box-shadow:0 34px 70px -34px var(--shadow,rgba(40,32,18,.6)),0 2px 0 var(--paper)}
+.shot-frame img{border-radius:21px}
+.shot figcaption{margin-top:26px;font-family:"Spectral",Georgia,serif;font-size:11.5px;
+  line-height:1.6;color:var(--mut);opacity:.8}
+.shot-badge{position:absolute;z-index:3;left:-20px;bottom:34px;transform:rotate(-5deg);
+  background:var(--acc);color:var(--badge-ink,#fff);padding:10px 15px;border-radius:4px;
+  font-family:"Spectral",Georgia,serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 14px 28px -14px var(--shadow,rgba(0,0,0,.5))}
+
+.p1{--bg:#f4efe4;--ink:#1d1a15;--mut:#5e5443;--sub:#4b4438;--acc:#8c2f22;--line:#cbbb99;--paper:#fbf8f1;
+    --shadow:rgba(60,50,30,.55);--dot:rgba(29,26,21,.16)}
+.p2{--bg:#eceef2;--ink:#12161d;--mut:#5b6376;--sub:#454d5e;--acc:#1d4ed8;--line:#c2cad8;--paper:#fff;
+    --shadow:rgba(20,30,60,.4);--dot:rgba(20,30,60,.12);--grain:.4;--fold:rgba(20,30,60,.07);--rad:6px}
+.p3{--bg:#15161b;--ink:#eeebe4;--mut:#98958d;--sub:#a9a69e;--acc:#d8a24a;--line:#3b3c44;--paper:#1d1e25;
+    --shadow:rgba(0,0,0,.8);--dot:rgba(255,255,255,.07);--grain:.6;--fold:rgba(255,255,255,.06);
+    --btn:#d8a24a;--btn-ink:#15161b;--badge-ink:#15161b;--back-op:.18;--rad:4px}
+.p4{--bg:#e8ede6;--ink:#151f19;--mut:#4d5b52;--sub:#3d4a42;--acc:#2f5d43;--line:#bacabe;--paper:#f6f9f4;
+    --shadow:rgba(24,50,36,.45);--dot:rgba(24,50,36,.12);--grain:.45;--fold:rgba(24,50,36,.07);--rad:999px}
+.p5{--bg:#fff;--ink:#0b0b0b;--mut:#585858;--sub:#3d3d3d;--acc:#e01f1f;--line:#0b0b0b;--paper:#fff;
+    --shadow:rgba(0,0,0,.4);--dot:rgba(0,0,0,.1);--grain:.35;--fold:rgba(0,0,0,.1);--rad:0}
+.p5 .shot-frame{border-width:2px}
+.p5 .b2{border-bottom-width:2px}
+.p5 h1{font-weight:800;letter-spacing:-.022em}
+
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.r{animation:rise .8s cubic-bezier(.16,.84,.44,1) both}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media(max-width:1000px){
+  .split{grid-template-columns:1fr;gap:44px}
+  .wrap{padding:60px 20px 64px}
+  .hero:after{display:none}
+  .shot-frame{transform:rotate(-1.4deg)}
+  .shot figcaption{transform:none}
+}
+@media(max-width:680px){
+  body{padding-top:40px}
+  .deck-t{display:none}
+  .deck-in{padding:8px 14px;gap:10px}
+  .deck-nav{gap:5px;margin-left:0}
+  .deck-nav a{padding:5px 10px;font-size:10px}
+  .deck-nav a span{display:none}
+  .tag-in{grid-template-columns:40px 1fr;gap:12px;padding:20px 16px 18px}
+  .tag-n{font-size:26px}
+  .shot-back{inset:18px -14px -18px 16px}
+  .shot-badge{position:static;display:inline-block;margin:16px 0 0;left:auto;bottom:auto;
+    transform:rotate(-1.6deg);font-size:10px;padding:8px 12px}
+  .shot figcaption{margin-top:12px}
+}
+</style>
+</head>
+<body>
+<header class="deck">
+  <div class="deck-in">
+    <span class="deck-t">Первый экран · 5 цветовых гамм</span>
+    <nav class="deck-nav">
+      <a href="#p1">01<span> Бумага</span></a>
+      <a href="#p2">02<span> Лён</span></a>
+      <a href="#p3">03<span> Ночь</span></a>
+      <a href="#p4">04<span> Шалфей</span></a>
+      <a href="#p5">05<span> Газета</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="tag" id="p1">
+  <div class="tag-in">
+    <div class="tag-n">01</div>
+    <div>
+      <div class="tag-h">БУМАГА И ВИНО<span class="sw"><i style="background:#f4efe4"></i><i style="background:#1d1a15"></i><i style="background:#8c2f22"></i></span></div>
+      <div class="tag-d">Исходная гамма выбранного характера. Тёплая бумага, чернильный текст, винный акцент — <b>спокойная экспертиза</b>, книжное ощущение. Самая мягкая по контрасту из пяти.</div>
+    </div>
+  </div>
+</div>
+<section class="hero p1">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#">Обсудить проект</a>
+          <a class="b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий с февраля по июнь" loading="eager" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="p2">
+  <div class="tag-in">
+    <div class="tag-n">02</div>
+    <div>
+      <div class="tag-h">ХОЛОДНЫЙ ЛЁН<span class="sw"><i style="background:#eceef2"></i><i style="background:#12161d"></i><i style="background:#1d4ed8"></i></span></div>
+      <div class="tag-d">Та же вёрстка, холодная база и синий акцент — <b>деловой, нейтральный тон</b>. Синий читается как «технологии и надёжность», хорошо ложится на скриншот интерфейса.</div>
+    </div>
+  </div>
+</div>
+<section class="hero p2">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#">Обсудить проект</a>
+          <a class="b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий с февраля по июнь" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="p3">
+  <div class="tag-in">
+    <div class="tag-n">03</div>
+    <div>
+      <div class="tag-h">НОЧНАЯ РЕДАКЦИЯ<span class="sw"><i style="background:#15161b"></i><i style="background:#eeebe4"></i><i style="background:#d8a24a"></i></span></div>
+      <div class="tag-d">Тёмная база, слоновая кость, янтарная кнопка — <b>дороже и собраннее</b> остальных. Светлый скриншот на тёмном поле бьёт в глаза сильнее всего.</div>
+    </div>
+  </div>
+</div>
+<section class="hero p3">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#">Обсудить проект</a>
+          <a class="b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий с февраля по июнь" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="p4">
+  <div class="tag-in">
+    <div class="tag-n">04</div>
+    <div>
+      <div class="tag-h">ШАЛФЕЙ<span class="sw"><i style="background:#e8ede6"></i><i style="background:#151f19"></i><i style="background:#2f5d43"></i></span></div>
+      <div class="tag-d">Приглушённая зелень и скруглённая кнопка — <b>спокойный рост, ничего кричащего</b>. Самая «не-агентская» из пяти: меньше всего похожа на типовой digital-лендинг.</div>
+    </div>
+  </div>
+</div>
+<section class="hero p4">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#">Обсудить проект</a>
+          <a class="b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий с февраля по июнь" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="p5">
+  <div class="tag-in">
+    <div class="tag-n">05</div>
+    <div>
+      <div class="tag-h">ГАЗЕТА<span class="sw"><i style="background:#fff"></i><i style="background:#0b0b0b"></i><i style="background:#e01f1f"></i></span></div>
+      <div class="tag-d">Белое поле, чёрные линии в два пикселя, один красный — <b>максимальный контраст и прямота</b>. Самая заметная гамма и самая требовательная: любая небрежность будет видна.</div>
+    </div>
+  </div>
+</div>
+<section class="hero p5">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kick r" style="animation-delay:.05s">Поисковое продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">SEO-продвижение вашего сайта</h1>
+        <p class="utp r" style="animation-delay:.21s">Запустим контент-завод <b>за 7 дней</b>. Первое попадание в поиск — уже через <b>1–2 месяца</b>.</p>
+        <div class="cta r" style="animation-delay:.29s">
+          <a class="b1" href="#">Обсудить проект</a>
+          <a class="b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="trust r" style="animation-delay:.37s">Срок запуска закреплён договором: не уложились по нашей вине — <b>следующий месяц производства бесплатно</b>.</p>
+      </div>
+      <figure class="shot r" style="animation-delay:.3s">
+        <div class="shot-back"></div>
+        <div class="shot-badge">Ваша метрика</div>
+        <div class="shot-frame">
+          <picture>
+            <source type="image/webp" media="(max-width:700px)" srcset="assets/metrika-760.webp">
+            <source type="image/webp" srcset="assets/metrika-1200.webp">
+            <img src="assets/metrika-1200.jpg" width="1200" height="1200" alt="Отчёт «Источники, сводка» в Яндекс Метрике: рост визитов, посетителей и конверсий с февраля по июнь" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <figcaption>Пример отчёта Яндекс Метрики — демонстрация того, что вы видите у себя. Не кейс клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="tag">
+  <div class="tag-in">
+    <div class="tag-n">→</div>
+    <div>
+      <div class="tag-h">ТЕХНИЧЕСКОЕ</div>
+      <div class="tag-d">Картинка подготовлена к выкладке: исходный PNG 1092 КБ → <b>WebP 65 КБ</b> (широкий экран) и <b>36 КБ</b> (телефон), запасной JPG 132 КБ для старых браузеров. Размеры заданы в разметке, чтобы страница не прыгала при загрузке. Если справа будет <b>видео</b> — тот же контейнер: скруглённая рамка с поворотом, внутрь вместо картинки встаёт mp4 с постером.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
