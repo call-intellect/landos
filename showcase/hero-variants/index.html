@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Первый экран — пять характеров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Cormorant+Garamond:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400;500&family=Karla:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Sora:wght@200;300;400;600;700&family=Spectral:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-top:48px;background:#0a0a0c;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+.deck{position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(10,10,12,.82);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
+  border-bottom:1px solid rgba(255,255,255,.09)}
+.deck-in{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;
+  font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.deck-t{color:#8a8f9c;white-space:nowrap}
+.deck-nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.deck-nav a{padding:6px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#c9ced9;
+  transition:background .18s ease,color .18s ease,border-color .18s ease}
+.deck-nav a:hover{background:#f2f4f8;color:#0a0a0c;border-color:#f2f4f8}
+
+.tag{border-top:1px solid rgba(255,255,255,.1);background:#0a0a0c;
+  font-family:"JetBrains Mono",ui-monospace,Consolas,monospace}
+.tag-in{max-width:1320px;margin:0 auto;padding:26px 20px 22px;
+  display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start}
+.tag-n{font-size:34px;line-height:.9;color:#2f333d;font-weight:500}
+.tag-h{font-size:15px;letter-spacing:.02em;color:#eef1f6;font-family:"Archivo",system-ui,sans-serif;font-weight:600}
+.tag-d{margin-top:5px;font-size:12px;line-height:1.65;color:#787f8d;max-width:74ch;letter-spacing:.01em}
+.tag-d b{color:#a8b0bf;font-weight:500}
+
+.hero{position:relative;overflow:hidden;min-height:640px;display:flex;align-items:center}
+.hero-in{width:100%;max-width:1320px;margin:0 auto;padding:76px 20px}
+.split{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:64px;align-items:center}
+
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.r{animation:rise .82s cubic-bezier(.16,.84,.44,1) both}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.v1{background:#f4efe4;color:#1d1a15}
+.v1:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(circle at 1px 1px,rgba(29,26,21,.16) 1px,transparent 0);background-size:4px 4px}
+.v1:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(29,26,21,.1);pointer-events:none}
+.v1 .hero-in{position:relative;z-index:2}
+.v1-rule{display:flex;align-items:center;gap:14px;font-family:"Spectral",Georgia,serif;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:#8a7c62}
+.v1-rule:before{content:"";width:44px;height:1px;background:#b9a988}
+.v1 h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(38px,4.5vw,66px);
+  line-height:1.03;letter-spacing:-.018em;margin:22px 0 0;max-width:15ch}
+.v1 h1 em{font-style:italic;font-weight:500;color:#8c2f22}
+.v1-sub{font-family:"Spectral",Georgia,serif;font-weight:300;font-size:clamp(15px,1.25vw,18.5px);
+  line-height:1.66;color:#4b4438;margin:24px 0 0;max-width:50ch;
+  border-left:2px solid #cbbb99;padding-left:20px}
+.v1-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;align-items:center}
+.v1-b1{font-family:"Spectral",Georgia,serif;font-size:15px;letter-spacing:.02em;padding:14px 30px;
+  background:#1d1a15;color:#f4efe4;border-radius:2px;transition:transform .18s ease,box-shadow .18s ease}
+.v1-b1:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(29,26,21,.24)}
+.v1-b2{font-family:"Spectral",Georgia,serif;font-size:15px;padding:14px 6px;color:#5e5443;
+  border-bottom:1px solid #b9a988;border-radius:0;transition:color .18s ease,border-color .18s ease}
+.v1-b2:hover{color:#8c2f22;border-color:#8c2f22}
+.v1-trust{margin-top:26px;font-family:"Spectral",Georgia,serif;font-size:13.5px;font-style:italic;
+  color:#6d6352;line-height:1.6;max-width:46ch}
+.v1-trust b{font-style:normal;font-weight:600;color:#1d1a15}
+
+.v1-art{position:relative;transform:rotate(-1.4deg)}
+.v1-paper{position:relative;z-index:1;background:#fbf8f1;border:1px solid #d8cbb0;padding:26px 26px 22px;
+  box-shadow:0 2px 0 #e6dcc6,0 30px 60px -34px rgba(60,50,30,.55);position:relative}
+.v1-paper:before{content:"";position:absolute;inset:8px;border:1px solid rgba(185,169,136,.4);pointer-events:none}
+.v1-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid #1d1a15;padding-bottom:9px;margin-bottom:16px;
+  font-family:"Spectral",Georgia,serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a7c62}
+.v1-serp{display:grid;gap:15px}
+.v1-item{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding-bottom:14px;
+  border-bottom:1px dotted #cdc0a4}
+.v1-item:last-child{border-bottom:0;padding-bottom:0}
+.v1-pos{font-family:"Playfair Display",Georgia,serif;font-size:19px;color:#c0b190;line-height:1}
+.v1-item.on .v1-pos{color:#8c2f22}
+.v1-t{font-family:"Playfair Display",Georgia,serif;font-size:15.5px;line-height:1.28;color:#2b261d;margin:0}
+.v1-item.on .v1-t{color:#8c2f22}
+.v1-u{font-family:"Spectral",Georgia,serif;font-size:10.5px;letter-spacing:.06em;color:#9c8f75;margin:5px 0 0}
+.v1-line{height:1px;background:repeating-linear-gradient(90deg,#ded2b8 0 26px,transparent 26px 32px);margin-top:7px}
+.v1-line.s{width:72%}
+.v1-stamp{position:absolute;z-index:2;right:-4px;bottom:-38px;width:150px;height:150px;transform:rotate(9deg)}
+.v1-clip{position:absolute;z-index:3;left:-26px;top:-16px;background:#8c2f22;color:#f7f2e6;padding:11px 15px;
+  font-family:"Spectral",Georgia,serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 12px 26px -12px rgba(140,47,34,.7);transform:rotate(-3deg)}
+
+.v2{background:#0c0c0c;color:#f6f6f4}
+.v2:before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px)}
+.v2-glow{position:absolute;width:760px;height:760px;right:-180px;top:-260px;pointer-events:none;
+  background:radial-gradient(circle,rgba(198,255,60,.16),transparent 62%)}
+.v2 .hero-in{position:relative;z-index:2}
+.v2 .split{align-items:center;gap:52px}
+.v2-kick{display:inline-flex;align-items:center;gap:10px;background:#c6ff3c;color:#0c0c0c;
+  font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;padding:8px 14px;transform:skewX(-9deg)}
+.v2-kick span{display:block;transform:skewX(9deg)}
+.v2 h1{font-family:"Anton",Haettenschweiler,"Arial Narrow",Impact,sans-serif;font-weight:400;
+  font-size:clamp(46px,6.4vw,104px);line-height:.86;letter-spacing:-.008em;text-transform:uppercase;
+  margin:22px 0 0;max-width:13ch}
+.v2 h1 u{text-decoration:none;color:#c6ff3c}
+.v2-sub{font-family:"Archivo",system-ui,sans-serif;font-weight:400;font-size:clamp(14.5px,1.2vw,17px);
+  line-height:1.6;color:#a6a8a2;margin:26px 0 0;max-width:46ch}
+.v2-sub b{color:#f6f6f4;font-weight:600}
+.v2-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:stretch}
+.v2-b1{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;padding:17px 32px;background:#c6ff3c;color:#0c0c0c;
+  transition:transform .16s cubic-bezier(.16,.84,.44,1),box-shadow .16s ease}
+.v2-b1:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 #f6f6f4}
+.v2-b2{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;padding:17px 26px;border:1.5px solid rgba(246,246,244,.3);color:#f6f6f4;
+  transition:border-color .16s ease,background .16s ease}
+.v2-b2:hover{border-color:#c6ff3c;background:rgba(198,255,60,.08)}
+.v2-trust{margin-top:30px;padding-top:22px;border-top:1px solid rgba(246,246,244,.14);
+  font-family:"Archivo",system-ui,sans-serif;font-size:12.5px;line-height:1.65;color:#8d8f89;max-width:48ch;
+  letter-spacing:.02em}
+.v2-trust b{color:#c6ff3c;font-weight:700}
+.v2-art{position:relative}
+.v2-marq{position:absolute;left:-6%;bottom:-2%;width:112%;background:#c6ff3c;color:#0c0c0c;
+  transform:rotate(-6.5deg);overflow:hidden;box-shadow:0 22px 50px -22px rgba(198,255,60,.5)}
+.v2-marq-in{display:flex;gap:34px;padding:9px 0;white-space:nowrap;
+  font-family:"Anton",Impact,sans-serif;font-size:17px;letter-spacing:.05em;text-transform:uppercase;
+  animation:mv 22s linear infinite}
+@keyframes mv{to{transform:translateX(-50%)}}
+.v2-marq-in i{font-style:normal;opacity:.45}
+
+.v3{background:#f7f5f0;color:#171a17}
+.v3-mesh{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(900px 620px at 78% 22%,rgba(28,74,55,.07),transparent 70%),
+             radial-gradient(700px 520px at 8% 88%,rgba(160,140,105,.09),transparent 68%)}
+.v3 .hero-in{position:relative;z-index:2}
+.v3 .split{gap:78px}
+.v3-kick{font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:11.5px;letter-spacing:.34em;
+  text-transform:uppercase;color:#8d9088}
+.v3 h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;font-size:clamp(42px,5.2vw,78px);
+  line-height:1.06;letter-spacing:-.012em;margin:30px 0 0;max-width:14ch;color:#131614}
+.v3 h1 i{font-style:italic;color:#1c4a37}
+.v3-sub{font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:clamp(15px,1.2vw,17.5px);
+  line-height:1.78;color:#5b5f59;margin:30px 0 0;max-width:44ch}
+.v3-cta{display:flex;flex-wrap:wrap;gap:26px;margin-top:44px;align-items:center}
+.v3-b1{font-family:"Jost",system-ui,sans-serif;font-weight:400;font-size:14.5px;letter-spacing:.1em;
+  text-transform:uppercase;padding:16px 38px;border:1px solid #1c4a37;color:#1c4a37;border-radius:999px;
+  transition:background .28s ease,color .28s ease}
+.v3-b1:hover{background:#1c4a37;color:#f7f5f0}
+.v3-b2{font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:14.5px;letter-spacing:.08em;
+  color:#7d817a;display:inline-flex;align-items:center;gap:9px;transition:color .28s ease,gap .28s ease}
+.v3-b2:hover{color:#1c4a37;gap:15px}
+.v3-trust{margin-top:52px;display:flex;gap:34px;flex-wrap:wrap;
+  font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:12.5px;color:#8d9088;letter-spacing:.02em}
+.v3-trust div{max-width:23ch;line-height:1.6;padding-top:14px;border-top:1px solid #d9d5cb}
+.v3-trust b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;font-weight:400;
+  color:#1c4a37;letter-spacing:0;margin-bottom:4px}
+.v3-art{position:relative;padding:8px}
+
+.v4{background:#08090d;color:#e8ecf5}
+.v4-mesh{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 560px at 76% 30%,rgba(64,120,255,.2),transparent 66%),
+             radial-gradient(620px 460px at 12% 82%,rgba(0,214,190,.11),transparent 64%)}
+.v4-grid{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(140,170,255,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(140,170,255,.05) 1px,transparent 1px);
+  background-size:58px 58px;
+  -webkit-mask-image:radial-gradient(720px 520px at 60% 40%,#000,transparent 76%);
+  mask-image:radial-gradient(720px 520px at 60% 40%,#000,transparent 76%)}
+.v4 .hero-in{position:relative;z-index:2}
+.v4-kick{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;
+  border:1px solid rgba(140,170,255,.26);background:rgba(120,160,255,.07);
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#9fb6ea}
+.v4-dot{width:6px;height:6px;border-radius:50%;background:#00d6be;box-shadow:0 0 12px #00d6be;
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.32}}
+.v4 h1{font-family:"Sora",system-ui,sans-serif;font-weight:600;font-size:clamp(38px,4.3vw,62px);
+  line-height:1.1;letter-spacing:-.025em;margin:26px 0 0;max-width:16ch}
+.v4 h1 span{background:linear-gradient(105deg,#8fb4ff,#00d6be 62%);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.v4-sub{font-family:"Sora",system-ui,sans-serif;font-weight:300;font-size:clamp(14.5px,1.15vw,17px);
+  line-height:1.72;color:#98a2b8;margin:24px 0 0;max-width:48ch}
+.v4-sub b{color:#dbe3f2;font-weight:400}
+.v4-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:34px}
+.v4-b1{font-family:"Sora",system-ui,sans-serif;font-weight:600;font-size:14.5px;padding:15px 30px;
+  border-radius:11px;color:#04121a;background:linear-gradient(105deg,#a9c6ff,#00d6be);
+  box-shadow:0 16px 40px -18px rgba(0,214,190,.75);transition:transform .18s ease,box-shadow .18s ease}
+.v4-b1:hover{transform:translateY(-2px);box-shadow:0 22px 48px -18px rgba(0,214,190,.95)}
+.v4-b2{font-family:"Sora",system-ui,sans-serif;font-weight:400;font-size:14.5px;padding:15px 24px;
+  border-radius:11px;border:1px solid rgba(160,185,240,.24);color:#c3cee4;
+  transition:border-color .18s ease,background .18s ease}
+.v4-b2:hover{border-color:rgba(160,185,240,.5);background:rgba(140,170,255,.07)}
+.v4-trust{margin-top:30px;font-family:"JetBrains Mono",Consolas,monospace;font-size:11.5px;line-height:1.7;
+  color:#6f7a91;max-width:52ch;letter-spacing:.01em}
+.v4-trust b{color:#00d6be;font-weight:500}
+.v4-art{position:relative}
+.v4-panel{position:relative;z-index:1;border-radius:18px;padding:20px;
+  background:linear-gradient(160deg,rgba(24,30,48,.92),rgba(12,15,26,.94));
+  border:1px solid rgba(140,170,255,.18);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.v4-ph{display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:#7d89a4}
+.v4-ph b{margin-left:auto;color:#00d6be;font-weight:500}
+.v4-rows{display:grid;gap:9px;margin-top:16px}
+.v4-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px 13px;
+  border-radius:10px;background:rgba(140,170,255,.05);border:1px solid rgba(140,170,255,.09);
+  font-family:"Sora",system-ui,sans-serif;font-size:12.5px;color:#b9c4da}
+.v4-row em{font-style:normal;font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:#6f7a91}
+.v4-up{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:#00d6be;
+  background:rgba(0,214,190,.1);border:1px solid rgba(0,214,190,.22);border-radius:6px;padding:3px 7px}
+.v4-chip{position:absolute;z-index:3;right:-14px;top:-18px;padding:11px 15px;border-radius:12px;
+  background:linear-gradient(150deg,#131a2c,#0a0e18);border:1px solid rgba(0,214,190,.32);
+  box-shadow:0 20px 44px -22px rgba(0,214,190,.55);
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:10.5px;color:#9fb6ea;line-height:1.5}
+.v4-chip b{display:block;font-family:"Sora",system-ui,sans-serif;font-size:20px;font-weight:600;color:#e8ecf5}
+
+.v5{background:#f8f1e6;color:#2a1d14}
+.v5-mesh{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(680px 520px at 84% 16%,rgba(233,167,86,.3),transparent 66%),
+             radial-gradient(560px 480px at 6% 92%,rgba(199,91,57,.16),transparent 66%)}
+.v5 .hero-in{position:relative;z-index:2}
+.v5-kick{display:inline-flex;align-items:center;gap:10px;font-family:"Karla",system-ui,sans-serif;
+  font-weight:700;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#a8582f}
+.v5-kick:before{content:"";width:9px;height:9px;border-radius:50%;background:#c75b39}
+.v5 h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(38px,4.6vw,68px);
+  line-height:1.06;letter-spacing:-.017em;margin:22px 0 0;max-width:15ch;color:#241811}
+.v5 h1 span{position:relative;white-space:nowrap}
+.v5 h1 span:after{content:"";position:absolute;left:-4px;right:-4px;bottom:.15em;height:.26em;
+  background:rgba(233,167,86,.55);border-radius:.2em;z-index:-1}
+.v5-sub{font-family:"Karla",system-ui,sans-serif;font-size:clamp(15px,1.2vw,17.5px);line-height:1.72;
+  color:#5c463a;margin:24px 0 0;max-width:46ch}
+.v5-sub b{color:#2a1d14;font-weight:700}
+.v5-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
+.v5-b1{font-family:"Karla",system-ui,sans-serif;font-weight:700;font-size:15px;padding:16px 32px;
+  border-radius:999px;background:#c75b39;color:#fdf7ee;
+  box-shadow:0 14px 30px -14px rgba(199,91,57,.75);transition:transform .2s cubic-bezier(.16,.84,.44,1),box-shadow .2s ease}
+.v5-b1:hover{transform:translateY(-3px);box-shadow:0 20px 38px -14px rgba(199,91,57,.9)}
+.v5-b2{font-family:"Karla",system-ui,sans-serif;font-weight:500;font-size:15px;padding:16px 24px;
+  border-radius:999px;border:1.5px solid rgba(199,91,57,.32);color:#8a4a2c;
+  transition:border-color .2s ease,background .2s ease}
+.v5-b2:hover{border-color:#c75b39;background:rgba(199,91,57,.07)}
+.v5-trust{margin-top:30px;display:flex;align-items:flex-start;gap:12px;max-width:47ch;
+  font-family:"Karla",system-ui,sans-serif;font-size:13.5px;line-height:1.66;color:#6d5445}
+.v5-trust b{color:#a8582f;font-weight:700}
+.v5-art{position:relative}
+
+@media(max-width:680px){
+  body{padding-top:40px}
+  .deck-in{padding:8px 14px;gap:10px}
+  .deck-t{display:none}
+  .deck-nav{gap:5px}
+  .deck-nav a{padding:5px 9px;font-size:10px}
+  .deck-nav a span{display:none}
+  .tag-in{grid-template-columns:40px 1fr;gap:12px;padding:20px 16px 18px}
+  .tag-n{font-size:26px}
+  .v1-clip{left:0;top:-14px}
+  .v1-stamp{width:112px;height:112px;right:-6px;bottom:-30px}
+  .v2-marq{bottom:2%}
+  .v3-trust{gap:20px}
+  .v4-chip{right:0;top:-14px}
+}
+@media(max-width:1000px){
+  .split{grid-template-columns:1fr;gap:44px}
+  .hero{min-height:0}
+  .hero-in{padding:56px 20px}
+}
+</style>
+</head>
+<body>
+<header class="deck">
+  <div class="deck-in">
+    <span class="deck-t">Первый экран · 5 характеров</span>
+    <nav class="deck-nav">
+      <a href="#v1">01<span> Редакция</span></a>
+      <a href="#v2">02<span> Плакат</span></a>
+      <a href="#v3">03<span> Тишина</span></a>
+      <a href="#v4">04<span> Витрина</span></a>
+      <a href="#v5">05<span> Студия</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="tag" id="v1">
+  <div class="tag-in">
+    <div class="tag-n">01</div>
+    <div>
+      <div class="tag-h">РЕДАКЦИОННЫЙ РАЗВОРОТ</div>
+      <div class="tag-d">Продаёт <b>экспертизой</b>: бумага, серифная типографика, вёрстка полосы. Читается как «нас читают, нам верят». Ставка на собственника, который выбирает подрядчика надолго и не любит крикливое. Риск: спокойный тон слабее цепляет холодный трафик.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v1">
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v1-rule r" style="animation-delay:.05s">SEO-продвижение и производство контента</div>
+        <h1 class="r" style="animation-delay:.13s">Вас находят те, кто уже <em>ищет</em> ваш товар</h1>
+        <p class="v1-sub r" style="animation-delay:.21s">Разбираем спрос, чиним сайт под поиск и ставим производство страниц на поток. Каждую неделю выходят материалы под реальные запросы — по ним приходят люди, готовые купить.</p>
+        <div class="v1-cta r" style="animation-delay:.29s">
+          <a class="v1-b1" href="#">Обсудить проект</a>
+          <a class="v1-b2" href="#">Как устроено производство →</a>
+        </div>
+        <p class="v1-trust r" style="animation-delay:.37s">Завод запускаем за <b>7 рабочих дней</b>. Не уложились по нашей вине — следующий месяц производства бесплатно.</p>
+      </div>
+      <div class="v1-art r" style="animation-delay:.3s">
+        <div class="v1-clip">Живая выдача</div>
+        <div class="v1-paper">
+          <div class="v1-head"><span>Запрос: «купить станок чпу»</span><span>Стр. 1</span></div>
+          <div class="v1-serp">
+            <div class="v1-item on">
+              <div class="v1-pos">1</div>
+              <div>
+                <p class="v1-t">Как выбрать станок ЧПУ: 9 параметров, на которых экономят зря</p>
+                <p class="v1-u">ваш-сайт.рф › журнал › выбор-станка</p>
+                <div class="v1-line"></div><div class="v1-line s" style="margin-top:5px"></div>
+              </div>
+            </div>
+            <div class="v1-item on">
+              <div class="v1-pos">2</div>
+              <div>
+                <p class="v1-t">Станок ЧПУ для мебельного цеха — расчёт окупаемости за 4 шага</p>
+                <p class="v1-u">ваш-сайт.рф › калькулятор</p>
+                <div class="v1-line"></div>
+              </div>
+            </div>
+            <div class="v1-item">
+              <div class="v1-pos">3</div>
+              <div>
+                <p class="v1-t" style="color:#8b8371">Каталог оборудования — маркетплейс</p>
+                <p class="v1-u">market.example › cnc</p>
+                <div class="v1-line s"></div>
+              </div>
+            </div>
+            <div class="v1-item">
+              <div class="v1-pos">4</div>
+              <div>
+                <p class="v1-t" style="color:#8b8371">Форум станочников: обсуждение моделей</p>
+                <p class="v1-u">forum.example › threads</p>
+                <div class="v1-line s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <svg class="v1-stamp" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="v1arc" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+          <circle cx="100" cy="100" r="86" fill="none" stroke="#8c2f22" stroke-width="2.5" opacity=".82"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#8c2f22" stroke-width="1.2" opacity=".6"/>
+          <text font-family="Spectral,Georgia,serif" font-size="13.5" letter-spacing="3.1" fill="#8c2f22" opacity=".88">
+            <textPath href="#v1arc" startOffset="2%">ЗАПУСК ЗА 7 ДНЕЙ · СРОК В ДОГОВОРЕ · </textPath>
+          </text>
+          <text x="100" y="94" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="38" font-weight="700" fill="#8c2f22" opacity=".9">7</text>
+          <text x="100" y="118" text-anchor="middle" font-family="Spectral,Georgia,serif" font-size="11" letter-spacing="2.4" fill="#8c2f22" opacity=".8">ДНЕЙ</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v2">
+  <div class="tag-in">
+    <div class="tag-n">02</div>
+    <div>
+      <div class="tag-h">ПЛАКАТ-АФИША</div>
+      <div class="tag-d">Продаёт <b>дерзостью и запоминаемостью</b>: гигантский конденсед, кислотный акцент, скос и движение. Пробивает баннерную слепоту холодного трафика за секунду. Риск: «крикливо» — часть консервативных заказчиков отсеет сама себя.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v2">
+  <div class="v2-glow"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v2-kick r" style="animation-delay:.05s"><span>SEO + контент-завод</span></div>
+        <h1 class="r" style="animation-delay:.12s">Поиск должен приводить <u>клиентов</u>, а не отчёты</h1>
+        <p class="v2-sub r" style="animation-delay:.2s">Берём сайт, спрос и производство страниц под один подряд. <b>Запуск — 7 рабочих дней.</b> Дальше линия выдаёт материалы каждую неделю, и ни один не выходит без вашего «да».</p>
+        <div class="v2-cta r" style="animation-delay:.28s">
+          <a class="v2-b1" href="#">Запустить завод</a>
+          <a class="v2-b2" href="#">Цена и что входит</a>
+        </div>
+        <p class="v2-trust r" style="animation-delay:.36s">Срок запуска стоит в договоре. Сорвём по своей вине — <b>месяц производства бесплатно</b>. Позиции и число лидов не обещаем: этим управляет не подрядчик.</p>
+      </div>
+      <div class="v2-art r" style="animation-delay:.26s">
+        <svg viewBox="0 0 560 520" aria-hidden="true">
+          <defs>
+            <linearGradient id="v2g" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#c6ff3c" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#c6ff3c"/>
+            </linearGradient>
+            <clipPath id="v2clip"><rect x="0" y="0" width="560" height="520"/></clipPath>
+          </defs>
+          <g clip-path="url(#v2clip)">
+            <g fill="url(#v2g)">
+              <rect x="34" y="392" width="58" height="96" rx="3"/>
+              <rect x="106" y="352" width="58" height="136" rx="3"/>
+              <rect x="178" y="300" width="58" height="188" rx="3"/>
+              <rect x="250" y="238" width="58" height="250" rx="3"/>
+              <rect x="322" y="166" width="58" height="322" rx="3"/>
+              <rect x="394" y="72" width="58" height="416" rx="3"/>
+            </g>
+            <g stroke="rgba(246,246,244,.16)" stroke-width="1">
+              <line x1="0" y1="488" x2="560" y2="488"/>
+              <line x1="0" y1="392" x2="560" y2="392"/>
+              <line x1="0" y1="296" x2="560" y2="296"/>
+              <line x1="0" y1="200" x2="560" y2="200"/>
+            </g>
+            <text x="214" y="356" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="392"
+                  fill="none" stroke="#f6f6f4" stroke-width="2.4" opacity=".5" transform="rotate(-5 214 356)">7</text>
+            <path d="M470 208 L470 96 M470 96 L436 132 M470 96 L504 132" fill="none" stroke="#f6f6f4"
+                  stroke-width="9" stroke-linecap="square"/>
+          </g>
+        </svg>
+        <div class="v2-marq">
+          <div class="v2-marq-in">
+            <span>Семантика</span><i>◆</i><span>Тексты</span><i>◆</i><span>Публикация</span><i>◆</i><span>Заявки</span><i>◆</i>
+            <span>Семантика</span><i>◆</i><span>Тексты</span><i>◆</i><span>Публикация</span><i>◆</i><span>Заявки</span><i>◆</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v3">
+  <div class="tag-in">
+    <div class="tag-n">03</div>
+    <div>
+      <div class="tag-h">ПРЕМИАЛЬНАЯ ТИШИНА</div>
+      <div class="tag-d">Продаёт <b>дороговизной и уверенностью</b>: воздух, тонкая линия, один благородный акцент, ничего лишнего. Сигнал «мы не бегаем за клиентом». Риск: минимализм требует высокого чека — при дешёвом прайсе выглядит несобранным.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v3">
+  <div class="v3-mesh"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v3-kick r" style="animation-delay:.05s">Поисковое продвижение</div>
+        <h1 class="r" style="animation-delay:.14s">Ровный поток обращений <i>из поиска</i></h1>
+        <p class="v3-sub r" style="animation-delay:.24s">Мы не гонимся за объёмом. Находим запросы, по которым приходят покупатели, и закрываем их страницами — по одной, тщательно, каждую неделю.</p>
+        <div class="v3-cta r" style="animation-delay:.32s">
+          <a class="v3-b1" href="#">Начать разговор</a>
+          <a class="v3-b2" href="#">Как мы считаем результат <span>→</span></a>
+        </div>
+        <div class="v3-trust r" style="animation-delay:.4s">
+          <div><b>7 дней</b>от договора до первой публикации</div>
+          <div><b>Каждая</b>страница выходит только после вашего согласия</div>
+          <div><b>Ноль</b>обещаний по позициям — обещаем то, чем управляем</div>
+        </div>
+      </div>
+      <div class="v3-art r" style="animation-delay:.34s">
+        <svg viewBox="0 0 560 470" aria-hidden="true">
+          <defs>
+            <linearGradient id="v3f" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1c4a37" stop-opacity=".1"/>
+              <stop offset="1" stop-color="#1c4a37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="12" y="12" width="536" height="446" fill="none" stroke="#d9d5cb" stroke-width="1"/>
+          <text x="44" y="58" font-family="Jost,system-ui,sans-serif" font-size="11" letter-spacing="3.4"
+                fill="#9a9d95">ОБРАЩЕНИЯ ИЗ ОРГАНИЧЕСКОГО ПОИСКА</text>
+          <g stroke="#e4e0d6" stroke-width="1" stroke-dasharray="2 6">
+            <line x1="44" y1="140" x2="516" y2="140"/>
+            <line x1="44" y1="230" x2="516" y2="230"/>
+            <line x1="44" y1="320" x2="516" y2="320"/>
+          </g>
+          <line x1="44" y1="392" x2="516" y2="392" stroke="#cfcabd" stroke-width="1"/>
+          <path d="M44 372 C 118 366, 152 352, 196 330 S 286 288, 330 250 S 430 168, 502 106"
+                fill="none" stroke="#1c4a37" stroke-width="1.6" stroke-linecap="round"
+                stroke-dasharray="720" stroke-dashoffset="720" style="animation:draw 2.4s 0.5s cubic-bezier(.4,0,.2,1) forwards"/>
+          <path d="M44 372 C 118 366, 152 352, 196 330 S 286 288, 330 250 S 430 168, 502 106 L 502 392 L 44 392 Z"
+                fill="url(#v3f)" opacity="0" style="animation:fade 1.4s 1.9s ease forwards"/>
+          <g opacity="0" style="animation:fade .9s 2.5s ease forwards">
+            <circle cx="196" cy="330" r="4" fill="#f7f5f0" stroke="#1c4a37" stroke-width="1.4"/>
+            <circle cx="330" cy="250" r="4" fill="#f7f5f0" stroke="#1c4a37" stroke-width="1.4"/>
+            <circle cx="502" cy="106" r="6" fill="#1c4a37"/>
+            <circle cx="502" cy="106" r="15" fill="none" stroke="#1c4a37" stroke-width="1" opacity=".34"/>
+          </g>
+          <g opacity="0" style="animation:fade .9s 2.7s ease forwards"
+             font-family="Jost,system-ui,sans-serif" font-size="10.5" letter-spacing="1.6" fill="#8d9088">
+            <line x1="196" y1="330" x2="196" y2="418" stroke="#d9d5cb" stroke-width="1"/>
+            <text x="196" y="436" text-anchor="middle">первая партия</text>
+            <line x1="330" y1="250" x2="330" y2="418" stroke="#d9d5cb" stroke-width="1"/>
+            <text x="330" y="436" text-anchor="middle">линия на ходу</text>
+          </g>
+          <g opacity="0" style="animation:fade 1s 3s ease forwards">
+            <circle cx="44" cy="372" r="3.5" fill="#1c4a37"/>
+            <line x1="44" y1="368" x2="44" y2="322" stroke="#1c4a37" stroke-width="1" opacity=".4"/>
+            <text x="54" y="318" font-family="Cormorant Garamond,Georgia,serif" font-size="16" fill="#1c4a37">день 7 — старт</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v4">
+  <div class="tag-in">
+    <div class="tag-n">04</div>
+    <div>
+      <div class="tag-h">ТЁМНАЯ ВИТРИНА</div>
+      <div class="tag-d">Продаёт <b>технологичностью и контролем</b>: тёмный фон, свечение, живая панель вместо обещаний. Хорошо заходит тем, кто уже обжёгся на агентствах и хочет видеть цифры. Риск: язык «продукта», а не услуги — легко перепутать с SaaS.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v4">
+  <div class="v4-mesh"></div>
+  <div class="v4-grid"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v4-kick r" style="animation-delay:.05s"><span class="v4-dot"></span>SEO · контент · замер эффекта</div>
+        <h1 class="r" style="animation-delay:.13s">Видимость в поиске <span>как управляемый процесс</span></h1>
+        <p class="v4-sub r" style="animation-delay:.21s">Спрос, техническая база, производство страниц и измерение результата — в одном контуре. <b>Вы видите очередь, выпуск и эффект каждой страницы</b> с первого дня, а не отчёт в конце месяца.</p>
+        <div class="v4-cta r" style="animation-delay:.29s">
+          <a class="v4-b1" href="#">Смотреть панель</a>
+          <a class="v4-b2" href="#">Как отделяем свой эффект</a>
+        </div>
+        <p class="v4-trust r" style="animation-delay:.37s">Запуск линии — <b>7 рабочих дней</b>, срок в договоре.<br>Гарантируем срок и объём. Позиции — нет: ими управляет алгоритм, а не подрядчик.</p>
+      </div>
+      <div class="v4-art r" style="animation-delay:.3s">
+        <div class="v4-chip"><b>+41</b>страниц в индексе<br>за 30 дней</div>
+        <div class="v4-panel">
+          <div class="v4-ph"><span>Проект · демонстрация</span><b>● LIVE</b></div>
+          <svg viewBox="0 0 480 150" aria-hidden="true" style="width:100%;height:auto">
+            <defs>
+              <linearGradient id="v4f" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#00d6be" stop-opacity=".28"/>
+                <stop offset="1" stop-color="#00d6be" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="v4s" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8fb4ff"/><stop offset="1" stop-color="#00d6be"/>
+              </linearGradient>
+            </defs>
+            <g stroke="rgba(140,170,255,.1)" stroke-width="1">
+              <line x1="0" y1="40" x2="480" y2="40"/><line x1="0" y1="80" x2="480" y2="80"/><line x1="0" y1="120" x2="480" y2="120"/>
+            </g>
+            <path d="M6 132 C 70 128, 104 118, 150 104 S 236 84, 292 62 S 400 34, 474 18 L 474 148 L 6 148 Z" fill="url(#v4f)"/>
+            <path d="M6 132 C 70 128, 104 118, 150 104 S 236 84, 292 62 S 400 34, 474 18"
+                  fill="none" stroke="url(#v4s)" stroke-width="2.4" stroke-linecap="round"
+                  stroke-dasharray="640" stroke-dashoffset="640" style="animation:draw 2s .4s cubic-bezier(.4,0,.2,1) forwards"/>
+            <circle cx="474" cy="18" r="4.5" fill="#00d6be" opacity="0" style="animation:fade .6s 2.3s ease forwards"/>
+          </svg>
+          <div class="v4-rows">
+            <div class="v4-row"><span>станок чпу цена</span><em>поз. 4</em><span class="v4-up">▲ 11</span></div>
+            <div class="v4-row"><span>чпу для мебельного цеха</span><em>поз. 2</em><span class="v4-up">▲ 6</span></div>
+            <div class="v4-row"><span>окупаемость станка чпу</span><em>поз. 1</em><span class="v4-up">▲ 18</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag" id="v5">
+  <div class="tag-in">
+    <div class="tag-n">05</div>
+    <div>
+      <div class="tag-h">ТЁПЛАЯ СТУДИЯ</div>
+      <div class="tag-d">Продаёт <b>человечностью</b>: тёплая палитра, округлые формы, иллюстрация вместо интерфейса, разговорный тон. Прямая отстройка от «AI-мусора» — видно, что работают люди. Риск: мягкость может читаться как «небольшая студия», если рядом нет цифр.</div>
+    </div>
+  </div>
+</div>
+<section class="hero v5">
+  <div class="v5-mesh"></div>
+  <div class="hero-in">
+    <div class="split">
+      <div>
+        <div class="v5-kick r" style="animation-delay:.05s">SEO и контент для живого бизнеса</div>
+        <h1 class="r" style="animation-delay:.13s">Ваши будущие клиенты <span>уже ищут</span>. Сделаем так, чтобы нашли вас</h1>
+        <p class="v5-sub r" style="animation-delay:.21s">Собираем вопросы, которые люди задают поиску о вашем деле, и честно отвечаем на них страницами вашего сайта. <b>Приходят те, кто уже готов покупать</b> — не случайный трафик.</p>
+        <div class="v5-cta r" style="animation-delay:.29s">
+          <a class="v5-b1" href="#">Обсудить задачу</a>
+          <a class="v5-b2" href="#">Посмотреть, как работаем</a>
+        </div>
+        <p class="v5-trust r" style="animation-delay:.37s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c75b39" stroke-width="2" style="flex:0 0 auto;margin-top:2px"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg><span>Производство запускаем за <b>7 рабочих дней</b>. Не успели по своей вине — следующий месяц работаем бесплатно.</span></p>
+      </div>
+      <div class="v5-art r" style="animation-delay:.3s">
+        <svg viewBox="0 0 560 500" aria-hidden="true">
+          <defs>
+            <clipPath id="v5lens"><circle cx="252" cy="236" r="112"/></clipPath>
+            <linearGradient id="v5sun" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#F2C078"/><stop offset="1" stop-color="#E9A756"/>
+            </linearGradient>
+          </defs>
+          <path d="M-60 344 C 40 262, 168 428, 292 348 S 486 254, 620 330 L 620 560 L -60 560 Z"
+                fill="#EFD9BC" opacity=".55"/>
+          <circle cx="452" cy="98" r="52" fill="url(#v5sun)" opacity=".85"/>
+          <circle cx="252" cy="236" r="112" fill="#FDF7EE"/>
+          <g clip-path="url(#v5lens)">
+            <rect x="152" y="150" width="200" height="34" fill="#F1E3D0"/>
+            <circle cx="172" cy="167" r="5" fill="#C75B39" opacity=".5"/>
+            <rect x="186" y="161" width="120" height="11" rx="5.5" fill="#D9C3A6"/>
+            <rect x="160" y="200" width="184" height="60" rx="10" fill="#fff"/>
+            <rect x="174" y="214" width="128" height="10" rx="5" fill="#2A1D14" opacity=".72"/>
+            <rect x="174" y="232" width="156" height="7" rx="3.5" fill="#B99C7E"/>
+            <rect x="174" y="244" width="96" height="7" rx="3.5" fill="#D3BC9F"/>
+            <rect x="160" y="272" width="184" height="52" rx="10" fill="#fff" opacity=".85"/>
+            <rect x="174" y="286" width="112" height="9" rx="4.5" fill="#2A1D14" opacity=".55"/>
+            <rect x="174" y="303" width="146" height="7" rx="3.5" fill="#D3BC9F"/>
+            <g fill="#C75B39" opacity=".9"><circle cx="330" cy="212" r="9"/></g>
+            <text x="330" y="216" text-anchor="middle" font-family="Karla,system-ui,sans-serif"
+                  font-size="10" font-weight="700" fill="#FDF7EE">1</text>
+          </g>
+          <circle cx="252" cy="236" r="112" fill="none" stroke="#C75B39" stroke-width="13"/>
+          <circle cx="252" cy="236" r="103" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
+          <path d="M332 316 L 396 380" stroke="#C75B39" stroke-width="26" stroke-linecap="round"/>
+          <path d="M332 316 L 396 380" stroke="#A8482A" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+          <g font-family="Karla,system-ui,sans-serif" font-size="13" fill="#5C463A">
+            <g opacity="0" style="animation:fade .8s .9s ease forwards">
+              <rect x="18" y="176" width="150" height="40" rx="20" fill="#fff" stroke="#EAD9C2"/>
+              <text x="93" y="201" text-anchor="middle">сколько стоит?</text>
+            </g>
+            <g opacity="0" style="animation:fade .8s 1.15s ease forwards">
+              <rect x="392" y="196" width="152" height="40" rx="20" fill="#fff" stroke="#EAD9C2"/>
+              <text x="468" y="221" text-anchor="middle">как выбрать?</text>
+            </g>
+            <g opacity="0" style="animation:fade .8s 1.4s ease forwards">
+              <rect x="66" y="386" width="176" height="40" rx="20" fill="#fff" stroke="#EAD9C2"/>
+              <text x="154" y="411" text-anchor="middle">кто делает под ключ?</text>
+            </g>
+          </g>
+          <g stroke="#C75B39" stroke-width="1.6" stroke-dasharray="4 6" fill="none" opacity=".45">
+            <path d="M172 196 q 30 12 44 26"/>
+            <path d="M388 216 q -30 6 -46 14"/>
+            <path d="M188 388 q 40 -20 62 -46"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tag">
+  <div class="tag-in">
+    <div class="tag-n">→</div>
+    <div>
+      <div class="tag-h">ЧТО ДЕЛАЕМ ДАЛЬШЕ</div>
+      <div class="tag-d">Скажите номер — или соберите свой: «характер 2, но палитра 5», «заголовок из 3, картинка из 4». Выбранный характер станет системой для всей страницы: шрифты, цвет, тон текста, иллюстрации следующих блоков — <b>инструменты, цена, гарантии, FAQ</b> — собираются уже по нему.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
