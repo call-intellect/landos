@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#15161b; --ink:#eeebe4; --sub:#a9a69e; --mut:#98958d; --dim:#6f6d68;
+  --bg:#15161b; --ink:#eeebe4; --sub:#a9a69e; --mut:#98958d; --dim:#8a8781;
   --acc:#d8a24a; --acc-soft:rgba(216,162,74,.11);
   --paper:#1d1e25; --paper-2:#22232b; --line:#3b3c44; --line-soft:rgba(255,255,255,.08);
   --ok:#7cb489; --warn:#d98a63;
@@ -268,17 +268,17 @@ h2 em{font-style:italic;font-weight:500;color:var(--acc)}
   --edge:rgba(255,255,255,.10);
   --halo:0 26px 70px -44px rgba(0,0,0,.95);
 }
-body{background:#101116}
+body{background:#15161b}
 body:before{opacity:.4}
 
 .fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .fx i{position:absolute;display:block;border-radius:50%;filter:blur(90px)}
 .fx .a1{width:56vw;height:56vw;left:-16vw;top:-18vw;
-  background:radial-gradient(circle,rgba(216,162,74,.20),transparent 64%);animation:drift1 46s ease-in-out infinite}
+  background:radial-gradient(circle,rgba(88,116,172,.26),transparent 64%);animation:drift1 46s ease-in-out infinite}
 .fx .a2{width:48vw;height:48vw;right:-14vw;top:22vh;
-  background:radial-gradient(circle,rgba(120,146,196,.14),transparent 64%);animation:drift2 58s ease-in-out infinite}
+  background:radial-gradient(circle,rgba(104,132,190,.22),transparent 64%);animation:drift2 58s ease-in-out infinite}
 .fx .a3{width:60vw;height:60vw;left:24vw;bottom:-28vh;
-  background:radial-gradient(circle,rgba(216,162,74,.13),transparent 66%);animation:drift3 64s ease-in-out infinite}
+  background:radial-gradient(circle,rgba(74,98,150,.20),transparent 66%);animation:drift3 64s ease-in-out infinite}
 @keyframes drift1{50%{transform:translate3d(8vw,6vh,0) scale(1.12)}}
 @keyframes drift2{50%{transform:translate3d(-7vw,-5vh,0) scale(1.08)}}
 @keyframes drift3{50%{transform:translate3d(-6vw,-7vh,0) scale(1.14)}}
@@ -288,8 +288,8 @@ body:before{opacity:.4}
 
 .hero{isolation:isolate}
 .hero .mesh{position:absolute;left:0;right:0;bottom:0;height:58%;z-index:1;pointer-events:none;
-  background-image:linear-gradient(rgba(216,162,74,.16) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(216,162,74,.11) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(139,166,220,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,166,220,.11) 1px,transparent 1px);
   background-size:70px 70px;transform:perspective(560px) rotateX(64deg);transform-origin:bottom center;
   -webkit-mask-image:linear-gradient(to top,#000 4%,transparent 76%);
   mask-image:linear-gradient(to top,#000 4%,transparent 76%);
@@ -413,7 +413,7 @@ h1 em,h2 em,.brand i{background:linear-gradient(100deg,#d8a24a 0%,#f6e3bb 24%,#d
 .snip-h{background:rgba(255,255,255,.03)}
 .snip pre{background:rgba(12,13,17,.45)}
 
-.top{background:rgba(16,17,22,.72);-webkit-backdrop-filter:blur(20px) saturate(1.6);
+.top{background:rgba(21,22,27,.76);-webkit-backdrop-filter:blur(20px) saturate(1.6);
   backdrop-filter:blur(20px) saturate(1.6)}
 
 .rv{opacity:0;transform:translateY(28px);filter:blur(7px);
@@ -424,7 +424,7 @@ h1 em,h2 em,.brand i{background:linear-gradient(100deg,#d8a24a 0%,#f6e3bb 24%,#d
 .foot{position:relative;z-index:2}
 .final{position:relative;overflow:hidden}
 .final:after{content:"";position:absolute;left:50%;top:10%;width:70vw;height:70vw;transform:translateX(-50%);
-  background:radial-gradient(circle,rgba(216,162,74,.10),transparent 62%);pointer-events:none;filter:blur(30px)}
+  background:radial-gradient(circle,rgba(96,124,182,.14),transparent 62%);pointer-events:none;filter:blur(30px)}
 
 @media(prefers-reduced-motion:reduce){
   .fx i,.hero .mesh,.belt:before,.post:after,.tree:after,.veto:after,.gpulse{animation:none!important}
@@ -440,13 +440,13 @@ h1 em,h2 em,.brand i{background:linear-gradient(100deg,#d8a24a 0%,#f6e3bb 24%,#d
 }
 
 .fx i{filter:blur(80px)}
-.fx .a1{background:radial-gradient(circle,rgba(216,162,74,.34),transparent 62%)}
-.fx .a2{background:radial-gradient(circle,rgba(126,152,204,.24),transparent 62%)}
-.fx .a3{background:radial-gradient(circle,rgba(216,162,74,.22),transparent 64%)}
+.fx .a1{background:radial-gradient(circle,rgba(88,116,172,.26),transparent 62%)}
+.fx .a2{background:radial-gradient(circle,rgba(104,132,190,.22),transparent 62%)}
+.fx .a3{background:radial-gradient(circle,rgba(74,98,150,.20),transparent 64%)}
 
 .hero .mesh{height:74%;
-  background-image:linear-gradient(rgba(216,162,74,.30) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(216,162,74,.22) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(139,166,220,.28) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,166,220,.20) 1px,transparent 1px);
   background-size:88px 88px;
   transform:perspective(720px) rotateX(71deg);
   -webkit-mask-image:linear-gradient(to top,#000 2%,transparent 68%);
@@ -454,7 +454,7 @@ h1 em,h2 em,.brand i{background:linear-gradient(100deg,#d8a24a 0%,#f6e3bb 24%,#d
   opacity:.9;animation:mesh-run 16s linear infinite}
 @keyframes mesh-run{to{background-position:0 88px,88px 0}}
 .hero .beam{position:absolute;left:0;right:0;top:0;height:220px;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(216,162,74,.16),transparent);
+  background:linear-gradient(180deg,rgba(126,156,214,.14),transparent);
   -webkit-mask-image:radial-gradient(60% 100% at 50% 0,#000,transparent 70%);
   mask-image:radial-gradient(60% 100% at 50% 0,#000,transparent 70%)}
 
@@ -463,7 +463,7 @@ h1{background:linear-gradient(96deg,#ffffff 0%,#efe9db 26%,#ffffff 48%,#cfc6b4 7
   animation:shimmer 14s linear infinite}
 
 .shot-frame{box-shadow:0 44px 90px -40px rgba(0,0,0,1),0 0 0 1px rgba(255,255,255,.06),
-  0 0 90px -30px rgba(216,162,74,.55)}
+  0 0 90px -30px rgba(216,162,74,.28)}
 .shot-frame:after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
   background:linear-gradient(104deg,transparent 38%,rgba(255,255,255,.16) 48%,transparent 58%);
   transform:translateX(-120%);animation:glass-sweep 7s ease-in-out 2s infinite}
@@ -476,10 +476,10 @@ h1{background:linear-gradient(96deg,#ffffff 0%,#efe9db 26%,#ffffff 48%,#cfc6b4 7
   font-size:84px;will-change:transform}
 
 .card,.fstep,.tree,.log,.chart,.feed,.snip,.tile,.post{
-  background:linear-gradient(180deg,rgba(48,50,62,.55),rgba(20,21,27,.62));
+  background:linear-gradient(180deg,rgba(44,48,64,.58),rgba(21,22,29,.66));
   -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
   border-color:rgba(255,255,255,.13);
-  box-shadow:0 1px 0 rgba(255,255,255,.09) inset,0 0 0 1px rgba(216,162,74,.06),
+  box-shadow:0 1px 0 rgba(255,255,255,.09) inset,0 0 0 1px rgba(255,255,255,.04),
     0 30px 70px -46px rgba(0,0,0,1)}
 .card:before,.post:before,.fstep:before,.tile:before,.chart:before,.feed:before,.step:before{z-index:0}
 .card,.post,.fstep,.chart,.feed,.tree,.log,.snip{position:relative}
@@ -537,8 +537,8 @@ h1{background:linear-gradient(96deg,#ffffff 0%,#efe9db 26%,#ffffff 48%,#cfc6b4 7
 
 .tile{display:flex;flex-direction:column}
 .tile .spark{margin-top:auto;opacity:.9}
-.hero .mesh{background-image:linear-gradient(rgba(216,162,74,.40) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(216,162,74,.30) 1px,transparent 1px);
+.hero .mesh{background-image:linear-gradient(rgba(139,166,220,.34) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(139,166,220,.24) 1px,transparent 1px);
   -webkit-mask-image:linear-gradient(to top,#000 2%,transparent 76%);
   mask-image:linear-gradient(to top,#000 2%,transparent 76%)}
 
