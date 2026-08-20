@@ -1,0 +1,15 @@
+- task: "Добавить нормализацию телефона перед сохранением пользователя"
+  lang: ru
+  cross_language: true
+  gold_files: [src/app/users/service.py, src/app/users/phone.py]
+  gold_symbols: [create_user, normalize_phone]
+- task: "Где в счёте рассчитывается налог?"
+  lang: ru
+  cross_language: true
+  gold_files: [src/app/invoices/calc_tax.py, src/app/invoices/calc_total.py]
+  gold_symbols: [calc_tax, calc_total]
+- task: "Как заявка отправляется во внешнюю систему?"
+  lang: ru
+  cross_language: true
+  gold_files: [src/app/leads/create_lead.py, src/app/leads/crm_client.py]
+  gold_symbols: [create_lead, send_lead_to_crm]

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "PYTHONUTF8": "1"
+  },
+  "permissions": {
+    "defaultMode": "dontAsk",
+    "allow": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -r /*)",
+      "Bash(find * -delete)",
+      "Bash(sudo rm *)",
+      "Bash(curl *$*)",
+      "Bash(curl *${*)",
+      "Bash(wget *$*)",
+      "Bash(wget *${*)",
+      "Bash(cat */credentials*)",
+      "Bash(cat */secrets*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/id_rsa*)",
+      "Read(**/.ssh/**)",
+      "Read(**/credentials.json)",
+      "Read(**/credentials.yml)",
+      "Read(**/secrets.json)",
+      "Read(**/secrets.yml)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.secret)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/check-kit-update.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/memory-link.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-context.py\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-bash-guard.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/env-guard.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/lesson-hint.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/env-guard.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/env-guard.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/approval-gate.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-push-reflection.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/check-no-narrative-comments.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/check-no-raw-env.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/lesson-hint.py\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/repobrain-reindex.sh\"",
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'set -e; cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || exit 0; if ! command -v git >/dev/null 2>&1; then exit 0; fi; if ! git rev-parse --git-dir >/dev/null 2>&1; then exit 0; fi; LAST_COMMIT_TS=$(git log -1 --format=%ct 2>/dev/null || echo 0); NOW=$(date +%s); DIFF=$((NOW - LAST_COMMIT_TS)); if [ \"$DIFF\" -gt 300 ]; then exit 0; fi; CHANGED=$(git show --name-only --pretty=format: HEAD 2>/dev/null || true); HIT=0; if echo \"$CHANGED\" | grep -qE \"^src/|^lib/\"; then HIT=1; fi; if [ \"$HIT\" = \"1\" ]; then DOCS=$(echo \"$CHANGED\" | grep -E \"^second-brain/|^docs/\" || true); if [ -z \"$DOCS\" ]; then echo \"WARNING: коммит затронул код (src/, lib/), но second-brain/ и docs/ не обновлены в этом коммите. Проверь таблицу производных заметок в CLAUDE.md перед завершением.\" >&2; fi; fi; exit 0'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'afplay /System/Library/Sounds/Glass.aiff 2>/dev/null || paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null || printf \"\\a\"; true'",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'afplay /System/Library/Sounds/Funk.aiff 2>/dev/null || paplay /usr/share/sounds/freedesktop/stereo/message.oga 2>/dev/null || printf \"\\a\"; true'",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

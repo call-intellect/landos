@@ -1,0 +1,12 @@
+services:
+  repobrain:
+    build: .
+    image: repobrain:latest
+    # Default: run the eval demo on the bundled example repos (proves recall@budget).
+    command: ["--cwd", "/app", "eval"]
+
+# Index / query your own repository by mounting it at /work:
+#   docker compose build
+#   docker compose run --rm -v "$PWD":/work repobrain --cwd /work index
+#   docker compose run --rm -v "$PWD":/work repobrain --cwd /work capsule "добавить поле phone" --model claude
+#   docker compose run --rm -v "$PWD":/work repobrain --cwd /work mcp   # MCP server over stdio

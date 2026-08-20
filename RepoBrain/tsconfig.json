@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "packages/security" },
+    { "path": "packages/ranker" },
+    { "path": "packages/graph-store" },
+    { "path": "packages/embeddings" },
+    { "path": "packages/token-meter" },
+    { "path": "packages/indexer" },
+    { "path": "packages/capsule-builder" },
+    { "path": "packages/memory" },
+    { "path": "packages/team-sync" },
+    { "path": "packages/core" },
+    { "path": "packages/eval" },
+    { "path": "packages/mcp-server" },
+    { "path": "apps/cli" }
+  ]
+}

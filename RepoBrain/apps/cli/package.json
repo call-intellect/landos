@@ -1,0 +1,23 @@
+{
+  "name": "repobrain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "repobrain": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@repobrain/shared": "*",
+    "@repobrain/core": "*",
+    "@repobrain/indexer": "*",
+    "@repobrain/graph-store": "*",
+    "@repobrain/eval": "*",
+    "@repobrain/team-sync": "*",
+    "@repobrain/mcp-server": "*",
+    "commander": "^12.1.0",
+    "yaml": "^2.5.0"
+  }
+}

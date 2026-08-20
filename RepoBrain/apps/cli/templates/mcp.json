@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "repobrain": {
+      "command": "repobrain",
+      "args": ["mcp"]
+    }
+  }
+}

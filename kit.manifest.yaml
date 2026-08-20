@@ -1,0 +1,46 @@
+kit_version: "0.8.0"
+built_at: "2026-07-29T01:26:43Z"
+built_from_commit: "a3eae4470baf1817cac6b89e34cb85d7039587e6"
+repobrain_commit: "2180003f4281b9dea9509b2ebf243f592915d6cd"
+
+# Разметка «наше / слить / его» для обновлялки кита (шаг 3, Б6 ТЗ).
+# Вклеивается дословно в kit.manifest.yaml внутри архива. Только данные.
+#
+# ours_replaceable    — файлы кита, которые пользователь не редактирует → заменить молча.
+# merge_required      — файлы кита, которые пользователь наполняет под себя → показать
+#                       разницу и слить с согласия. CLAUDE.md здесь, а НЕ в ours_replaceable:
+#                       иначе обновление затрёт заполненные пользователем {{...}}.
+# theirs_never_touch  — всё, что создал пользователь → не трогать никогда.
+update_policy:
+  ours_replaceable:
+    - ".claude/skills/**"
+    - ".claude/hooks/**"
+    - ".claude/updater/**"
+    - ".claude/CLAUDE.md"
+    - "INSTALL.md"
+    - "START-HERE.md"
+    - "GUIDE.md"
+    - "TOUR.md"
+    - "README.md"
+    - "second-brain/00_system/**"
+    - "RepoBrain/**"
+    - "kit.manifest.yaml"
+    - "kit.manifest.json"
+  merge_required:
+    - "CLAUDE.md"
+    - "AGENTS.md"
+    - ".claude/settings.json"
+    - ".gitignore"
+    - ".repobrainignore"
+  theirs_never_touch:
+    - "second-brain/01_projects/**"
+    - "second-brain/02_architecture/**"
+    - "second-brain/03_processes/**"
+    - "second-brain/04_not-done/**"
+    - "second-brain/05_history/**"
+    - "second-brain/06_marketing/**"
+    - "second-brain/13_glossary/**"
+    - "second-brain/index.md"
+    - "plans/**"
+    - "docs/**"
+    - "memory/**"

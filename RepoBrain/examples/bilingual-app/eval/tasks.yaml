@@ -1,0 +1,10 @@
+- task: "как гость без регистрации получает токен чтобы публиковать звук и видео в видеовстрече"
+  lang: ru
+  cross_language: true
+  gold_files: [src/modules/livekit/livekit.service.ts]
+  gold_symbols: [generateGuestToken, canPublish]
+- task: "где шифруются секретные значения перед записью в базу данных"
+  lang: ru
+  cross_language: true
+  gold_files: [src/common/crypto/crypto.service.ts]
+  gold_symbols: [encryptValue]

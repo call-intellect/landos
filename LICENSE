@@ -1,0 +1,212 @@
+# Лицензионное соглашение VibeOS
+
+**Версия 1.0 от 16 июля 2026**
+© 2026 ООО «Лаборатория Умных Ассистентов». Все права защищены.
+
+Русский текст — основной. English version below; in case of conflict the Russian text prevails.
+
+---
+
+## 0. Как заключается это соглашение
+
+Настоящее соглашение — открытая лицензия (ст. 1286.1 ГК РФ), договор присоединения. Его условия доступны любому лицу до начала использования.
+
+Получение Кита по ключу, его скачивание, распаковка, установка, запуск или любое иное использование означает полное согласие с этими условиями. Не согласен — не скачивай и не используй.
+
+Лицензия простая (неисключительная), безвозмездная, действует на территории всего мира в течение всего срока действия исключительного права.
+
+Стороны: **Правообладатель** — ООО «Лаборатория Умных Ассистентов», обладатель исключительного права на VibeOS. **Пользователь** — ты.
+
+## 1. Что такое Кит
+
+**Кит** — VibeOS целиком, во всех своих частях. Это программа для ЭВМ и сопутствующие материалы, включая, но не ограничиваясь: правила и стандарты работы, скиллы, хуки, шаблоны, документацию, путеводители, вики, протокол второго мозга и **RepoBrain** (мозг репозитория — индексатор кода со всеми его компонентами).
+
+Всё, что приехало к тебе в архиве `vibeos-kit-<версия>.tar.gz`, — Кит. Точный состав поставки задан файлом `tools/build-kit/kit.manifest`.
+
+Кит охраняется как программа для ЭВМ, то есть как литературное произведение (п. 1 ст. 1259 ГК РФ). Отдельные части Кита — каждый скилл, каждое правило, RepoBrain, вики, документация — охраняются самостоятельно. Использование любой части подчиняется этому соглашению так же, как использование Кита целиком.
+
+**Кит — это не то, что ты создаёшь с его помощью.** Твой код, твой продукт, твои заметки во втором мозге, твои планы и ТЗ — не Кит и под это соглашение не подпадают.
+
+## 1а. Ключ
+
+Ключ доступа выдаётся лично тебе и имеет ограниченное число активаций.
+
+Ключ **нельзя** передавать, публиковать, продавать и предоставлять третьим лицам — ни целиком, ни в виде ссылки на скачивание, полученной по нему. Передача ключа приравнивается к передаче Кита (п. 3.2).
+
+Ссылка на скачивание временная и предназначена только для тебя.
+
+## 2. Что можно
+
+**2.1.** Использовать Кит для создания собственных проектов — в любом количестве, включая коммерческие.
+
+**2.2.** Выпускать, публиковать, продавать и распространять **продукт**, созданный с помощью Кита: задеплоенное приложение, сайт, сервис, сборку. Правообладатель не претендует ни на созданный код, ни на продукт, ни на доход с него — они целиком твои.
+
+**2.3.** Устанавливать Кит на свои устройства и в свои закрытые репозитории — без ограничения по числу.
+
+**2.4.** Изменять Кит под себя для собственного использования — включая подстановку значений в шаблоны, правку правил и скиллов под свой проект.
+
+## 3. Что нельзя
+
+**3.1. Публиковать файлы Кита в открытом доступе** — в оригинале или в изменённом виде. В том числе: публичный репозиторий (**в том числе репозиторий твоего собственного проекта, если файлы Кита лежат в нём**), файлообменник, торрент, публичный пакетный реестр, открытый чат или канал, публикация с полным текстом файлов.
+
+**3.2.** Передавать Кит третьим лицам — целиком или частями, бесплатно или за плату.
+
+**3.3.** Продавать, перепродавать, сдавать в аренду, сублицензировать Кит или предоставлять к нему доступ как к услуге.
+
+**3.4.** Создавать на основе Кита производные продукты, предназначенные для распространения: другой кит, шаблон, стартер, набор скиллов, конкурирующий продукт.
+
+**3.5.** Удалять и изменять указания об авторстве и настоящее соглашение.
+
+**3.6.** Обходить технические средства защиты и ограничения доступа к Киту.
+
+Право использования, прямо не указанное в разделе 2, не считается предоставленным (п. 1 ст. 1235 ГК РФ).
+
+## 4. Как открыть исходники своего проекта
+
+Хочешь опубликовать исходный код своего проекта — **удали файлы Кита из публикуемой копии** (что такое Кит — в разделе 1). Всё остальное принадлежит тебе и публикуется свободно: твой код, твоя документация, твой второй мозг, твои планы.
+
+Пункт 3.1 запрещает публиковать Кит, а не тебя.
+
+## 5. Нарушение
+
+При выходе за пределы предоставленных прав Правообладатель вправе в одностороннем порядке полностью или частично отказаться от соглашения (п. 4 ст. 1286.1 ГК РФ). С момента отказа право использования Кита прекращается, Кит подлежит удалению.
+
+**Продукты, созданные до момента отказа, остаются твоими** — пункт 2.2 сохраняет силу и после прекращения лицензии.
+
+## 6. Отсутствие гарантий и ответственности
+
+Кит предоставляется «как есть». Правообладатель не гарантирует пригодность для конкретных целей, отсутствие ошибок и непрерывность работы и не отвечает за прямые или косвенные убытки, включая утрату данных и упущенную выгоду.
+
+**Кит управляет ИИ-агентом, который пишет код и выполняет команды на твоих машинах.** Ответственность за то, что попадёт в твой продукт, репозиторий и на твой сервер, лежит на тебе.
+
+## 7. Компоненты сторонних правообладателей
+
+Часть Кита создана не Правообладателем и поставляется на условиях собственных лицензий. **Настоящее соглашение на них не распространяется и их не ограничивает** — права по этим лицензиям принадлежат тебе независимо от разделов 2 и 3.
+
+На момент версии 1.0 это:
+
+| Компонент | Правообладатель | Лицензия |
+|---|---|---|
+| `.claude/skills/frontend-design/` | Anthropic | Apache-2.0 (`LICENSE.txt` внутри) |
+| `.claude/skills/skill-creator/` | Anthropic | Apache-2.0 (`LICENSE.txt` внутри) |
+
+Кроме того, RepoBrain и другие части Кита используют внешние библиотеки, которые устанавливаются менеджером пакетов при установке (MIT, Apache-2.0, Unlicense и другие). Они не входят в поставку Кита и используются на условиях своих лицензий.
+
+Все остальные части Кита — правила, остальные скиллы, хуки, шаблоны, документация, вики, протокол второго мозга и код RepoBrain — созданы Правообладателем и подчиняются разделам 2 и 3 настоящего соглашения.
+
+## 8. Применимое право
+
+Право Российской Федерации.
+
+## 9. Правообладатель
+
+**ООО «Лаборатория Умных Ассистентов»**
+ИНН 5404314058 · КПП 540401001 · ОГРН 1225400042878
+630029, Россия, Новосибирская область, г. Новосибирск, ул. 1-я Чулымская, д. 117, помещ. 1
+Электронная почта: info@call-intellect.ru
+
+Вопросы о лицензии, коммерческие условия, разрешение на нестандартное использование — по указанной почте.
+
+---
+---
+
+# VibeOS License Agreement
+
+**Version 1.0, 16 July 2026**
+© 2026 Smart Assistants Laboratory LLC (ООО «Лаборатория Умных Ассистентов»). All rights reserved.
+
+This is a translation. The Russian text above is authoritative; in case of any conflict, the Russian text prevails.
+
+## 0. Acceptance
+
+This is a proprietary license agreement. Redeeming a key, downloading, extracting, installing, running, or otherwise using the Kit constitutes full acceptance of these terms. If you do not agree, do not download or use the Kit.
+
+The license is non-exclusive, royalty-free, worldwide, and lasts for the full term of the exclusive right.
+
+## 1. Definition
+
+**The Kit** means VibeOS in its entirety and in all its parts: the software and accompanying materials, including but not limited to rules and working standards, skills, hooks, templates, documentation, guides, the wiki, the second-brain protocol, and **RepoBrain** (the repository brain — the code indexer and all its components).
+
+Everything delivered to you in the `vibeos-kit-<version>.tar.gz` archive is the Kit. The exact contents of a delivery are defined by `tools/build-kit/kit.manifest`.
+
+Each part of the Kit — every skill, every rule, RepoBrain, the wiki, the documentation — is protected in its own right. Using any part is governed by this agreement just as using the whole.
+
+**The Kit is not what you build with it.** Your code, your product, your notes, and your plans are not the Kit and are not covered by this agreement.
+
+## 1a. The key
+
+Your access key is issued to you personally and carries a limited number of activations.
+
+You may **not** transfer, publish, sell, or provide the key to third parties — neither the key itself nor the download link obtained with it. Transferring a key is equivalent to transferring the Kit (Section 3.2).
+
+Download links are temporary and intended for you alone.
+
+## 2. Permitted
+
+**2.1.** Use the Kit to build your own projects, in any number, including commercial ones.
+
+**2.2.** Release, publish, sell, and distribute the **product** you build with the Kit — a deployed application, site, service, or build. The rights holder claims no rights to your code, your product, or your revenue.
+
+**2.3.** Install the Kit on your own devices and in your own private repositories, without limit.
+
+**2.4.** Modify the Kit for your own use, including filling in templates and adapting rules and skills to your project.
+
+## 3. Prohibited
+
+**3.1. Publishing the Kit's files publicly** — original or modified. This includes public repositories (**including a repository of your own project, if the Kit's files are in it**), file hosting, torrents, public package registries, open chats or channels, and publications reproducing the files in full.
+
+**3.2.** Transferring the Kit to third parties, in whole or in part, for free or for a fee.
+
+**3.3.** Selling, reselling, renting, sublicensing the Kit, or offering access to it as a service.
+
+**3.4.** Creating derivative products intended for distribution: another kit, template, starter, skill set, or competing product.
+
+**3.5.** Removing or altering authorship notices or this agreement.
+
+**3.6.** Circumventing technical protection or access-control measures.
+
+Any right not expressly granted in Section 2 is reserved.
+
+## 4. Open-sourcing your own project
+
+To publish your project's source code, **remove the Kit's files from the published copy** (see Section 1). Everything else is yours and may be published freely. Section 3.1 restricts publishing the Kit, not you.
+
+## 5. Breach
+
+If you exceed the rights granted, the rights holder may unilaterally terminate this agreement in whole or in part. Upon termination, your right to use the Kit ends and the Kit must be deleted.
+
+**Products created before termination remain yours** — Section 2.2 survives termination.
+
+## 6. No warranty, no liability
+
+The Kit is provided "as is", without warranty of any kind, express or implied, including fitness for a particular purpose, absence of errors, or uninterrupted operation. The rights holder is not liable for any direct or indirect damages, including data loss and lost profits.
+
+**The Kit drives an AI agent that writes code and runs commands on your machines.** You are responsible for what reaches your product, your repository, and your server.
+
+## 7. Third-party components
+
+Some parts of the Kit were not created by the rights holder and are distributed under their own licenses. **This agreement does not apply to them and does not restrict them** — your rights under those licenses stand independently of Sections 2 and 3.
+
+As of version 1.0:
+
+| Component | Rights holder | License |
+|---|---|---|
+| `.claude/skills/frontend-design/` | Anthropic | Apache-2.0 (`LICENSE.txt` included) |
+| `.claude/skills/skill-creator/` | Anthropic | Apache-2.0 (`LICENSE.txt` included) |
+
+In addition, RepoBrain and other parts of the Kit rely on external libraries installed by a package manager at install time (MIT, Apache-2.0, Unlicense, and others). These are not part of the distribution and are used under their own terms.
+
+All other parts of the Kit — the rules, the remaining skills, hooks, templates, documentation, the wiki, the second-brain protocol, and the RepoBrain source — were created by the rights holder and are governed by Sections 2 and 3.
+
+## 8. Governing law
+
+The laws of the Russian Federation.
+
+## 9. Rights holder
+
+**Smart Assistants Laboratory LLC** (ООО «Лаборатория Умных Ассистентов»)
+INN 5404314058 · KPP 540401001 · OGRN 1225400042878
+1-ya Chulymskaya St. 117, room 1, Novosibirsk, 630029, Russia
+Email: info@call-intellect.ru
+
+License questions, commercial terms, and permission for non-standard use — via the email above.

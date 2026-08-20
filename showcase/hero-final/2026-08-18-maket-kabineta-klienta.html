@@ -1,0 +1,868 @@
+<meta charset="utf-8">
+<title>Кабинет АйТи-Цеха</title>
+
+<style>
+  :root {
+    --bg: #f2f2ee;
+    --surface: #fdfdfc;
+    --surface-2: #f7f7f3;
+    --ink: #16181c;
+    --ink-2: #4b5059;
+    --muted: #878d97;
+    --rule: #e0e0d8;
+    --rule-strong: #cfcfc5;
+    --accent: #2b3f8f;
+    --accent-soft: #e6e9f7;
+    --good: #1d7a4f;
+    --good-soft: #e2f0e9;
+    --alert: #b0451f;
+    --alert-soft: #f7e7e0;
+    --seq-1: #22307a;
+    --seq-2: #4a5cb8;
+    --seq-3: #8e9ad9;
+    --seq-4: #c9cfec;
+    --wait: #b9bcc4;
+    --shadow: 0 1px 2px rgba(22, 24, 28, .06), 0 8px 24px -18px rgba(22, 24, 28, .5);
+    --display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111216;
+      --surface: #191b20;
+      --surface-2: #1f2228;
+      --ink: #ecedea;
+      --ink-2: #aab0b9;
+      --muted: #7d838d;
+      --rule: #2a2d34;
+      --rule-strong: #3b3f48;
+      --accent: #97a6f2;
+      --accent-soft: #23283d;
+      --good: #4fbf88;
+      --good-soft: #1a2b24;
+      --alert: #e0755c;
+      --alert-soft: #2e2019;
+      --seq-1: #a9b6f2;
+      --seq-2: #7c8cd8;
+      --seq-3: #55639f;
+      --seq-4: #464e70;
+      --wait: #4a4f59;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 8px 24px -18px rgba(0, 0, 0, .9);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #111216;
+    --surface: #191b20;
+    --surface-2: #1f2228;
+    --ink: #ecedea;
+    --ink-2: #aab0b9;
+    --muted: #7d838d;
+    --rule: #2a2d34;
+    --rule-strong: #3b3f48;
+    --accent: #97a6f2;
+    --accent-soft: #23283d;
+    --good: #4fbf88;
+    --good-soft: #1a2b24;
+    --alert: #e0755c;
+    --alert-soft: #2e2019;
+    --seq-1: #a9b6f2;
+    --seq-2: #7c8cd8;
+    --seq-3: #55639f;
+    --seq-4: #464e70;
+    --wait: #4a4f59;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 8px 24px -18px rgba(0, 0, 0, .9);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .oboloch {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 20px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  a { color: var(--accent); }
+
+  .karta {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+
+  .metka {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .chislo { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ── шапка ─────────────────────────────────────────── */
+
+  .shapka {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .shapka h1 {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    color: var(--ink-2);
+  }
+
+  .shapka h1 b { color: var(--ink); font-weight: 700; }
+
+  .klient {
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+    margin-top: 4px;
+  }
+
+  .shapka-prava { text-align: right; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+
+  .maket-znak {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    background: var(--surface-2);
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+
+  .maket-znak::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── вердикт ───────────────────────────────────────── */
+
+  .verdikt {
+    padding: 26px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 3px solid var(--good);
+  }
+
+  .chip {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 11px 4px 9px;
+    border-radius: 3px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    background: var(--good-soft);
+    color: var(--good);
+  }
+
+  .chip::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .chip.chip-zhdet { background: var(--surface-2); color: var(--ink-2); }
+  .chip.chip-alert { background: var(--alert-soft); color: var(--alert); }
+
+  .verdikt p {
+    font-family: var(--display);
+    font-size: clamp(19px, 2.6vw, 24px);
+    line-height: 1.42;
+    letter-spacing: -.005em;
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+
+  .verdikt .melko { font-family: var(--body); font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  /* ── плитки ────────────────────────────────────────── */
+
+  .plitki {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(212px, 1fr));
+    gap: 14px;
+  }
+
+  .plitka {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .plitka .znachenie {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -.03em;
+  }
+
+  .plitka .znachenie small {
+    font-size: 15px;
+    letter-spacing: 0;
+    color: var(--muted);
+    margin-left: 3px;
+  }
+
+  .plitka .podpis { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+
+  .plitka .delta { font-size: 12.5px; color: var(--good); font-weight: 600; }
+  .plitka .delta.vniz { color: var(--alert); }
+
+  .polosa {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--rule);
+    overflow: hidden;
+    display: flex;
+    gap: 2px;
+  }
+
+  .polosa i { display: block; height: 100%; background: var(--accent); }
+
+  /* ── секции ────────────────────────────────────────── */
+
+  section { display: flex; flex-direction: column; gap: 14px; }
+
+  .zagolovok-sekcii {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+
+  .zagolovok-sekcii h2 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .zagolovok-sekcii .istochnik { font-size: 12.5px; color: var(--muted); }
+
+  /* ── графики ───────────────────────────────────────── */
+
+  .grafiki { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .grafiki-para { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+
+  .grafik { padding: 18px 18px 12px; display: flex; flex-direction: column; gap: 4px; position: relative; }
+
+  .grafik .titul { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .grafik .titul strong { font-size: 14.5px; font-weight: 650; }
+  .grafik .titul span { font-size: 12px; color: var(--muted); }
+  .grafik svg { display: block; width: 100%; overflow: visible; }
+
+  .podskazka {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: calc(100% - 12px);
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 3px;
+    padding: 6px 9px;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity .12s ease;
+    z-index: 5;
+  }
+
+  .podskazka b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ── распределение позиций ─────────────────────────── */
+
+  .raspredelenie { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+
+  .stopka { display: flex; gap: 2px; height: 46px; border-radius: 3px; overflow: hidden; }
+  .stopka div { display: flex; align-items: center; justify-content: center; }
+  .stopka span {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .legenda { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+  .legenda div { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+  .legenda i { width: 11px; height: 11px; border-radius: 2px; display: block; flex: 0 0 auto; }
+
+  /* ── таблицы ───────────────────────────────────────── */
+
+  .tablica-obolochka { overflow-x: auto; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 12px 8px 0;
+    white-space: nowrap;
+  }
+
+  td { padding: 11px 12px 11px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+  th:last-child, td:last-child { padding-right: 0; }
+  td.cifra, th.cifra { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th.cifra { font-family: var(--body); }
+  .fraza { color: var(--ink); }
+  .adres { display: block; font-size: 12px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
+
+  .skachok { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .skachok b { color: var(--good); }
+  .skachok.vniz b { color: var(--alert); }
+  .skachok s { color: var(--muted); text-decoration: none; }
+  .skachok em { color: var(--muted); font-style: normal; padding: 0 3px; }
+
+  /* ── статьи ────────────────────────────────────────── */
+
+  .statji { display: flex; flex-direction: column; }
+
+  .statja {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .statja:first-child { border-top: none; }
+  .statja h3 { font-size: 15.5px; font-weight: 600; line-height: 1.35; }
+  .statja .sluzhebno { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .statja .mesto { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-2); text-align: right; }
+
+  .knopka {
+    font: inherit;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--ink-2);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+
+  .knopka:hover { border-color: var(--alert); color: var(--alert); background: var(--alert-soft); }
+  .knopka:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .knopka[aria-pressed="true"] { border-color: var(--alert); color: var(--alert); background: var(--alert-soft); }
+
+  /* ── ядро и утреннее письмо ────────────────────────── */
+
+  .dve-kolonki { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; align-items: start; }
+
+  .blok { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .blok h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
+  .blok p { font-size: 14px; color: var(--ink-2); }
+
+  .stroki-chisel { display: flex; flex-direction: column; gap: 0; }
+  .stroka-chisla {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 9px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .stroka-chisla:first-child { border-top: none; padding-top: 0; }
+  .stroka-chisla span { color: var(--ink-2); }
+  .stroka-chisla b { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 16px; font-weight: 600; }
+
+  .pismo {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .pismo .ot { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+  .pismo .tema { font-weight: 650; font-size: 15px; }
+  .pismo ul { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-2); }
+  .pismo li { padding-left: 16px; position: relative; }
+  .pismo li::before { content: "—"; position: absolute; left: 0; color: var(--muted); }
+
+  /* ── подвал ────────────────────────────────────────── */
+
+  .snoska { padding: 22px; display: flex; flex-direction: column; gap: 12px; background: var(--surface-2); }
+  .snoska h3 { font-family: var(--display); font-size: 18px; }
+  .snoska p, .snoska li { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .snoska ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .snoska li { padding-left: 18px; position: relative; }
+  .snoska li::before { content: "·"; position: absolute; left: 4px; color: var(--muted); font-weight: 700; }
+
+  footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+
+  @media (max-width: 620px) {
+    .statja { grid-template-columns: 1fr; }
+    .statja .mesto { text-align: left; }
+    .knopka { justify-self: start; }
+    .shapka-prava { text-align: left; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="oboloch">
+
+  <header class="shapka">
+    <div>
+      <h1><b>Вайбцех</b> · кабинет клиента</h1>
+      <div class="klient">АйТи-Цех</div>
+    </div>
+    <div class="shapka-prava">
+      <span class="maket-znak">Макет · числа условные</span>
+      <span class="metka">Отчёт за 18 августа · обновлён в 09:12</span>
+    </div>
+  </header>
+
+  <div class="karta verdikt">
+    <span class="chip">Идём по плану</span>
+    <p>За август вышло <b>87 статей из обещанных 90</b>. В поиске уже 41, ещё 43 стоят в очереди на обход робота. Три статьи доделываем — срок не сдвигается.</p>
+    <span class="melko">Первая строка — единственное, что клиент обязан прочитать. Всё ниже — доказательства к ней.</span>
+  </div>
+
+  <div class="plitki">
+    <div class="karta plitka">
+      <span class="metka">Статьи августа</span>
+      <span class="znachenie">87<small> / 90</small></span>
+      <div class="polosa"><i style="width:96.7%"></i></div>
+      <span class="podpis">В пакете осталось 3 статьи</span>
+    </div>
+    <div class="karta plitka">
+      <span class="metka">Из них в поиске</span>
+      <span class="znachenie">41<small> / 87</small></span>
+      <span class="delta">+5 за сутки</span>
+      <span class="podpis">43 ждут обхода, 3 робот пока не взял</span>
+    </div>
+    <div class="karta plitka">
+      <span class="metka">Показов за 14 суток</span>
+      <span class="znachenie">6 450</span>
+      <span class="delta">+69 % к прошлым 14</span>
+      <span class="podpis">Было 3 810 · окно считает Яндекс</span>
+    </div>
+    <div class="karta plitka">
+      <span class="metka">Кликов за 14 суток</span>
+      <span class="znachenie">223</span>
+      <span class="delta">+94 % к прошлым 14</span>
+      <span class="podpis">CTR 3,5 % · средняя позиция 7,1</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="zagolovok-sekcii">
+      <h2>Растём или стоим</h2>
+      <span class="istochnik">Суточный ряд Яндекс.Вебмастера · помнит с первого показа · обновляется каждое утро</span>
+    </div>
+    <div class="grafiki">
+      <div class="karta grafik" data-grafik="pokazy">
+        <div class="titul"><strong>Показы в поиске, по дням</strong><span>22 июля — 18 августа</span></div>
+        <svg viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Показы в поиске растут с 210 в сутки 22 июля до 615 к 18 августа"></svg>
+        <div class="podskazka"></div>
+      </div>
+      <div class="grafiki-para">
+        <div class="karta grafik" data-grafik="kliki">
+          <div class="titul"><strong>Клики, по дням</strong><span>переходы на сайт</span></div>
+          <svg viewBox="0 0 720 150" preserveAspectRatio="none" role="img" aria-label="Клики растут с 4 в сутки до 26"></svg>
+          <div class="podskazka"></div>
+        </div>
+        <div class="karta grafik" data-grafik="poziciya">
+          <div class="titul"><strong>Средняя позиция</strong><span>ниже линия — выше место</span></div>
+          <svg viewBox="0 0 720 150" preserveAspectRatio="none" role="img" aria-label="Средняя позиция улучшилась с 13,4 до 7,1"></svg>
+          <div class="podskazka"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="zagolovok-sekcii">
+      <h2>Где мы стоим по 313 запросам</h2>
+      <span class="istochnik">Запросная аналитика Вебмастера · окно 14 суток, отставание 2 дня</span>
+    </div>
+    <div class="karta raspredelenie">
+      <div class="stopka">
+        <div style="background:var(--seq-1); flex:34 1 0"><span style="color:var(--surface)">34</span></div>
+        <div style="background:var(--seq-2); flex:96 1 0"><span style="color:var(--surface)">96</span></div>
+        <div style="background:var(--seq-3); flex:71 1 0"><span style="color:var(--ink)">71</span></div>
+        <div style="background:var(--seq-4); flex:112 1 0"><span style="color:var(--ink)">112</span></div>
+      </div>
+      <div class="legenda">
+        <div><i style="background:var(--seq-1)"></i>Топ‑3 — 34 запроса</div>
+        <div><i style="background:var(--seq-2)"></i>4–10 — 96</div>
+        <div><i style="background:var(--seq-3)"></i>11–20 — 71</div>
+        <div><i style="background:var(--seq-4)"></i>За 20 — 112</div>
+      </div>
+      <p style="font-size:13.5px; color:var(--ink-2)">Первая страница выдачи — 130 запросов из 313. Месяц назад их было 48.</p>
+    </div>
+
+    <div class="karta blok">
+      <h3>Что выросло за неделю</h3>
+      <div class="tablica-obolochka">
+        <table>
+          <thead>
+            <tr>
+              <th>Запрос и страница</th>
+              <th>Место</th>
+              <th class="cifra">Показов</th>
+              <th class="cifra">Кликов</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fraza">интеграция битрикс24 с 1с</span><span class="adres">/guides/bitrix24-1c-svyaz</span></td>
+              <td><span class="skachok"><s>11</s><em>→</em><b>4</b></span></td>
+              <td class="cifra">1 340</td>
+              <td class="cifra">62</td>
+            </tr>
+            <tr>
+              <td><span class="fraza">сквозная аналитика с чего начать</span><span class="adres">/guides/skvoznaya-analitika-start</span></td>
+              <td><span class="skachok"><s>15</s><em>→</em><b>6</b></span></td>
+              <td class="cifra">980</td>
+              <td class="cifra">38</td>
+            </tr>
+            <tr>
+              <td><span class="fraza">чат-бот для отдела продаж цена</span><span class="adres">/guides/chat-bot-otdel-prodazh</span></td>
+              <td><span class="skachok"><s>24</s><em>→</em><b>12</b></span></td>
+              <td class="cifra">610</td>
+              <td class="cifra">9</td>
+            </tr>
+            <tr>
+              <td><span class="fraza">робот согласования счетов</span><span class="adres">/guides/robot-soglasovanie-schetov</span></td>
+              <td><span class="skachok"><s>38</s><em>→</em><b>19</b></span></td>
+              <td class="cifra">210</td>
+              <td class="cifra">2</td>
+            </tr>
+            <tr>
+              <td><span class="fraza">crm для оптовой торговли</span><span class="adres">/guides/crm-optovaya-torgovlya</span></td>
+              <td><span class="skachok vniz"><s>8</s><em>→</em><b>14</b></span></td>
+              <td class="cifra">340</td>
+              <td class="cifra">4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px; color:var(--muted)">Просевший запрос показывается наравне с выросшими: если прятать провалы, отчёт перестаёт быть отчётом.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="zagolovok-sekcii">
+      <h2>Последние статьи</h2>
+      <span class="istochnik">Индексация сверяется каждые сутки: адрес в поиске, в очереди на обход или выпал</span>
+    </div>
+    <div class="karta blok">
+      <div class="statji">
+        <article class="statja">
+          <div>
+            <h3>Битрикс24 и 1С: связать без программиста</h3>
+            <div class="sluzhebno">Вышла 15 августа · <span style="color:var(--good)">в поиске с 17 августа</span></div>
+          </div>
+          <div class="mesto">место 4<br><span style="color:var(--muted)">1 340 показов</span></div>
+          <button class="knopka" aria-pressed="false">Тема мимо</button>
+        </article>
+        <article class="statja">
+          <div>
+            <h3>Сквозная аналитика: что считать в первый месяц</h3>
+            <div class="sluzhebno">Вышла 16 августа · <span style="color:var(--good)">в поиске с 18 августа</span></div>
+          </div>
+          <div class="mesto">место 6<br><span style="color:var(--muted)">980 показов</span></div>
+          <button class="knopka" aria-pressed="false">Тема мимо</button>
+        </article>
+        <article class="statja">
+          <div>
+            <h3>Чат-бот на сайт: три сценария, которые окупаются</h3>
+            <div class="sluzhebno">Вышла 17 августа · ждёт обхода робота, 2‑й день · заявка на переобход отправлена</div>
+          </div>
+          <div class="mesto">—</div>
+          <button class="knopka" aria-pressed="false">Тема мимо</button>
+        </article>
+        <article class="statja">
+          <div>
+            <h3>Робот на согласование счетов: когда окупается</h3>
+            <div class="sluzhebno">Вышла 17 августа · ждёт обхода робота, 2‑й день</div>
+          </div>
+          <div class="mesto">—</div>
+          <button class="knopka" aria-pressed="false">Тема мимо</button>
+        </article>
+        <article class="statja">
+          <div>
+            <h3>Складской учёт в мебельном цехе</h3>
+            <div class="sluzhebno">Вышла 18 августа · ждёт обхода робота, 1‑й день</div>
+          </div>
+          <div class="mesto">—</div>
+          <button class="knopka" aria-pressed="false">Тема мимо</button>
+        </article>
+      </div>
+      <p style="font-size:13px; color:var(--muted)">«Тема мимо» — единственная кнопка клиента. Она убирает тему из плана и запрещает её фразу на будущее; мы видим это как сигнал, что граница ниши задана неточно.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="zagolovok-sekcii">
+      <h2>Ядро запросов и утренняя сводка</h2>
+      <span class="istochnik">Ядро — ставка вперёд; Вебмастер — протокол случившегося</span>
+    </div>
+    <div class="dve-kolonki">
+      <div class="karta blok">
+        <h3>Ваше ядро</h3>
+        <div class="stroki-chisel">
+          <div class="stroka-chisla"><span>Фраз в ядре</span><b>1 240</b></div>
+          <div class="stroka-chisla"><span>Уже показываются в поиске</span><b>318</b></div>
+          <div class="stroka-chisla"><span>Запросы мимо ядра, по которым нас показывают</span><b>96</b></div>
+          <div class="stroka-chisla"><span>Из них приняты в ядро на этой неделе</span><b>12</b></div>
+        </div>
+        <p>Последнее число — самое полезное. Люди спрашивают не теми словами, которые мы закупили заранее; всё, что Яндекс показал мимо ядра, разбирается вручную и возвращается в план тем.</p>
+      </div>
+      <div class="karta blok">
+        <h3>Что приходит каждое утро</h3>
+        <div class="pismo">
+          <span class="ot">завод@вайбцех · сегодня, 09:12</span>
+          <span class="tema">АйТи-Цех: за вчера — 3 статьи из 3</span>
+          <ul>
+            <li>Вышло 3 статьи из 3, план августа — 87 из 90.</li>
+            <li>В поиск за сутки зашло 5 адресов, всего в поиске 41.</li>
+            <li>Показов 615 (+4 % ко вчера), кликов 26.</li>
+            <li>Выросло: «интеграция битрикс24 с 1с» 7 → 4.</li>
+            <li>Просело: «crm для оптовой торговли» 8 → 14 — смотрим.</li>
+          </ul>
+        </div>
+        <p>Тот же отчёт письмом или в Телеграм — чтобы в кабинет можно было не заходить вовсе, пока всё идёт по плану.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="zagolovok-sekcii">
+      <h2>Откуда берётся каждое число</h2>
+      <span class="istochnik">Ни одна цифра здесь не считается на глаз</span>
+    </div>
+    <div class="karta blok">
+      <div class="tablica-obolochka">
+        <table>
+          <thead>
+            <tr>
+              <th>Показатель в кабинете</th>
+              <th>Прибор</th>
+              <th>Как часто</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Статей вышло из плана</td>
+              <td>Собственный учёт конвейера: статья считается вышедшей после публикации, а не после написания</td>
+              <td>Каждый прогон</td>
+            </tr>
+            <tr>
+              <td>В поиске / ждут обхода / выпали</td>
+              <td>Страж индексации: сверка карт сайта с ответом Яндекса, отставшие адреса досылаются на переобход</td>
+              <td>Каждые сутки</td>
+            </tr>
+            <tr>
+              <td>Показы, клики, средняя позиция по дням</td>
+              <td>Суточный ряд Вебмастера — помнит историю с первого показа</td>
+              <td>Каждое утро</td>
+            </tr>
+            <tr>
+              <td>Позиции по конкретным запросам</td>
+              <td>Запросная аналитика Вебмастера. Окно задаёт Яндекс — сейчас 14 суток с отставанием 2 дня, и мы печатаем это окно как есть, а не «за месяц»</td>
+              <td>Каждое утро</td>
+            </tr>
+            <tr>
+              <td>Запросы мимо ядра</td>
+              <td>Сверка живых запросов с закупленным ядром: всё, чего в ядре нет, а показы есть</td>
+              <td>Каждую неделю</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="karta snoska">
+    <h3>Чего в кабинете нет — намеренно</h3>
+    <ul>
+      <li><b>Кухни производства.</b> Ни шагов конвейера, ни названий моделей, ни стоимости отдельного вызова: клиент покупает результат, а не производство.</li>
+      <li><b>Заказа тем.</b> Темы выбирает завод по спросу. Обратная связь клиента — одна кнопка «Тема мимо», и она работает не как правка одной статьи, а как уточнение границы ниши.</li>
+      <li><b>Ничего, что нельзя проверить.</b> Каждое число на странице приходит из прибора выше. Если прибор молчит — на его месте будет честная строка «данных нет», а не ноль, притворяющийся замером.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Макет кабинета клиента · Вайбцех, 18 августа 2026. Демо-клиент «АйТи-Цех», числа условные. Приборы и окна замеров — настоящие, снятые с боевого завода.
+  </footer>
+
+</div>
+
+<script>
+  const RYADY = {
+    pokazy: {
+      dannye: [210, 240, 190, 160, 265, 300, 285, 320, 290, 240, 215, 350, 380, 365, 410, 430, 395, 330, 300, 470, 505, 520, 545, 510, 430, 400, 590, 615],
+      edinica: 'показов',
+      tochnost: 0,
+      vniz: false,
+    },
+    kliki: {
+      dannye: [4, 6, 3, 2, 7, 9, 8, 10, 8, 6, 5, 11, 12, 10, 13, 15, 12, 9, 8, 16, 18, 19, 21, 17, 14, 12, 23, 26],
+      edinica: 'кликов',
+      tochnost: 0,
+      vniz: false,
+    },
+    poziciya: {
+      dannye: [13.4, 12.9, 13.1, 12.6, 12.2, 11.8, 12.0, 11.4, 11.1, 10.9, 11.3, 10.4, 10.0, 9.7, 9.9, 9.3, 9.0, 9.2, 8.7, 8.4, 8.6, 8.1, 7.8, 7.9, 7.6, 7.4, 7.2, 7.1],
+      edinica: 'место',
+      tochnost: 1,
+      vniz: true,
+    },
+  }
+
+  const DATY = (() => {
+    const spisok = []
+    for (let d = 22; d <= 31; d++) spisok.push(d + ' июля')
+    for (let d = 1; d <= 18; d++) spisok.push(d + ' августа')
+    return spisok
+  })()
+
+  function narisovat(korobka) {
+    const ryad = RYADY[korobka.dataset.grafik]
+    const svg = korobka.querySelector('svg')
+    const podskazka = korobka.querySelector('.podskazka')
+    const [, , W, H] = svg.getAttribute('viewBox').split(' ').map(Number)
+    const otstupNiz = 22
+    const otstupVerh = 12
+    const dannye = ryad.dannye
+    const min = Math.min(...dannye)
+    const max = Math.max(...dannye)
+    const zapas = (max - min) * 0.12 || 1
+    const nizhe = ryad.vniz ? max + zapas : Math.max(0, min - zapas)
+    const vyshe = ryad.vniz ? Math.max(0, min - zapas) : max + zapas
+
+    const x = i => (i / (dannye.length - 1)) * W
+    const y = v => {
+      const dolya = (v - nizhe) / (vyshe - nizhe)
+      return H - otstupNiz - dolya * (H - otstupNiz - otstupVerh)
+    }
+
+    const tochki = dannye.map((v, i) => [x(i), y(v)])
+    const liniya = tochki.map(([tx, ty], i) => (i ? 'L' : 'M') + tx.toFixed(1) + ' ' + ty.toFixed(1)).join(' ')
+    const zalivka = liniya + ' L' + W + ' ' + (H - otstupNiz) + ' L0 ' + (H - otstupNiz) + ' Z'
+
+    const setka = [0, 0.5, 1].map(d => {
+      const ty = otstupVerh + d * (H - otstupNiz - otstupVerh)
+      return '<line x1="0" y1="' + ty + '" x2="' + W + '" y2="' + ty + '" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke" />'
+    }).join('')
+
+    const podpisiX = [0, 9, 18, 27].map(i =>
+      '<text x="' + Math.min(x(i), W - 2) + '" y="' + (H - 6) + '" fill="var(--muted)" font-size="11" font-family="system-ui, sans-serif" text-anchor="' + (i === 0 ? 'start' : i === 27 ? 'end' : 'middle') + '">' + DATY[i] + '</text>'
+    ).join('')
+
+    const konec = tochki[tochki.length - 1]
+
+    svg.innerHTML =
+      '<defs><linearGradient id="g-' + korobka.dataset.grafik + '" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.20" />' +
+      '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0.02" />' +
+      '</linearGradient></defs>' +
+      setka +
+      '<path d="' + zalivka + '" fill="url(#g-' + korobka.dataset.grafik + ')" />' +
+      '<path d="' + liniya + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />' +
+      '<line class="krest" x1="0" y1="' + otstupVerh + '" x2="0" y2="' + (H - otstupNiz) + '" stroke="var(--rule-strong)" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0" />' +
+      '<circle class="begunok" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0" />' +
+      '<circle cx="' + konec[0] + '" cy="' + konec[1] + '" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" />' +
+      podpisiX
+
+    const krest = svg.querySelector('.krest')
+    const begunok = svg.querySelector('.begunok')
+
+    korobka.addEventListener('pointermove', sobytie => {
+      const ramka = svg.getBoundingClientRect()
+      const dolya = (sobytie.clientX - ramka.left) / ramka.width
+      const i = Math.max(0, Math.min(dannye.length - 1, Math.round(dolya * (dannye.length - 1))))
+      const [tx, ty] = tochki[i]
+      krest.setAttribute('x1', tx); krest.setAttribute('x2', tx); krest.setAttribute('opacity', '1')
+      begunok.setAttribute('cx', tx); begunok.setAttribute('cy', ty); begunok.setAttribute('opacity', '1')
+      const znachenie = ryad.dannye[i].toFixed(ryad.tochnost).replace('.', ',')
+      podskazka.innerHTML = DATY[i] + ' · <b>' + znachenie + '</b> ' + ryad.edinica
+      podskazka.style.opacity = '1'
+      const levo = ramka.left - korobka.getBoundingClientRect().left + (tx / W) * ramka.width
+      podskazka.style.left = Math.max(6, Math.min(levo - podskazka.offsetWidth / 2, korobka.clientWidth - podskazka.offsetWidth - 6)) + 'px'
+      podskazka.style.top = (ramka.top - korobka.getBoundingClientRect().top + (ty / H) * ramka.height - podskazka.offsetHeight - 10) + 'px'
+    })
+
+    korobka.addEventListener('pointerleave', () => {
+      krest.setAttribute('opacity', '0')
+      begunok.setAttribute('opacity', '0')
+      podskazka.style.opacity = '0'
+      podskazka.style.left = '0px'
+      podskazka.style.top = '0px'
+    })
+  }
+
+  document.querySelectorAll('[data-grafik]').forEach(narisovat)
+  window.addEventListener('resize', () => document.querySelectorAll('[data-grafik]').forEach(k => {
+    const p = k.querySelector('.podskazka')
+    p.style.opacity = '0'
+    p.style.left = '0px'
+    p.style.top = '0px'
+  }))
+
+  document.querySelectorAll('.knopka').forEach(knopka => {
+    knopka.addEventListener('click', () => {
+      const nazhato = knopka.getAttribute('aria-pressed') === 'true'
+      knopka.setAttribute('aria-pressed', String(!nazhato))
+      knopka.textContent = nazhato ? 'Тема мимо' : 'Убрана из плана'
+    })
+  })
+</script>

@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../../packages/shared" },
+    { "path": "../../packages/core" },
+    { "path": "../../packages/indexer" },
+    { "path": "../../packages/graph-store" },
+    { "path": "../../packages/eval" },
+    { "path": "../../packages/team-sync" },
+    { "path": "../../packages/mcp-server" }
+  ]
+}

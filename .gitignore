@@ -1,0 +1,50 @@
+# секреты и локальные настройки
+.env
+.env.*
+!.env.example
+*.local.json
+.prod-access.local.json
+.qa-cabinet.local.json
+.vibeos/
+
+# конфиг MCP-серверов — per-machine (локальные оверрайды: cdp-endpoint, пути);
+# кит доставляет набор шагом установки (INSTALL.md Шаг 4), не статическим файлом
+.mcp.json
+
+# зависимости и сборка
+/eval/.work/
+node_modules/
+dist/
+build/
+.next/
+out/
+
+# индекс мозга RepoBrain: сам граф локальный и не коммитится.
+# Папку целиком не глушим — артефакт team-sync graph.sqlite.zst коммитится осознанно.
+**/.repobrain/*.sqlite
+**/.repobrain/*.sqlite-*
+**/.repobrain/cache/
+**/.repobrain/index-log.json
+
+# вики кода RepoBrain — генерируемый артефакт (реиндекс-хук пересобирает на каждый коммит);
+# открывают локально (wiki/index.md), в git не держим — иначе шум-диффы на каждый коммит
+/wiki/
+
+# байт-код python-хуков; сами хуки его не пишут (sys.dont_write_bytecode)
+__pycache__/
+*.pyc
+
+# одноразовые разблокировщики сторожей — живут ровно до следующего действия
+.claude/.env-unlock
+.claude/.push-unlock
+
+# одноразовое: архивы, дампы, снимки, черновики, отчёты прогонов — корень остаётся чистым
+# (правило в скилле core-engineering-standards)
+artifacts/
+
+# выдача browser-MCP: снимки экрана и логи консоли проверки глазами — то же одноразовое
+.playwright-mcp/
+
+# логи и мусор ОС
+*.log
+.DS_Store

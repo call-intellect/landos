@@ -1,0 +1,23 @@
+{
+  "name": "@example/typescript-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Small realistic TypeScript backend used as a golden fixture for RepoBrain.",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "node --loader ts-node/esm src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0",
+    "typescript": "^5.4.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7"
+  }
+}

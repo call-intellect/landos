@@ -1,0 +1,4 @@
+# Extra ignore patterns for RepoBrain indexing (beyond defaults and .gitignore).
+# Defaults already skip: node_modules .git dist build coverage .next .nuxt .cache
+# tmp .env .env.* *.lock *.log *.min.js *.map and binaries/generated files.
+examples/**/node_modules/**

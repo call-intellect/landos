@@ -1,0 +1,15 @@
+- task: "Добавить поле phone в заявку и передавать в CRM"
+  lang: ru
+  cross_language: true
+  gold_files: [src/modules/leads/createLead.ts, src/modules/leads/lead.schema.ts, src/modules/crm/crm-client.ts]
+  gold_symbols: [createLead, LeadInput, sendLeadToCrm]
+- task: "Где в заказе вычисляется итоговая сумма скидки?"
+  lang: ru
+  cross_language: true
+  gold_files: [src/modules/orders/calcTotal.ts, src/modules/orders/applyDiscount.ts]
+  gold_symbols: [calcTotal, applyDiscount]
+- task: "Добавить нормализацию телефона перед отправкой в CRM"
+  lang: ru
+  cross_language: true
+  gold_files: [src/modules/crm/crm-client.ts]
+  gold_symbols: [normalizePhone, sendLeadToCrm]

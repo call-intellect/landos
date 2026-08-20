@@ -1,0 +1,25 @@
+{
+  "name": "repobrain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "RepoBrain — local self-hosted context engine between a repo and AI coding agents",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.0"
+  }
+}

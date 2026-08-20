@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+.git
+.repobrain
+**/.repobrain
+.models
+**/.models
+.cache
+*.log

@@ -1,0 +1,25 @@
+{
+  "name": "@repobrain/eval",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@repobrain/shared": "*",
+    "@repobrain/graph-store": "*",
+    "@repobrain/embeddings": "*",
+    "@repobrain/indexer": "*",
+    "@repobrain/capsule-builder": "*",
+    "yaml": "^2.5.0"
+  }
+}

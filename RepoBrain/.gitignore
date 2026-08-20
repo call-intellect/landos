@@ -1,0 +1,26 @@
+# deps / build
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# logs / os
+*.log
+.DS_Store
+
+# env / secrets
+.env
+.env.*
+
+# RepoBrain local state (the local DB is NOT committed; the shareable
+# .repobrain/graph.sqlite.zst artifact is committed explicitly per repo).
+# ** prefix so it also matches indexes generated inside examples/*/.repobrain/
+**/.repobrain/*.sqlite
+**/.repobrain/*.sqlite-*
+**/.repobrain/cache/
+**/.repobrain/index-log.json
+
+# local embedding model cache (downloaded once, not committed)
+.models/
+.cache/
