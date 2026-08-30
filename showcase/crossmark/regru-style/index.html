@@ -76,7 +76,7 @@ section{scroll-margin-top:24px}
 .notice__in a{color:var(--green);transition:color .1s var(--ease-state)}
 .notice__in a:hover{color:#fff}
 
-.hero{position:relative}
+.hero{position:relative;min-height:1080px;padding-bottom:40px}
 .hero__photo{
   position:absolute;top:0;left:0;right:0;height:1080px;
   background-image:url("assets/hero-community-ru.png");
@@ -135,27 +135,20 @@ h1{
 }
 .micro s{display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--control);vertical-align:middle;margin:0 8px 3px;text-decoration:none}
 .reel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 19%,#000 81%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 19%,#000 81%,transparent 100%)}
-.reel+.reel{margin-top:14px}
-.track{display:flex;gap:16px;width:max-content;animation:slide 52s linear infinite}
+.reel+.reel{margin-top:10px}
+.track{display:flex;gap:10px;width:max-content;animation:slide 52s linear infinite}
 .track--back{animation-direction:reverse;animation-duration:64s}
 .reel:hover .track{animation-play-state:paused}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.bub{display:flex;align-items:center;gap:12px;background:#fff;border-radius:var(--r-pill);padding:8px 22px 8px 8px;box-shadow:var(--shadow);white-space:nowrap}
-.bub img{width:54px;height:54px;border-radius:50%;object-fit:cover}
-.bub b{font-weight:500;font-size:15px;line-height:19px}
-.bub span{display:block;font-size:13px;line-height:16px;color:var(--muted);margin-top:2px}
-.bub--up{transform:translateY(-9px)}
-.bub--dn{transform:translateY(7px)}
-
 .live{background:#fff;border-radius:var(--r-giant);padding:56px 0;overflow:hidden}
 .live__head{margin:0 0 32px;padding:0 48px}
-.dcard{width:216px;flex:none;background:var(--card);border-radius:var(--r-card);padding:8px;display:flex;flex-direction:column}
-.dcard img{width:100%;height:186px;object-fit:cover;border-radius:var(--r-card)}
-.dcard__b{padding:14px 12px 10px}
-.dcard__t{font-weight:500;font-size:16px;line-height:20px;letter-spacing:-.02em;margin:0}
-.dcard__n{font-size:13px;line-height:17px;color:var(--muted);margin:7px 0 0;display:flex;align-items:center;gap:8px}
-.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dcard{width:118px;flex:none;background:var(--card);border-radius:var(--r-small);padding:5px;display:flex;flex-direction:column}
+.dcard img{width:100%;height:96px;object-fit:cover;border-radius:10px}
+.dcard__b{padding:8px 5px 4px}
+.dcard__t{font-weight:500;font-size:12px;line-height:15px;letter-spacing:-.02em;margin:0;min-height:30px}
+.dcard__n{font-size:11px;line-height:14px;color:var(--muted);margin:4px 0 0;display:flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;flex:none}
 .c1{background:#ff8fb1}.c2{background:#8f7eff}.c3{background:#1ede7b}
 .c4{background:#ffd11a}.c5{background:#59b6ff}.c6{background:#ff8a4c}
 
@@ -384,10 +377,6 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
     </div>
   </div>
 
-  <div style="position:relative;z-index:2;padding:72px 0 72px">
-    <div class="reel"><div class="track" id="bub-a"></div></div>
-    <div class="reel"><div class="track track--back" id="bub-b"></div></div>
-  </div>
 </header>
 
 <section id="live" class="wrap" style="margin-top:60px">
@@ -395,9 +384,9 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
     <div class="live__head head">
       <div>
         <span class="eyebrow"><s></s>Кто собирается в базе</span>
-        <h2 class="h2">Двадцать четыре ниши,<br>и это только начало</h2>
+        <h2 class="h2">Партнёр — это не сосед по нише,<br>а бизнес с общей аудиторией</h2>
       </div>
-      <p class="lead">Партнёр — это не сосед по нише, а бизнес с общей аудиторией. Чем разнообразнее база, тем неожиданнее и сильнее связки.</p>
+      <p class="lead">Чем разнообразнее база, тем неожиданнее и сильнее связки: у кофейни и онлайн-школы клиент один, а ниши разные.</p>
     </div>
     <div class="reel"><div class="track" id="row-1"></div></div>
     <div class="reel"><div class="track track--back" id="row-2"></div></div>
@@ -889,15 +878,10 @@ function fill(id, list, html){
   node.innerHTML = body + body;
 }
 
-const bubble = (n, i) =>
-  '<div class="bub ' + (i % 2 ? 'bub--dn' : 'bub--up') + '"><img src="' + src(n[0]) + '" alt=""><div><b>' + n[1] + '</b><span>' + n[2] + '</span></div></div>';
-
 const card = n =>
   '<article class="dcard"><img src="' + src(n[0]) + '" alt=""><div class="dcard__b"><p class="dcard__t">' + n[1] +
   '</p><p class="dcard__n"><s class="dot ' + n[3] + '"></s>' + n[2] + '</p></div></article>';
 
-fill("bub-a", NISHI.filter((_, i) => i % 2 === 0), bubble);
-fill("bub-b", NISHI.filter((_, i) => i % 2 === 1).reverse(), bubble);
 fill("row-1", NISHI.slice(0, 8), card);
 fill("row-2", NISHI.slice(8, 16), card);
 fill("row-3", NISHI.slice(16, 24), card);
