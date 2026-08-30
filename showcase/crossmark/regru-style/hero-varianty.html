@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кроссмарк — пять первых экранов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2f4f7;--card:#f9fafc;--ink:#2b2f33;--ink-deep:#191b1e;--muted:#707a8a;
+  --control:#cbcdd6;--green:#1ede7b;--green-hover:#1ac16b;--green-deep:#149955;
+  --shadow:rgba(0,51,153,.08) 0 4px 8px;
+  --r-control:8px;--r-small:12px;--r-card:24px;--r-media:32px;--r-plate:40px;--r-giant:64px;--r-pill:100px;
+  --ease-state:cubic-bezier(.45,0,.55,1);--ease-in:cubic-bezier(.81,0,.04,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#0d0f12;color:var(--ink);
+  font-family:"Geologica",Inter,Arial,sans-serif;font-weight:300;font-size:16px;line-height:20px;letter-spacing:-.02em;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;letter-spacing:inherit}
+input{font:inherit;letter-spacing:inherit}
+
+.tag{background:#0d0f12;color:#fff;padding:30px 20px 20px}
+.tag__in{max-width:1233px;margin:0 auto;display:grid;grid-template-columns:60px 1fr;gap:20px;align-items:start}
+.tag__n{font-weight:500;font-size:38px;line-height:.9;color:#333a44}
+.tag__h{font-weight:500;font-size:19px;line-height:24px;letter-spacing:-.02em}
+.tag__d{margin:8px 0 0;font-size:14px;line-height:21px;color:#8b93a1;max-width:86ch}
+.tag__d b{color:#cdd3dc;font-weight:500}
+
+.hero{position:relative;background:var(--paper);overflow:hidden;padding-bottom:64px}
+.hero__in{position:relative;z-index:3;max-width:1233px;margin:0 auto;padding:0 20px}
+.bar{display:flex;align-items:center;gap:12px;padding:24px 0 0}
+.pod{background:#fff;border-radius:var(--r-small);display:flex;align-items:center;gap:2px;padding:8px;box-shadow:var(--shadow)}
+.brand{font-weight:500;font-size:21px;letter-spacing:-.03em;padding:6px 12px 6px 8px;display:flex;align-items:center;gap:8px}
+.brand i{width:21px;height:21px;border-radius:7px;background:var(--green);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;color:#04351f;font-weight:500}
+.nav-item{display:inline-flex;align-items:center;padding:11px 15px;border-radius:var(--r-control);font-size:15px;color:var(--ink);white-space:nowrap}
+.bar__right{margin-left:auto}
+.btn{display:inline-block;border:0;border-radius:var(--r-control);padding:12px 22px;font-weight:300;font-size:15px;line-height:20px;text-align:center;transition:background-color .1s var(--ease-state)}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--dark:hover{background:#000}
+.btn--lg{padding:17px 30px;font-size:16px}
+
+.kicker{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.9);border:1px solid rgba(203,205,214,.5);color:var(--ink);border-radius:var(--r-pill);padding:8px 16px;font-size:14px;line-height:17px}
+.kicker s{width:7px;height:7px;border-radius:50%;background:var(--green);text-decoration:none}
+h1{margin:20px 0 0;font-weight:500;font-size:clamp(34px,4.4vw,62px);line-height:1.08;letter-spacing:-.03em;color:var(--ink)}
+.sub{margin:18px 0 0;font-weight:300;font-size:clamp(16px,1.35vw,19px);line-height:1.45;color:var(--ink)}
+.sub b{font-weight:500}
+.sub em{font-style:normal;font-weight:500;box-shadow:inset 0 -.45em 0 rgba(30,222,123,.45)}
+.signup{margin:28px 0 0;max-width:660px;background:#fff;border-radius:var(--r-small);box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;padding:12px 12px 12px 24px}
+.signup input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-weight:300;font-size:17px;color:var(--ink)}
+.signup input::placeholder{color:var(--muted)}
+.micro{display:inline-block;margin:12px 0 0;padding:6px 15px;border-radius:var(--r-pill);background:rgba(255,255,255,.86);border:1px solid rgba(203,205,214,.4);font-size:13px;line-height:16px;color:var(--ink)}
+.center{text-align:center}
+.center .signup{margin-left:auto;margin-right:auto}
+.center h1{margin-left:auto;margin-right:auto;max-width:16ch}
+.center .sub{margin-left:auto;margin-right:auto;max-width:60ch}
+
+.reel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.reel__track{display:flex;gap:16px;width:max-content;animation:slide 46s linear infinite}
+.reel--back .reel__track{animation-direction:reverse;animation-duration:58s}
+.reel:hover .reel__track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.reel__track{animation:none}}
+
+.bub{display:flex;align-items:center;gap:12px;background:#fff;border-radius:var(--r-pill);padding:8px 20px 8px 8px;box-shadow:var(--shadow);white-space:nowrap}
+.bub img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.bub b{font-weight:500;font-size:15px}
+.bub span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.bub--up{transform:translateY(-10px)}
+.bub--dn{transform:translateY(8px)}
+
+.mosaic{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:1fr;gap:10px;padding:10px}
+.mosaic img{width:100%;height:100%;object-fit:cover;border-radius:18px}
+.veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(242,244,247,.86) 0%,rgba(242,244,247,.94) 42%,rgba(242,244,247,.99) 100%)}
+
+.puzzle{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pz{position:relative;border-radius:var(--r-card);overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.pz img{width:100%;height:132px;object-fit:cover}
+.pz b{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.92);border-radius:var(--r-pill);padding:5px 12px;font-weight:300;font-size:13px}
+.pz--gap{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:2px dashed var(--green-deep);background:rgba(30,222,123,.1);box-shadow:none;min-height:132px;text-align:center;
+}
+.pz--gap b{position:static;background:none;padding:0;font-weight:500;font-size:16px;color:var(--green-deep)}
+.pz--gap span{font-size:13px;color:var(--green-deep);opacity:.8;padding:0 10px}
+
+.photo{position:absolute;top:0;left:0;right:0;height:100%;background-size:cover;background-position:50% 30%;background-color:#dcdfe4;z-index:1}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,244,247,.86) 0%,rgba(242,244,247,.9) 34%,rgba(242,244,247,.72) 54%,rgba(242,244,247,.3) 74%,rgba(242,244,247,.72) 100%)}
+
+.deck{display:flex;gap:16px;width:max-content;animation:slide 60s linear infinite}
+.deck:hover{animation-play-state:paused}
+.dcard{width:210px;background:#fff;border-radius:var(--r-card);padding:8px;box-shadow:var(--shadow)}
+.dcard img{width:100%;height:180px;object-fit:cover;border-radius:var(--r-card)}
+.dcard__b{padding:14px 12px 12px}
+.dcard__t{font-weight:500;font-size:16px;line-height:20px;margin:0}
+.dcard__n{font-size:13px;line-height:17px;color:var(--muted);margin:6px 0 0}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:baseline}
+.c1{background:#ff8fb1}.c2{background:#8f7eff}.c3{background:#1ede7b}.c4{background:#ffd11a}.c5{background:#59b6ff}.c6{background:#ff8a4c}
+
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media (max-width:1023px){.split{grid-template-columns:1fr}.mosaic{grid-template-columns:repeat(4,1fr)}.puzzle{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="tag"><div class="tag__in">
+  <div class="tag__n">01</div>
+  <div>
+    <div class="tag__h">Живая лента сообщества</div>
+    <p class="tag__d">Две строки движутся навстречу друг другу и не останавливаются: <b>верхняя вправо, нижняя влево</b>. В каждой пилюле — лицо владельца и его ниша. Ощущение, что база огромная и всё время пополняется. Наведи мышь — лента замирает.</p>
+  </div>
+</div></div>
+<section class="hero">
+  <div class="hero__in">
+    <div class="bar">
+      <div class="pod"><span class="brand"><i>✦</i>Кроссмарк</span><a class="nav-item">Проблема</a><a class="nav-item">Как работает</a><a class="nav-item">Тарифы</a></div>
+      <div class="pod bar__right"><a class="nav-item">Войти</a><a class="btn btn--dark">Регистрация</a></div>
+    </div>
+    <div class="center" style="padding:56px 0 40px">
+      <span class="kicker"><s></s>Партнёрское сообщество малого бизнеса</span>
+      <h1>Побеждать можно только вместе</h1>
+      <p class="sub">Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше. Клиентов сегодня приводят <em>партнёрства и кросс-маркетинг</em>. Мы собрали для этого базу компаний.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="text" placeholder="Чем занимается ваш бизнес?">
+        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+      <p class="micro">Бесплатно навсегда · две минуты · без карты</p>
+    </div>
+  </div>
+  <div class="reel" style="margin-bottom:14px"><div class="reel__track" id="reel-a"></div></div>
+  <div class="reel reel--back"><div class="reel__track" id="reel-b"></div></div>
+</section>
+
+<div class="tag"><div class="tag__in">
+  <div class="tag__n">02</div>
+  <div>
+    <div class="tag__h">Мозаика ниш вместо одного фото</div>
+    <p class="tag__d">Фон собран из <b>двенадцати разных сцен</b>: кофейня, пекарня, стройка, бани, косметика, автосервис. Сверху светлая вуаль, чтобы текст читался. Ни одной «единой» фотографии — сразу видно, что здесь сотни разных бизнесов.</p>
+  </div>
+</div></div>
+<section class="hero" style="min-height:720px">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="veil"></div>
+  <div class="hero__in">
+    <div class="bar">
+      <div class="pod"><span class="brand"><i>✦</i>Кроссмарк</span><a class="nav-item">Проблема</a><a class="nav-item">Как работает</a><a class="nav-item">Тарифы</a></div>
+      <div class="pod bar__right"><a class="nav-item">Войти</a><a class="btn btn--dark">Регистрация</a></div>
+    </div>
+    <div class="center" style="padding:76px 0 20px">
+      <span class="kicker"><s></s>Сотни компаний из десятков ниш</span>
+      <h1>Побеждать можно только вместе</h1>
+      <p class="sub">Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше. Клиентов сегодня приводят <em>партнёрства и кросс-маркетинг</em>. Мы собрали для этого базу компаний.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="text" placeholder="Чем занимается ваш бизнес?">
+        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+      <p class="micro">Бесплатно навсегда · две минуты · без карты</p>
+    </div>
+  </div>
+</section>
+
+<div class="tag"><div class="tag__in">
+  <div class="tag__n">03</div>
+  <div>
+    <div class="tag__h">Пазл, в котором не хватает вас</div>
+    <p class="tag__d">Плитки ниш сложены в поле, и <b>одно место пустое</b>, обведено зелёным пунктиром: «здесь не хватает вас». Прямая метафора: система складывается только целиком. Текст слева, пазл справа.</p>
+  </div>
+</div></div>
+<section class="hero">
+  <div class="hero__in">
+    <div class="bar">
+      <div class="pod"><span class="brand"><i>✦</i>Кроссмарк</span><a class="nav-item">Проблема</a><a class="nav-item">Как работает</a><a class="nav-item">Тарифы</a></div>
+      <div class="pod bar__right"><a class="nav-item">Войти</a><a class="btn btn--dark">Регистрация</a></div>
+    </div>
+    <div class="split" style="padding:56px 0 20px">
+      <div>
+        <span class="kicker"><s></s>Партнёрское сообщество малого бизнеса</span>
+        <h1>Побеждать можно только вместе</h1>
+        <p class="sub">Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше. Клиентов сегодня приводят <em>партнёрства и кросс-маркетинг</em>. Мы собрали для этого базу компаний.</p>
+        <form class="signup" onsubmit="return false">
+          <input type="text" placeholder="Чем занимается ваш бизнес?">
+          <button class="btn btn--dark" type="submit">Зарегистрироваться</button>
+        </form>
+        <p class="micro">Бесплатно навсегда · две минуты · без карты</p>
+      </div>
+      <div class="puzzle" id="puzzle"></div>
+    </div>
+  </div>
+</section>
+
+<div class="tag"><div class="tag__in">
+  <div class="tag__n">04</div>
+  <div>
+    <div class="tag__h">Общее фото сообщества</div>
+    <p class="tag__d">То, что было, но люди <b>российские</b> и из разных сфер: флорист, пекарь, барбер, строитель, бухгалтер, тренер. Одна большая сцена — максимум «мы вместе», минимум «много ниш».</p>
+  </div>
+</div></div>
+<section class="hero" style="min-height:880px">
+  <div class="photo" style="background-image:url('assets/hero-community-ru.png');background-size:132% auto;background-position:50% 100%"></div>
+  <div class="hero__in">
+    <div class="bar">
+      <div class="pod"><span class="brand"><i>✦</i>Кроссмарк</span><a class="nav-item">Проблема</a><a class="nav-item">Как работает</a><a class="nav-item">Тарифы</a></div>
+      <div class="pod bar__right"><a class="nav-item">Войти</a><a class="btn btn--dark">Регистрация</a></div>
+    </div>
+    <div class="center" style="padding:76px 0 20px">
+      <span class="kicker"><s></s>Партнёрское сообщество малого бизнеса</span>
+      <h1>Побеждать можно только вместе</h1>
+      <p class="sub">Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше. Клиентов сегодня приводят <em>партнёрства и кросс-маркетинг</em>. Мы собрали для этого базу компаний.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="text" placeholder="Чем занимается ваш бизнес?">
+        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+      <p class="micro">Бесплатно навсегда · две минуты · без карты</p>
+    </div>
+  </div>
+</section>
+
+<div class="tag"><div class="tag__in">
+  <div class="tag__n">05</div>
+  <div>
+    <div class="tag__h">Витрина карточек с цветными метками</div>
+    <p class="tag__d">Карточки компаний едут одной лентой, у каждой <b>цветная точка ниши</b> — единственное место на странице, где появляется цвет. Ближе всего к тому, как выглядит настоящий каталог: не фотография сообщества, а само сообщество.</p>
+  </div>
+</div></div>
+<section class="hero">
+  <div class="hero__in">
+    <div class="bar">
+      <div class="pod"><span class="brand"><i>✦</i>Кроссмарк</span><a class="nav-item">Проблема</a><a class="nav-item">Как работает</a><a class="nav-item">Тарифы</a></div>
+      <div class="pod bar__right"><a class="nav-item">Войти</a><a class="btn btn--dark">Регистрация</a></div>
+    </div>
+    <div class="center" style="padding:56px 0 40px">
+      <span class="kicker"><s></s>Каталог партнёров пополняется каждый день</span>
+      <h1>Побеждать можно только вместе</h1>
+      <p class="sub">Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше. Клиентов сегодня приводят <em>партнёрства и кросс-маркетинг</em>. Мы собрали для этого базу компаний.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="text" placeholder="Чем занимается ваш бизнес?">
+        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+      <p class="micro">Бесплатно навсегда · две минуты · без карты</p>
+    </div>
+  </div>
+  <div class="reel"><div class="deck" id="deck"></div></div>
+</section>
+
+<script>
+const NISHI = [
+  ["kofeynya","Кофейня «Пар»","Общепит","c1"],
+  ["pekarnya","Пекарня «Тесто»","Общепит","c1"],
+  ["barbershop","Барбершоп «Бор»","Услуги","c2"],
+  ["cvety","Цветы «Полынь»","Розница","c3"],
+  ["fitnes","Фитнес «Тяга»","Спорт","c4"],
+  ["stroyka","Ремонт «Клин»","Строительство","c5"],
+  ["bani","Модульные бани","Производство","c6"],
+  ["kosmetika","Косметика «Мята»","Розница","c3"],
+  ["avtoservis","Автосервис «Ось»","Услуги","c2"],
+  ["buhgalteriya","Бухгалтерия «Счёт»","Для бизнеса","c5"],
+  ["shkola","Онлайн-школа «Шаг»","Образование","c4"],
+  ["mebel","Мебель «Слой»","Производство","c6"],
+];
+const src = n => "assets/nishi/" + n + ".png";
+
+function bubbles(target, list, shift){
+  const html = list.map((n,i) =>
+    '<div class="bub ' + (i % 2 ? 'bub--dn' : 'bub--up') + '"><img src="' + src(n[0]) + '" alt=""><div><b>' + n[1] + '</b><span>' + n[2] + '</span></div></div>'
+  ).join("");
+  target.innerHTML = html + html;
+}
+bubbles(document.getElementById("reel-a"), NISHI, 0);
+bubbles(document.getElementById("reel-b"), [...NISHI].reverse(), 1);
+
+document.getElementById("mosaic").innerHTML =
+  Array.from({length: 24}, (_, i) => '<img src="' + src(NISHI[i % NISHI.length][0]) + '" alt="">').join("");
+
+document.getElementById("puzzle").innerHTML =
+  NISHI.slice(0, 7).map(n => '<div class="pz"><img src="' + src(n[0]) + '" alt=""><b>' + n[2] + '</b></div>').join("") +
+  '<div class="pz pz--gap"><b>+ Вы</b><span>здесь не хватает вашей компании</span></div>';
+
+const deckHtml = NISHI.map(n =>
+  '<div class="dcard"><img src="' + src(n[0]) + '" alt=""><div class="dcard__b"><p class="dcard__t">' + n[1] + '</p><p class="dcard__n"><s class="dot ' + n[3] + '"></s>' + n[2] + '</p></div></div>'
+).join("");
+document.getElementById("deck").innerHTML = deckHtml + deckHtml;
+</script>
+</body>
+</html>
