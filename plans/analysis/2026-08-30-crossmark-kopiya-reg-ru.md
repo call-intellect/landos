@@ -1,6 +1,6 @@
 ---
 type: plan
-status: draft
+status: done
 date: 2026-08-30
 related: [reg-ru-design-teardown, crossmark-current-site-copy]
 ---
@@ -58,4 +58,4 @@ related: [reg-ru-design-teardown, crossmark-current-site-copy]
 ## Порядок работы
 
 Блок за блоком: снять их блок с живой страницы → собрать наш → показать владельцу → следующий.
-Готово: блок 0 и блок 1.
+Готово: вся страница. Актуальная версия и правила правки — `second-brain/06_marketing/crossmark-sait.md`.

@@ -21,6 +21,11 @@
 
 <!-- Не продукт — удали строку 06_marketing и саму папку. -->
 
+## Быстрый вход
+
+- **Сайт Кроссмарк, последняя версия** — `showcase/crossmark/regru-style/index.html`,
+  описание в [[06_marketing/crossmark-sait|заметке]].
+
 ## Читают до задачи
 
 - [[00_system/SECOND_BRAIN_PROTOCOL|Протокол]] — что хранить и зачем
