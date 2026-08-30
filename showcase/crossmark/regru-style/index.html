@@ -78,14 +78,14 @@ section{scroll-margin-top:24px}
 
 .hero{position:relative}
 .hero__photo{
-  position:absolute;top:0;left:0;right:0;height:1010px;
-  background-image:url("assets/hero-community.png");
-  background-size:cover;background-position:50% 32%;
+  position:absolute;top:0;left:0;right:0;height:1020px;
+  background-image:url("assets/hero-community-ru.png");
+  background-size:140% auto;background-position:50% 100%;
   background-color:#dcdfe4;
 }
 .hero__photo::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(242,244,247,.72) 0%,rgba(242,244,247,.44) 24%,rgba(242,244,247,.16) 46%,rgba(242,244,247,.52) 78%,rgba(242,244,247,.97) 100%);
+  background:linear-gradient(180deg,rgba(242,244,247,.68) 0%,rgba(242,244,247,.72) 30%,rgba(242,244,247,.66) 44%,rgba(242,244,247,.18) 64%,rgba(242,244,247,.55) 88%,rgba(242,244,247,.92) 100%);
 }
 .hero__in{position:relative;z-index:2;max-width:1233px;margin:0 auto;padding:0 20px}
 
@@ -105,7 +105,7 @@ section{scroll-margin-top:24px}
 .nav-item:hover{background:var(--paper)}
 .bar__right{margin-left:auto}
 
-.hero__stage{padding:84px 0 0;text-align:center}
+.hero__stage{padding:44px 0 0;text-align:center}
 .hero__kicker{
   display:inline-flex;align-items:center;gap:9px;
   background:rgba(255,255,255,.9);border:1px solid rgba(203,205,214,.5);
@@ -134,16 +134,33 @@ h1{
   font-size:14px;line-height:17px;color:var(--ink);
 }
 .micro s{display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--control);vertical-align:middle;margin:0 8px 3px;text-decoration:none}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px auto 0}
-.chip{
-  background:rgba(255,255,255,.92);border:1px solid rgba(203,205,214,.45);border-radius:var(--r-pill);
-  padding:7px 15px;font-size:14px;line-height:17px;color:var(--ink);
-  transition:background-color .1s var(--ease-state);
-}
-.chip:hover{background:#fff}
+.reel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.reel+.reel{margin-top:14px}
+.track{display:flex;gap:16px;width:max-content;animation:slide 52s linear infinite}
+.track--back{animation-direction:reverse;animation-duration:64s}
+.reel:hover .track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.bub{display:flex;align-items:center;gap:12px;background:#fff;border-radius:var(--r-pill);padding:8px 22px 8px 8px;box-shadow:var(--shadow);white-space:nowrap}
+.bub img{width:54px;height:54px;border-radius:50%;object-fit:cover}
+.bub b{font-weight:500;font-size:15px;line-height:19px}
+.bub span{display:block;font-size:13px;line-height:16px;color:var(--muted);margin-top:2px}
+.bub--up{transform:translateY(-9px)}
+.bub--dn{transform:translateY(7px)}
+
+.live{background:#fff;border-radius:var(--r-giant);padding:56px 0;overflow:hidden}
+.live__head{margin:0 0 32px;padding:0 48px}
+.dcard{width:216px;flex:none;background:var(--card);border-radius:var(--r-card);padding:8px;display:flex;flex-direction:column}
+.dcard img{width:100%;height:186px;object-fit:cover;border-radius:var(--r-card)}
+.dcard__b{padding:14px 12px 10px}
+.dcard__t{font-weight:500;font-size:16px;line-height:20px;letter-spacing:-.02em;margin:0}
+.dcard__n{font-size:13px;line-height:17px;color:var(--muted);margin:7px 0 0;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.c1{background:#ff8fb1}.c2{background:#8f7eff}.c3{background:#1ede7b}
+.c4{background:#ffd11a}.c5{background:#59b6ff}.c6{background:#ff8a4c}
 
 .promise{
-  position:relative;z-index:2;margin-top:76px;background:#fff;border-radius:var(--r-plate);
+  position:relative;z-index:2;max-width:1233px;margin:0 auto;background:#fff;border-radius:var(--r-plate);
   padding:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
 }
 .promise__cell{background:var(--card);border-radius:var(--r-card);padding:28px}
@@ -364,34 +381,44 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
         <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
       </form>
       <p class="micro">Бесплатно навсегда<s></s>две минуты<s></s>без карты</p>
-
-      <div class="chips">
-        <a class="chip" href="#join">Кофейня</a>
-        <a class="chip" href="#join">Фитнес-клуб</a>
-        <a class="chip" href="#join">Онлайн-школа</a>
-        <a class="chip" href="#join">Стройка и ремонт</a>
-        <a class="chip" href="#join">Салон красоты</a>
-        <a class="chip" href="#join">Услуги для бизнеса</a>
-      </div>
     </div>
+  </div>
 
-    <div class="promise">
-      <div class="promise__cell">
-        <div class="promise__k">Без <u>бюджета</u></div>
-        <p class="promise__t">Партнёру платите не деньгами, а своей пользой для его клиента.</p>
-      </div>
-      <div class="promise__cell">
-        <div class="promise__k">Без <u>холодных</u></div>
-        <p class="promise__t">Человек приходит к вам с доверием, которое партнёр уже заработал.</p>
-      </div>
-      <div class="promise__cell">
-        <div class="promise__k">Без <u>скидок</u></div>
-        <p class="promise__t">Вы не режете цену — вы делаете чужое предложение сильнее своим.</p>
-      </div>
-    </div>
-
+  <div style="position:relative;z-index:2;padding:56px 0 64px">
+    <div class="reel"><div class="track" id="bub-a"></div></div>
+    <div class="reel"><div class="track track--back" id="bub-b"></div></div>
   </div>
 </header>
+
+<section id="live" class="wrap" style="margin-top:60px">
+  <div class="live">
+    <div class="live__head head">
+      <div>
+        <span class="eyebrow"><s></s>Кто собирается в базе</span>
+        <h2 class="h2">Двадцать четыре ниши,<br>и это только начало</h2>
+      </div>
+      <p class="lead">Партнёр — это не сосед по нише, а бизнес с общей аудиторией. Чем разнообразнее база, тем неожиданнее и сильнее связки.</p>
+    </div>
+    <div class="reel"><div class="track" id="row-1"></div></div>
+    <div class="reel"><div class="track track--back" id="row-2"></div></div>
+    <div class="reel"><div class="track" id="row-3"></div></div>
+  </div>
+
+  <div class="promise" style="margin-top:20px">
+    <div class="promise__cell">
+      <div class="promise__k">Без <u>бюджета</u></div>
+      <p class="promise__t">Партнёру платите не деньгами, а своей пользой для его клиента.</p>
+    </div>
+    <div class="promise__cell">
+      <div class="promise__k">Без <u>холодных</u></div>
+      <p class="promise__t">Человек приходит к вам с доверием, которое партнёр уже заработал.</p>
+    </div>
+    <div class="promise__cell">
+      <div class="promise__k">Без <u>скидок</u></div>
+      <p class="promise__t">Вы не режете цену — вы делаете чужое предложение сильнее своим.</p>
+    </div>
+  </div>
+</section>
 
 <main class="wrap stack">
 
@@ -825,5 +852,55 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
   </div>
 </footer>
 
+
+<script>
+const NISHI = [
+  ["kofeynya","Кофейня","Общепит","c1"],
+  ["pekarnya","Пекарня","Общепит","c1"],
+  ["barbershop","Барбершоп","Красота","c2"],
+  ["cvety","Цветочный магазин","Розница","c3"],
+  ["fitnes","Фитнес-клуб","Спорт","c4"],
+  ["stroyka","Ремонт квартир","Строительство","c5"],
+  ["bani","Модульные бани","Производство","c6"],
+  ["kosmetika","Магазин косметики","Розница","c3"],
+  ["avtoservis","Автосервис","Услуги","c2"],
+  ["buhgalteriya","Бухгалтерия","Для бизнеса","c5"],
+  ["shkola","Онлайн-школа","Образование","c4"],
+  ["mebel","Мебельное производство","Производство","c6"],
+  ["stomatologiya","Стоматология","Медицина","c1"],
+  ["vetklinika","Ветклиника","Медицина","c1"],
+  ["detskiy","Детский центр","Образование","c4"],
+  ["avtoshkola","Автошкола","Образование","c4"],
+  ["klining","Клининг офисов","Услуги","c2"],
+  ["logistika","Доставка и логистика","Логистика","c5"],
+  ["itstudio","IT-студия и CRM","Для бизнеса","c5"],
+  ["remteh","Ремонт техники","Услуги","c2"],
+  ["turagentstvo","Турагентство","Услуги","c2"],
+  ["yurist","Юридические услуги","Для бизнеса","c5"],
+  ["tipografiya","Типография","Производство","c6"],
+  ["spa","Массаж и СПА","Красота","c3"],
+];
+const src = n => "assets/nishi/" + n + ".png";
+
+function fill(id, list, html){
+  const node = document.getElementById(id);
+  if (node === null) return;
+  const body = list.map(html).join("");
+  node.innerHTML = body + body;
+}
+
+const bubble = (n, i) =>
+  '<div class="bub ' + (i % 2 ? 'bub--dn' : 'bub--up') + '"><img src="' + src(n[0]) + '" alt=""><div><b>' + n[1] + '</b><span>' + n[2] + '</span></div></div>';
+
+const card = n =>
+  '<article class="dcard"><img src="' + src(n[0]) + '" alt=""><div class="dcard__b"><p class="dcard__t">' + n[1] +
+  '</p><p class="dcard__n"><s class="dot ' + n[3] + '"></s>' + n[2] + '</p></div></article>';
+
+fill("bub-a", NISHI.filter((_, i) => i % 2 === 0), bubble);
+fill("bub-b", NISHI.filter((_, i) => i % 2 === 1).reverse(), bubble);
+fill("row-1", NISHI.slice(0, 8), card);
+fill("row-2", NISHI.slice(8, 16), card);
+fill("row-3", NISHI.slice(16, 24), card);
+</script>
 </body>
 </html>
