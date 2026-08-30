@@ -21,3 +21,5 @@
 - [Вкус владельца по визуалу](user_owner-visual-taste.md) — решает только глазами на живой странице; «интерфейсные» дизайны и тёплая терракота отвергнуты, принята «Ночная редакция».
 - [python3 на Windows — заглушка](project_python3-stub-windows.md) — рабочий интерпретатор только `python`; хуки кита в `.claude/settings.json` вызываются через него, иначе сторожа молча не срабатывают.
 - [Разбор чужого сайта — из браузера](feedback_design-teardown-via-browser.md) — getComputedStyle вместо скриншотов; иначе не видно ни токенов, ни правил, по которым значения выбраны.
+- [Ключ KIE и сервер vibeceh](project_kie-kluch-i-server-vibeceh.md) — рабочий ключ под root в statejnik, в домашнем .env заглушка CHANGEME.
+- [Контракт kie.ai gpt-image-2](project_kie-image2-kontrakt.md) — два эндпоинта, две модели, 6 кредитов ≈ 2,3 ₽ и ~60 с на картинку.
