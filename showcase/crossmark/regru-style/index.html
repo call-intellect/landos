@@ -76,11 +76,11 @@ section{scroll-margin-top:24px}
 .notice__in a{color:var(--green);transition:color .1s var(--ease-state)}
 .notice__in a:hover{color:#fff}
 
-.hero{position:relative;min-height:1080px;padding-bottom:40px}
+.hero{position:relative;min-height:1150px;padding-bottom:40px}
 .hero__photo{
-  position:absolute;top:0;left:0;right:0;height:1080px;
-  background-image:url("assets/hero-community-ru.png");
-  background-size:190% auto;background-position:50% 100%;
+  position:absolute;top:0;left:0;right:0;height:1150px;
+  background-image:url("assets/hero-community-ru2.png");
+  background-size:172% auto;background-position:50% 100%;
   background-color:#dcdfe4;
 }
 .hero__photo::after{
@@ -105,7 +105,7 @@ section{scroll-margin-top:24px}
 .nav-item:hover{background:var(--paper)}
 .bar__right{margin-left:auto}
 
-.hero__stage{padding:286px 0 0;text-align:center}
+.hero__stage{padding:330px 0 0;text-align:center}
 .hero__kicker{
   display:inline-flex;align-items:center;gap:9px;
   background:rgba(255,255,255,.9);border:1px solid rgba(203,205,214,.5);
@@ -117,19 +117,16 @@ h1{
   margin:22px auto 0;max-width:15ch;
   font-weight:500;font-size:clamp(38px,4.8vw,68px);line-height:1.08;letter-spacing:-.03em;color:var(--ink);
 }
-.hero__sub{margin:20px auto 0;max-width:60ch;color:var(--ink);font-weight:300;font-size:clamp(17px,1.4vw,20px);line-height:1.45}
+.hero__sub{margin:24px auto 0;max-width:54ch;color:var(--ink);font-weight:300;font-size:clamp(19px,1.7vw,25px);line-height:1.42}
 .hero__sub b{font-weight:500}
 .hero__sub em{font-style:normal;font-weight:500;box-shadow:inset 0 -.45em 0 rgba(30,222,123,.45)}
 
-.signup{
-  margin:32px auto 0;max-width:730px;background:#fff;border-radius:var(--r-small);
-  box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;padding:14px 14px 14px 28px;
+.btn--hero{
+  margin-top:36px;padding:21px 40px;font-size:18px;line-height:22px;border-radius:var(--r-small);
+  box-shadow:0 14px 30px -16px rgba(15,20,30,.55);
 }
-.signup input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-weight:300;font-size:18px;line-height:22px;color:var(--ink)}
-.signup input::placeholder{color:var(--muted)}
-.signup .btn{padding:16px 28px}
 .micro{
-  display:inline-block;margin:14px 0 0;padding:7px 16px;border-radius:var(--r-pill);
+  display:table;margin:16px auto 0;padding:7px 16px;border-radius:var(--r-pill);
   background:rgba(255,255,255,.86);border:1px solid rgba(203,205,214,.4);
   font-size:14px;line-height:17px;color:var(--ink);
 }
@@ -138,7 +135,6 @@ h1{
 .reel+.reel{margin-top:10px}
 .track{display:flex;gap:10px;width:max-content;animation:slide 52s linear infinite}
 .track--back{animation-direction:reverse;animation-duration:64s}
-.reel:hover .track{animation-play-state:paused}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .live{background:#fff;border-radius:var(--r-giant);padding:56px 0;overflow:hidden}
@@ -352,6 +348,7 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
         <a class="nav-item" href="#why">Проблема</a>
         <a class="nav-item" href="#how">Как работает</a>
         <a class="nav-item" href="#tariffs">Тарифы</a>
+        <a class="nav-item" href="#refer">Партнёрам</a>
         <a class="nav-item" href="#faq">Вопросы</a>
       </div>
       <div class="pod bar__right">
@@ -369,10 +366,7 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
         Мы собрали для этого базу компаний — присоединяйтесь и находите своих.
       </p>
 
-      <form class="signup" onsubmit="return false">
-        <input type="text" placeholder="Чем занимается ваш бизнес?" aria-label="Чем занимается ваш бизнес">
-        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
-      </form>
+      <a class="btn btn--dark btn--hero" href="#join">Зарегистрироваться бесплатно</a>
       <p class="micro">Бесплатно навсегда<s></s>две минуты<s></s>без карты</p>
     </div>
   </div>
@@ -706,8 +700,8 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
   <section id="tariffs">
     <div class="tariffs">
       <span class="eyebrow" style="color:#9aa2ae"><s style="background:#3a4048"></s>Тарифы</span>
-      <h2 class="h2">Начать можно<br>с нуля рублей</h2>
-      <p class="tariffs__lead">Сейчас работает только «Старт». Платные тарифы включим, когда от них будет настоящая польза — переплачивать за воздух мы не предлагаем.</p>
+      <h2 class="h2">Сейчас идёт<br>набор базы</h2>
+      <p class="tariffs__lead">Скажем честно, как есть. Платформа соединяет компании только тогда, когда в базе набралось достаточно участников — иначе подбирать партнёра просто не из кого. Поэтому сегодня открыт один тариф, бесплатный: знакомимся, наполняем базу, собираем первые связки. Платные включим к полноценному запуску — когда от них появится настоящая польза. <b style="font-weight:500;color:#fff">Будьте первыми: кто зашёл раньше, того находят чаще.</b></p>
       <div class="plans">
         <div class="plan plan--live">
           <span class="plan__badge">Доступен сейчас</span>
@@ -721,7 +715,7 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
           <div class="plan__cta"><a class="btn btn--dark btn--lg" href="#join">Начать бесплатно</a></div>
         </div>
         <div class="plan plan--soon">
-          <span class="plan__badge">Пока недоступен</span>
+          <span class="plan__badge">Включим к запуску</span>
           <h3 class="plan__n">Про</h3>
           <div class="plan__price">20 000 ₽ <span>в месяц</span></div>
           <ul>
@@ -733,7 +727,7 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
           <div class="plan__cta"><span class="btn btn--lg">Скоро</span></div>
         </div>
         <div class="plan plan--soon">
-          <span class="plan__badge">Пока недоступен</span>
+          <span class="plan__badge">Включим к запуску</span>
           <h3 class="plan__n">Премиум</h3>
           <div class="plan__price">50 000 ₽ <span>в месяц</span></div>
           <ul>
@@ -745,6 +739,49 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
           <div class="plan__cta"><span class="btn btn--lg">Скоро</span></div>
         </div>
       </div>
+      <p style="margin:32px 0 0;font-size:15px;line-height:23px;color:#8b93a1;max-width:70ch">
+        Что значит «к запуску»: когда компаний в каждой категории станет достаточно, чтобы нейросети было из кого выбирать партнёра. До этого момента платить не за что — и мы не берём денег.
+      </p>
+    </div>
+  </section>
+
+  <section id="refer">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><s></s>Реферальная программа</span>
+        <h2 class="h2">Зовите своих —<br>и зарабатывайте на этом</h2>
+      </div>
+      <p class="lead">Ссылка появляется в кабинете сразу после регистрации. Приглашать можно кого угодно: соседа по бизнес-центру, поставщика, знакомого предпринимателя.</p>
+    </div>
+    <div class="grid-3">
+      <article class="gain">
+        <div class="gain__img"><img src="assets/ref-speed.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">База наберётся быстрее</h3>
+          <p class="gain__p">Чем больше предпринимателей вы приведёте, тем скорее наберётся критическая масса — и тем раньше <b style="font-weight:500;color:var(--ink)">все мы</b>, включая вас, начнём получать клиентов через партнёрства.</p>
+          <span class="gain__k">общая <b>польза</b></span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/ref-money.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">3 300 ₽ в месяц с каждого</h3>
+          <p class="gain__p">Когда приглашённый перейдёт на платный тариф, вы получаете свою долю — и получаете её каждый месяц, пока он пользуется платформой.</p>
+          <span class="gain__k"><b>каждый месяц</b>, а не разово</span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/ref-invite.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Считаем за вас</h3>
+          <p class="gain__p">Ссылка, список приглашённых и начисления — в личном кабинете. Ничего не нужно вести в таблице и ни с кем договариваться отдельно.</p>
+          <span class="gain__k">видно <b>в кабинете</b></span>
+        </div>
+      </article>
+    </div>
+    <div class="punch">
+      <p>Десять приглашённых на платном тарифе — <em>33 000 ₽ в месяц</em>.</p>
+      <span>И это не главная выгода. Главная в том, что каждый приглашённый — ещё одна компания, с которой можно собрать связку и получить клиентов.</span>
     </div>
   </section>
 
@@ -868,6 +905,12 @@ const NISHI = [
   ["yurist","Юридические услуги","Для бизнеса","c5"],
   ["tipografiya","Типография","Производство","c6"],
   ["spa","Массаж и СПА","Красота","c3"],
+  ["ferma","Фермерские продукты","Розница","c3"],
+  ["atelye","Ателье и пошив","Услуги","c2"],
+  ["fotostudiya","Фотостудия","Услуги","c2"],
+  ["yazykovaya","Языковая школа","Образование","c4"],
+  ["kovorking","Коворкинг","Для бизнеса","c5"],
+  ["medcentr","Медцентр","Медицина","c1"],
 ];
 const src = n => "assets/nishi/" + n + ".png";
 
@@ -882,9 +925,9 @@ const card = n =>
   '<article class="dcard"><img src="' + src(n[0]) + '" alt=""><div class="dcard__b"><p class="dcard__t">' + n[1] +
   '</p><p class="dcard__n"><s class="dot ' + n[3] + '"></s>' + n[2] + '</p></div></article>';
 
-fill("row-1", NISHI.slice(0, 8), card);
-fill("row-2", NISHI.slice(8, 16), card);
-fill("row-3", NISHI.slice(16, 24), card);
+fill("row-1", NISHI.slice(0, 10), card);
+fill("row-2", NISHI.slice(10, 20), card);
+fill("row-3", NISHI.slice(20, 30), card);
 </script>
 </body>
 </html>
