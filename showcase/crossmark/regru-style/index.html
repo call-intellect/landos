@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кроссмарк — клиенты через партнёрства, а не через рекламу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2f4f7;
+  --card:#f9fafc;
+  --ink:#2b2f33;
+  --ink-deep:#191b1e;
+  --footer:#181818;
+  --muted:#707a8a;
+  --line:#dfe3e8;
+  --control:#cbcdd6;
+  --green:#1ede7b;
+  --green-hover:#1ac16b;
+  --green-deep:#149955;
+  --shadow:rgba(0,51,153,.08) 0 4px 8px;
+  --r-control:8px;
+  --r-small:12px;
+  --r-card:24px;
+  --r-media:32px;
+  --r-plate:40px;
+  --r-giant:64px;
+  --r-pill:100px;
+  --ease-state:cubic-bezier(.45,0,.55,1);
+  --ease-in:cubic-bezier(.81,0,.04,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Geologica",Inter,Arial,"Helvetica Neue",sans-serif;
+  font-weight:300;font-size:16px;line-height:20px;letter-spacing:-.02em;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;letter-spacing:inherit}
+input{font:inherit;letter-spacing:inherit}
+.wrap{max-width:1233px;margin:0 auto;padding:0 20px}
+section{scroll-margin-top:24px}
+
+.h2{font-weight:500;font-size:clamp(32px,3.6vw,50px);line-height:1.1;letter-spacing:-.03em;margin:0}
+.lead{font-weight:300;font-size:20px;line-height:25px;color:var(--muted);margin:16px 0 0;max-width:62ch}
+.head{display:flex;align-items:flex-end;gap:32px;margin-bottom:32px;flex-wrap:wrap}
+.head .lead{margin:0;max-width:44ch;flex:1;min-width:260px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-size:14px;line-height:17px;color:var(--muted)}
+.eyebrow s{width:24px;height:1px;background:var(--control);text-decoration:none}
+.stack{display:flex;flex-direction:column;gap:60px;padding:60px 0}
+
+.btn{
+  display:inline-block;border:0;border-radius:var(--r-control);padding:12px 24px;
+  font-weight:300;font-size:16px;line-height:20px;text-align:center;
+  transition:background-color .1s var(--ease-state),color .1s var(--ease-state);
+}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--dark:hover{background:#000}
+.btn--green{background:var(--green);color:var(--ink-deep)}
+.btn--green:hover{background:var(--green-hover)}
+.btn--lg{padding:18px 32px}
+
+.notice{background:var(--ink-deep);color:#fff}
+.notice__in{
+  max-width:1233px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:14px;line-height:17px;flex-wrap:wrap;text-align:center;
+}
+.notice__in a{color:var(--green);transition:color .1s var(--ease-state)}
+.notice__in a:hover{color:#fff}
+
+.hero{position:relative}
+.hero__photo{
+  position:absolute;top:0;left:0;right:0;height:1010px;
+  background-image:url("assets/hero-community.png");
+  background-size:cover;background-position:50% 32%;
+  background-color:#dcdfe4;
+}
+.hero__photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(242,244,247,.72) 0%,rgba(242,244,247,.44) 24%,rgba(242,244,247,.16) 46%,rgba(242,244,247,.52) 78%,rgba(242,244,247,.97) 100%);
+}
+.hero__in{position:relative;z-index:2;max-width:1233px;margin:0 auto;padding:0 20px}
+
+.bar{display:flex;align-items:center;gap:12px;padding-top:24px}
+.pod{background:#fff;border-radius:var(--r-small);display:flex;align-items:center;gap:2px;padding:8px;box-shadow:var(--shadow)}
+.brand{font-weight:500;font-size:22px;letter-spacing:-.03em;padding:6px 14px 6px 10px;display:flex;align-items:center;gap:8px}
+.brand i{
+  width:22px;height:22px;border-radius:7px;background:var(--green);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:13px;color:#04351f;font-weight:500;
+}
+.nav-item{
+  display:inline-flex;align-items:center;padding:12px 16px;border-radius:var(--r-control);
+  font-weight:300;font-size:16px;line-height:20px;color:var(--ink);white-space:nowrap;
+  transition:background-color .1s var(--ease-state);
+}
+.nav-item:hover{background:var(--paper)}
+.bar__right{margin-left:auto}
+
+.hero__stage{padding:84px 0 0;text-align:center}
+.hero__kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,.9);border:1px solid rgba(203,205,214,.5);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:var(--ink);border-radius:var(--r-pill);padding:8px 16px;font-size:14px;line-height:17px;
+}
+.hero__kicker s{width:7px;height:7px;border-radius:50%;background:var(--green);text-decoration:none}
+h1{
+  margin:22px auto 0;max-width:15ch;
+  font-weight:500;font-size:clamp(38px,4.8vw,68px);line-height:1.08;letter-spacing:-.03em;color:var(--ink);
+}
+.hero__sub{margin:20px auto 0;max-width:60ch;color:var(--ink);font-weight:300;font-size:clamp(17px,1.4vw,20px);line-height:1.45}
+.hero__sub b{font-weight:500}
+.hero__sub em{font-style:normal;font-weight:500;box-shadow:inset 0 -.45em 0 rgba(30,222,123,.45)}
+
+.signup{
+  margin:32px auto 0;max-width:730px;background:#fff;border-radius:var(--r-small);
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;padding:14px 14px 14px 28px;
+}
+.signup input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-weight:300;font-size:18px;line-height:22px;color:var(--ink)}
+.signup input::placeholder{color:var(--muted)}
+.signup .btn{padding:16px 28px}
+.micro{
+  display:inline-block;margin:14px 0 0;padding:7px 16px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.86);border:1px solid rgba(203,205,214,.4);
+  font-size:14px;line-height:17px;color:var(--ink);
+}
+.micro s{display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--control);vertical-align:middle;margin:0 8px 3px;text-decoration:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px auto 0}
+.chip{
+  background:rgba(255,255,255,.92);border:1px solid rgba(203,205,214,.45);border-radius:var(--r-pill);
+  padding:7px 15px;font-size:14px;line-height:17px;color:var(--ink);
+  transition:background-color .1s var(--ease-state);
+}
+.chip:hover{background:#fff}
+
+.promise{
+  position:relative;z-index:2;margin-top:76px;background:#fff;border-radius:var(--r-plate);
+  padding:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+}
+.promise__cell{background:var(--card);border-radius:var(--r-card);padding:28px}
+.promise__k{font-weight:500;font-size:30px;line-height:34px;letter-spacing:-.03em}
+.promise__k u{text-decoration:none;color:var(--green-deep)}
+.promise__t{margin:10px 0 0;font-size:16px;line-height:21px;color:var(--muted)}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border-radius:var(--r-card);padding:32px;transition:transform .3s var(--ease-in)}
+.card:hover{transform:translateY(-3px)}
+.card__tag{font-size:14px;line-height:17px;color:var(--muted)}
+.card__h{font-weight:500;font-size:24px;line-height:29px;letter-spacing:-.03em;margin:14px 0 0}
+.card__p{font-weight:300;font-size:16px;line-height:22px;color:var(--muted);margin:12px 0 0}
+
+.punch{
+  background:var(--ink-deep);color:#fff;border-radius:var(--r-plate);margin-top:20px;
+  padding:48px 56px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+}
+.punch p{margin:0;font-weight:300;font-size:clamp(22px,2.4vw,32px);line-height:1.25;letter-spacing:-.03em;max-width:20ch}
+.punch em{font-style:normal;color:var(--green)}
+.punch span{font-size:16px;line-height:23px;color:#9aa2ae;max-width:36ch}
+
+.split{background:var(--ink-deep);border-radius:var(--r-giant);padding:80px;color:#fff}
+.split .h2{color:#fff}
+.split__lead{color:#9aa2ae;font-size:20px;line-height:26px;margin:18px 0 0;max-width:54ch}
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.vs{border-radius:var(--r-media);padding:32px}
+.vs--old{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.vs--new{background:var(--green);color:var(--ink-deep)}
+.vs__t{font-size:14px;line-height:17px;opacity:.75;margin:0}
+.vs__h{font-weight:500;font-size:28px;line-height:32px;letter-spacing:-.03em;margin:12px 0 0}
+.vs__p{font-weight:300;font-size:16px;line-height:23px;margin:16px 0 0}
+.vs--old .vs__p{color:#a9b0bb}
+.vs--new .vs__p{color:#0b4a2a}
+.vs ul{margin:20px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:21px}
+.vs li{display:flex;gap:10px;align-items:flex-start}
+.vs li s{flex:none;margin-top:7px;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.45;text-decoration:none}
+.split__media{margin-top:20px;background:rgba(255,255,255,.06);border-radius:var(--r-media);padding:8px}
+.split__media img{border-radius:var(--r-media);width:100%;height:340px;object-fit:cover}
+
+.banner{
+  position:relative;overflow:hidden;border-radius:var(--r-plate);
+  background:#dfe3e8 url("assets/banner-base.png") center/cover;
+  min-height:320px;display:flex;align-items:center;
+}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(242,244,247,.97) 0%,rgba(242,244,247,.88) 42%,rgba(242,244,247,.15) 100%)}
+.banner__in{position:relative;z-index:2;padding:48px 56px;max-width:680px}
+.banner__h{font-weight:500;font-size:clamp(26px,2.8vw,40px);line-height:1.15;letter-spacing:-.03em;margin:0}
+.banner__p{font-weight:300;font-size:17px;line-height:24px;color:var(--muted);margin:14px 0 24px;max-width:46ch}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--card);border-radius:var(--r-card);padding:8px;display:flex;flex-direction:column}
+.step__media img{width:100%;height:224px;object-fit:cover;border-radius:var(--r-card)}
+.step__body{padding:24px 24px 28px}
+.step__n{font-size:14px;line-height:17px;color:var(--green-deep)}
+.step__h{font-weight:500;font-size:24px;line-height:29px;letter-spacing:-.03em;margin:10px 0 0}
+.step__p{font-weight:300;font-size:16px;line-height:22px;color:var(--muted);margin:12px 0 0}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.tile{border-radius:var(--r-plate);padding:32px}
+.tile--green{background:var(--green)}
+.tile--white{background:#fff}
+.tile__head{margin-bottom:24px}
+.tile__title{font-weight:500;font-size:32px;line-height:36px;letter-spacing:-.03em;margin:0}
+.tile__note{font-weight:300;font-size:14px;line-height:17px;margin:8px 0 0}
+.tile--green .tile__note{color:#0a5c34}
+.tile--white .tile__note{color:var(--muted)}
+.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mini{background:#fff;border-radius:var(--r-card);padding:20px;min-height:236px;display:flex;flex-direction:column}
+.tile--white .mini{background:var(--card)}
+.mini__t{font-weight:500;font-size:16px;line-height:20px;margin:0;min-height:40px}
+.mini__plate{width:56px;height:56px;border-radius:16px;margin:16px auto auto;display:flex;align-items:center;justify-content:center}
+.mini__n{font-weight:300;font-size:14px;line-height:17px;color:var(--muted);margin:16px 0 0}
+.plate--pink{background:#fbdcec}
+.plate--lime{background:#dcffa0}
+.plate--lilac{background:#e5e0ff}
+.plate--cream{background:#fff0c4}
+.plate--mint{background:#c9f7de}
+.plate--sky{background:#d8ecff}
+.plate--sand{background:#f3e6d6}
+.plate--stone{background:#e6e9ef}
+
+.gains{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gain{background:#fff;border-radius:var(--r-card);padding:8px;display:flex;flex-direction:column}
+.gain__img{border-radius:var(--r-card);overflow:hidden}
+.gain__img img{width:100%;height:210px;object-fit:cover;border-radius:var(--r-card)}
+.gain__body{padding:22px 22px 26px}
+.gain__h{font-weight:500;font-size:20px;line-height:24px;letter-spacing:-.03em;margin:0}
+.gain__p{font-weight:300;font-size:15px;line-height:21px;color:var(--muted);margin:10px 0 16px}
+.gain__k{display:inline-block;background:var(--paper);border-radius:var(--r-pill);padding:6px 14px;font-size:14px;line-height:17px;color:var(--ink)}
+.gain__k b{font-weight:500;color:var(--green-deep)}
+
+.tg{background:#fff;border-radius:var(--r-giant);padding:64px}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.post{background:var(--card);border-radius:var(--r-card);padding:26px;display:flex;flex-direction:column;gap:12px}
+.post__w{font-size:14px;line-height:17px;color:var(--muted)}
+.post__h{font-weight:500;font-size:18px;line-height:24px;letter-spacing:-.02em;margin:0}
+.post__q{font-weight:300;font-size:16px;line-height:22px;margin:0}
+.post__r{margin-top:auto;font-size:14px;color:var(--muted);display:flex;gap:14px}
+
+.tariffs{background:var(--ink-deep);border-radius:var(--r-giant);padding:80px;color:#fff}
+.tariffs .h2{color:#fff}
+.tariffs__lead{color:#9aa2ae;font-size:20px;line-height:26px;margin:18px 0 0;max-width:50ch}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;align-items:stretch}
+.plan{border-radius:var(--r-media);padding:32px;display:flex;flex-direction:column;gap:18px}
+.plan--live{background:#fff;color:var(--ink)}
+.plan--soon{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#8f96a2}
+.plan__badge{align-self:flex-start;border-radius:var(--r-pill);padding:6px 14px;font-size:13px;line-height:16px}
+.plan--live .plan__badge{background:var(--green);color:#04351f}
+.plan--soon .plan__badge{background:rgba(255,255,255,.08);color:#c8cdd6;border:1px solid rgba(255,255,255,.12)}
+.plan__n{font-weight:500;font-size:24px;line-height:29px;letter-spacing:-.03em;margin:0}
+.plan__price{font-weight:500;font-size:42px;line-height:46px;letter-spacing:-.03em}
+.plan__price span{font-weight:300;font-size:16px;color:var(--muted);letter-spacing:-.02em}
+.plan--soon .plan__price span{color:#6f7683}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:21px;font-weight:300}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li svg{flex:none;margin-top:3px}
+.plan__cta{margin-top:auto}
+.plan__cta .btn{width:100%}
+.plan--soon .plan__cta .btn{background:rgba(255,255,255,.07);color:#8f96a2;cursor:not-allowed}
+
+.faq{display:flex;flex-direction:column;gap:12px}
+details{background:#fff;border-radius:var(--r-card);padding:24px 28px}
+summary{
+  list-style:none;cursor:pointer;font-weight:500;font-size:20px;line-height:26px;letter-spacing:-.02em;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+summary::-webkit-details-marker{display:none}
+summary s{flex:none;width:28px;height:28px;border-radius:50%;background:var(--paper);position:relative;text-decoration:none}
+summary s::before,summary s::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink);transform:translate(-50%,-50%)}
+summary s::before{width:12px;height:1.5px}
+summary s::after{width:1.5px;height:12px;transition:transform .2s var(--ease-state)}
+details[open] summary s::after{transform:translate(-50%,-50%) scaleY(0)}
+details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);margin:16px 0 0;max-width:92ch}
+
+.join{background:var(--green);border-radius:var(--r-giant);padding:72px 80px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.join .h2{color:var(--ink-deep)}
+.join__p{font-weight:300;font-size:18px;line-height:25px;color:#0b4a2a;margin:18px 0 0;max-width:40ch}
+.join__p b{font-weight:500}
+.form{background:#fff;border-radius:var(--r-plate);padding:32px;display:flex;flex-direction:column;gap:12px}
+.form input[type="text"],.form input[type="email"],.form input[type="tel"]{
+  border:1px solid var(--control);border-radius:var(--r-control);padding:15px 18px;
+  font-weight:300;font-size:16px;outline:0;transition:border-color .1s var(--ease-state);
+}
+.form input:focus{border-color:var(--ink)}
+.form label{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:18px;color:var(--muted)}
+.form label input{flex:none;margin-top:2px}
+.form a{color:var(--green-deep)}
+
+.footer{background:var(--footer);color:#fff;border-radius:var(--r-giant) var(--r-giant) 0 0;margin-top:60px;padding:64px 0 40px}
+.footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.footer h4{font-weight:500;font-size:16px;line-height:20px;margin:0 0 16px}
+.footer ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer a,.footer li{font-weight:300;font-size:15px;line-height:20px;color:#9aa2ae}
+.footer a:hover{color:#fff}
+.footer__note{color:#6f7683;font-size:14px;line-height:20px;margin:16px 0 0;max-width:30ch}
+.footer__legal{margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.09);font-size:13px;line-height:19px;color:#6f7683}
+
+@media (max-width:1023px){
+  .grid-3,.steps,.gains,.posts,.plans,.versus,.duo,.promise{grid-template-columns:1fr 1fr}
+  .join{grid-template-columns:1fr;padding:48px}
+  .split,.tariffs,.tg{padding:48px}
+  .minis{grid-template-columns:repeat(2,1fr)}
+  .footer__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:719px){
+  .stack{gap:40px;padding:40px 0}
+  .grid-3,.steps,.gains,.posts,.plans,.versus,.duo,.promise,.minis,.footer__grid{grid-template-columns:1fr}
+  .hero__stage{padding-top:48px}
+  .signup{flex-wrap:wrap;padding:16px}
+  .signup .btn{width:100%}
+  .nav-item{display:none}
+  .split,.tariffs,.tg,.join{padding:32px}
+  .banner__in,.punch{padding:32px}
+  .card{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="notice">
+  <div class="notice__in">
+    Платная реклама дорожает быстрее, чем растёт бизнес.
+    <a href="#why">Почему партнёрства работают лучше</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero__photo"></div>
+  <div class="hero__in">
+
+    <div class="bar">
+      <div class="pod">
+        <span class="brand"><i>✦</i>Кроссмарк</span>
+        <a class="nav-item" href="#why">Проблема</a>
+        <a class="nav-item" href="#how">Как работает</a>
+        <a class="nav-item" href="#tariffs">Тарифы</a>
+        <a class="nav-item" href="#faq">Вопросы</a>
+      </div>
+      <div class="pod bar__right">
+        <a class="nav-item" href="#join">Войти</a>
+        <a class="btn btn--dark" href="#join">Регистрация</a>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <span class="hero__kicker"><s></s>Партнёрское сообщество малого бизнеса</span>
+      <h1>Побеждать можно только вместе</h1>
+      <p class="hero__sub">
+        Платная реклама <b>дорожает с каждым днём</b> и приносит всё меньше.
+        Клиентов сегодня приводят <em>партнёрства, коллаборации и кросс-маркетинг</em>.
+        Мы собрали для этого базу компаний — присоединяйтесь и находите своих.
+      </p>
+
+      <form class="signup" onsubmit="return false">
+        <input type="text" placeholder="Чем занимается ваш бизнес?" aria-label="Чем занимается ваш бизнес">
+        <button class="btn btn--dark" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+      <p class="micro">Бесплатно навсегда<s></s>две минуты<s></s>без карты</p>
+
+      <div class="chips">
+        <a class="chip" href="#join">Кофейня</a>
+        <a class="chip" href="#join">Фитнес-клуб</a>
+        <a class="chip" href="#join">Онлайн-школа</a>
+        <a class="chip" href="#join">Стройка и ремонт</a>
+        <a class="chip" href="#join">Салон красоты</a>
+        <a class="chip" href="#join">Услуги для бизнеса</a>
+      </div>
+    </div>
+
+    <div class="promise">
+      <div class="promise__cell">
+        <div class="promise__k">Без <u>бюджета</u></div>
+        <p class="promise__t">Партнёру платите не деньгами, а своей пользой для его клиента.</p>
+      </div>
+      <div class="promise__cell">
+        <div class="promise__k">Без <u>холодных</u></div>
+        <p class="promise__t">Человек приходит к вам с доверием, которое партнёр уже заработал.</p>
+      </div>
+      <div class="promise__cell">
+        <div class="promise__k">Без <u>скидок</u></div>
+        <p class="promise__t">Вы не режете цену — вы делаете чужое предложение сильнее своим.</p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<main class="wrap stack">
+
+  <section id="why">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><s></s>Проблема</span>
+        <h2 class="h2">Реклама работает<br>всё хуже и хуже</h2>
+      </div>
+      <p class="lead">Шесть причин, по которым схема «залил бюджет — получил заявки» перестала складываться.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <span class="card__tag">Каналы</span>
+        <h3 class="card__h">Непонятно, какой канал работает</h3>
+        <p class="card__p">Контекст, таргет, Телеграм, короткие видео. Один отрабатывает — другой сразу нет. Систему не построить, только бежать дальше.</p>
+      </article>
+      <article class="card">
+        <span class="card__tag">Бюджет</span>
+        <h3 class="card__h">Денег уходит больше, отдачи меньше</h3>
+        <p class="card__p">Аукционы съедают маржу. Реклама дорожает быстрее, чем растёт бизнес — деньги остаются у площадки, а не у вас.</p>
+      </article>
+      <article class="card">
+        <span class="card__tag">Качество</span>
+        <h3 class="card__h">Половина заявок — мусор</h3>
+        <p class="card__p">Боты, конкуренты, «просто узнать». Заявка стоит дорого, до сделки не доходит, менеджеры выгорают на пустых разговорах.</p>
+      </article>
+      <article class="card">
+        <span class="card__tag">Подрядчики</span>
+        <h3 class="card__h">Агентства обещали — не дали</h3>
+        <p class="card__p">Каждые полгода новое «у нас уникальный подход». Красивая презентация в начале, отчёт в конце месяца — и пусто на счёте.</p>
+      </article>
+      <article class="card">
+        <span class="card__tag">Отстройка</span>
+        <h3 class="card__h">Все говорят одно и то же</h3>
+        <p class="card__p">Клиент не отличает вас от соседа по выдаче. Заметным становишься за деньги или за скидку — и то и другое из вашего кармана.</p>
+      </article>
+      <article class="card">
+        <span class="card__tag">Управляемость</span>
+        <h3 class="card__h">Невозможно прогнозировать</h3>
+        <p class="card__p">Удачная связка живёт недолго. Метрики растут, клиентов нет. Каждый месяц приходится придумывать всё заново.</p>
+      </article>
+    </div>
+    <div class="punch">
+      <p>В итоге вы платите не за клиента, а <em>за попытку его получить</em>.</p>
+      <span>В партнёрстве наоборот: деньги приносит тот, кто получил больше пользы — сам клиент. За внимание не платит никто.</span>
+    </div>
+  </section>
+
+  <section id="idea">
+    <div class="split">
+      <span class="eyebrow" style="color:#9aa2ae"><s style="background:#3a4048"></s>Что вместо неё</span>
+      <h2 class="h2">Кросс-маркетинг —<br>это просто</h2>
+      <p class="split__lead">Вы не покупаете внимание незнакомого человека. Вы кладёте свою пользу внутрь предложения партнёра — и приходите к его клиенту не баннером, а подарком.</p>
+      <div class="versus">
+        <div class="vs vs--old">
+          <p class="vs__t">Реклама</p>
+          <h3 class="vs__h">Покупка внимания</h3>
+          <p class="vs__p">Показ незнакомому человеку, у которого нет причин вам доверять. Разговор быстро сводится к цене и скидке.</p>
+          <ul>
+            <li><s></s>Платите за показ, а не за клиента</li>
+            <li><s></s>Ставка растёт вместе с конкурентами</li>
+            <li><s></s>Остановили бюджет — поток исчез</li>
+          </ul>
+        </div>
+        <div class="vs vs--new">
+          <p class="vs__t">Кросс-маркетинг</p>
+          <h3 class="vs__h">Усиление чужого предложения</h3>
+          <p class="vs__p">Партнёр уже заработал доверие своих клиентов. Ваш сертификат, мини-курс или пробный продукт делает его предложение сильнее — а клиент приходит к вам сам.</p>
+          <ul>
+            <li><s></s>Платите пользой, а не деньгами</li>
+            <li><s></s>Клиент приходит тёплым и с доверием</li>
+            <li><s></s>Связка продолжает работать и дальше</li>
+          </ul>
+        </div>
+      </div>
+      <div class="split__media"><img src="assets/idea.png" alt="Партнёр передаёт клиенту вашу ценность"></div>
+    </div>
+  </section>
+
+  <section id="base">
+    <div class="banner">
+      <div class="banner__in">
+        <h2 class="banner__h">База партнёров собирается прямо сейчас</h2>
+        <p class="banner__p">Чем раньше вы в ней окажетесь, тем чаще вас будут находить другие. Место в базе бесплатное и навсегда.</p>
+        <a class="btn btn--dark btn--lg" href="#join">Занять место в базе</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><s></s>Как работает</span>
+        <h2 class="h2">Три шага, которые<br>делает нейросеть</h2>
+      </div>
+      <p class="lead">Раньше это собиралось руками месяцами. Теперь то же самое — за вечер.</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <div class="step__media"><img src="assets/step-1.png" alt="Распаковка ценности"></div>
+        <div class="step__body">
+          <span class="step__n">Шаг 01</span>
+          <h3 class="step__h">Распакует вашу ценность</h3>
+          <p class="step__p">Посмотрит на бизнес глазами кросс-маркетолога: из услуг, товаров, экспертизы и сертификатов соберёт то, что можно вложить в предложение партнёра.</p>
+        </div>
+      </article>
+      <article class="step">
+        <div class="step__media"><img src="assets/step-2.png" alt="Десять стратегий"></div>
+        <div class="step__body">
+          <span class="step__n">Шаг 02</span>
+          <h3 class="step__h">Придумает 10 связок</h3>
+          <p class="step__p">Партнёрства, которых не видно с поверхности: ниша партнёра, почему это сработает, как передать ценность и с чего начать. Три лучших выбираете вы.</p>
+        </div>
+      </article>
+      <article class="step">
+        <div class="step__media"><img src="assets/step-3.png" alt="Поиск партнёров"></div>
+        <div class="step__body">
+          <span class="step__n">Шаг 03</span>
+          <h3 class="step__h">Найдёт и напишет партнёрам</h3>
+          <p class="step__p">Подберёт компании с общей аудиторией, отправит им вашу заявку с готовой механикой и соберёт первые «да». Вам останется договориться и запуститься.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="duo">
+      <section class="tile tile--green">
+        <div class="tile__head">
+          <h2 class="tile__title">Сделает нейросеть</h2>
+          <p class="tile__note">Вся подготовка партнёрства — без вас</p>
+        </div>
+        <div class="minis">
+          <article class="mini">
+            <h3 class="mini__t">Разбор бизнеса</h3>
+            <div class="mini__plate plate--pink">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="2.2" stroke="#8a2f60" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="2.2" stroke="#8a2f60" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="2.2" stroke="#8a2f60" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="2.2" stroke="#8a2f60" stroke-width="1.5"/></svg>
+            </div>
+            <p class="mini__n">Что вы дадите клиенту партнёра</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">10 связок</h3>
+            <div class="mini__plate plate--lilac">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="12" r="5.2" stroke="#463c9e" stroke-width="1.5"/><circle cx="16" cy="12" r="5.2" stroke="#463c9e" stroke-width="1.5"/></svg>
+            </div>
+            <p class="mini__n">Неочевидные пары с общим клиентом</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">Поиск компаний</h3>
+            <div class="mini__plate plate--lime">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.3" stroke="#3f5c12" stroke-width="1.5"/><path d="M15.4 15.4L20 20" stroke="#3f5c12" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <p class="mini__n">По общей аудитории, а не по нише</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">Первое письмо</h3>
+            <div class="mini__plate plate--cream">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5.5" width="18" height="13" rx="3" stroke="#7a5a12" stroke-width="1.5"/><path d="M4.5 8l7.5 5 7.5-5" stroke="#7a5a12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="mini__n">Отправим партнёру готовое предложение</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="tile tile--white">
+        <div class="tile__head">
+          <h2 class="tile__title">Сделаете вы</h2>
+          <p class="tile__note">Три коротких шага до первых клиентов</p>
+        </div>
+        <div class="minis">
+          <article class="mini">
+            <h3 class="mini__t">Регистрация</h3>
+            <div class="mini__plate plate--mint">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#0f6b3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="mini__n">Две минуты, бесплатно, без карты</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">Выбор трёх</h3>
+            <div class="mini__plate plate--sky">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h8" stroke="#1d4f7c" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <p class="mini__n">Из десяти идей — те, что нравятся</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">Разговор</h3>
+            <div class="mini__plate plate--sand">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12l4-3 4 3 3-2 3 2 4-3" stroke="#7a5230" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16h10" stroke="#7a5230" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <p class="mini__n">Договариваетесь напрямую</p>
+          </article>
+          <article class="mini">
+            <h3 class="mini__t">Запуск</h3>
+            <div class="mini__plate plate--stone">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3.5c3.4 2.2 5 5.3 5 8.6 0 2.9-2.2 5.4-5 5.4s-5-2.5-5-5.4c0-3.3 1.6-6.4 5-8.6z" stroke="#4a5060" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 20.5h5" stroke="#4a5060" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <p class="mini__n">Ваша польза внутри чужой продажи</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section id="gains">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><s></s>Что это даёт</span>
+        <h2 class="h2">Шесть вещей, которых<br>раньше не было</h2>
+      </div>
+      <p class="lead">Так это работает у тех, кто уже перевёл поток клиентов на партнёрства.</p>
+    </div>
+    <div class="gains">
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-leads.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Поток тёплых клиентов</h3>
+          <p class="gain__p">Партнёры передают людей, которые уже доверяют их бренду. Холодных лидов не остаётся.</p>
+          <span class="gain__k"><b>×3</b> тёплых</span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-brand.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Отстройка без скидок</h3>
+          <p class="gain__p">В вашем предложении появляется то, чего нет у соседа: сертификаты, бонусы и подарки партнёров.</p>
+          <span class="gain__k">цену <b>не режем</b></span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-check.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Рост среднего чека</h3>
+          <p class="gain__p">Бонус партнёра при покупке от суммы — и клиент сам добирает корзину до нужного уровня.</p>
+          <span class="gain__k"><b>+18%</b> к чеку</span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-promo.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Совместные акции</h3>
+          <p class="gain__p">С теми, у кого аудитория общая, а ниша другая. Без бартера девяностых — с понятной выгодой обоим.</p>
+          <span class="gain__k"><b>×2</b> охват</span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-sales.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Усиление в продажах</h3>
+          <p class="gain__p">Эксперт партнёра закрывает возражения, которые вы бы в одиночку не закрыли.</p>
+          <span class="gain__k"><b>+22%</b> к конверсии</span>
+        </div>
+      </article>
+      <article class="gain">
+        <div class="gain__img"><img src="assets/icon-hold.png" alt=""></div>
+        <div class="gain__body">
+          <h3 class="gain__h">Спасение уходящих</h3>
+          <p class="gain__p">Клиент почти ушёл — партнёр подхватывает интенсивом, разбором или сертификатом.</p>
+          <span class="gain__k"><b>−40%</b> оттока</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="tg">
+    <div class="tg">
+      <div class="head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow"><s></s>Бесплатный канал</span>
+          <h2 class="h2">Кейсы кросс-маркетинга —<br>каждый день в ленте</h2>
+        </div>
+        <p class="lead">Готовые механики и разборы реальных партнёрств. Забирайте и применяйте сегодня, без регистрации.</p>
+      </div>
+      <div class="posts">
+        <article class="post">
+          <span class="post__w">сегодня</span>
+          <h3 class="post__h">Турагентство × салоны красоты</h3>
+          <p class="post__q">К туру — подарок из пяти сертификатов на 15 000 ₽. Без скидок и без рекламы.</p>
+          <div class="post__r"><span>🔥 142</span><span>👀 86</span></div>
+        </article>
+        <article class="post">
+          <span class="post__w">вчера</span>
+          <h3 class="post__h">Кофейня × онлайн-школа английского</h3>
+          <p class="post__q">На стаканчике — код на бесплатный урок. Плюс 34% потока за два месяца.</p>
+          <div class="post__r"><span>🚀 217</span><span>❤️ 124</span></div>
+        </article>
+        <article class="post">
+          <span class="post__w">2 дня назад</span>
+          <h3 class="post__h">Сервис учёта × клининг офисов</h3>
+          <p class="post__q">Совместная рассылка «наводим порядок и в офисе, и в делах» — втрое больше лидов.</p>
+          <div class="post__r"><span>🤝 96</span><span>🔥 71</span></div>
+        </article>
+      </div>
+      <a class="btn btn--dark btn--lg" href="#" style="margin-top:32px">Подписаться в Телеграм</a>
+    </div>
+  </section>
+
+  <section id="tariffs">
+    <div class="tariffs">
+      <span class="eyebrow" style="color:#9aa2ae"><s style="background:#3a4048"></s>Тарифы</span>
+      <h2 class="h2">Начать можно<br>с нуля рублей</h2>
+      <p class="tariffs__lead">Сейчас работает только «Старт». Платные тарифы включим, когда от них будет настоящая польза — переплачивать за воздух мы не предлагаем.</p>
+      <div class="plans">
+        <div class="plan plan--live">
+          <span class="plan__badge">Доступен сейчас</span>
+          <h3 class="plan__n">Старт</h3>
+          <div class="plan__price">0 ₽ <span>навсегда</span></div>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#149955" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Место в базе и карточка компании</li>
+            <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#149955" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Три ИИ-стратегии партнёрства</li>
+            <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#149955" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Вас находят и предлагают партнёрство</li>
+          </ul>
+          <div class="plan__cta"><a class="btn btn--dark btn--lg" href="#join">Начать бесплатно</a></div>
+        </div>
+        <div class="plan plan--soon">
+          <span class="plan__badge">Пока недоступен</span>
+          <h3 class="plan__n">Про</h3>
+          <div class="plan__price">20 000 ₽ <span>в месяц</span></div>
+          <ul>
+            <li>Всё из «Старта»</li>
+            <li>10 стратегий — выбираете три лучших</li>
+            <li>Активный поиск партнёров под них</li>
+            <li>Приоритет, когда ищут вас</li>
+          </ul>
+          <div class="plan__cta"><span class="btn btn--lg">Скоро</span></div>
+        </div>
+        <div class="plan plan--soon">
+          <span class="plan__badge">Пока недоступен</span>
+          <h3 class="plan__n">Премиум</h3>
+          <div class="plan__price">50 000 ₽ <span>в месяц</span></div>
+          <ul>
+            <li>Всё из «Про»</li>
+            <li>Каждую неделю — 10 новых стратегий</li>
+            <li>Непрерывный поиск партнёров</li>
+            <li>Персональный менеджер</li>
+          </ul>
+          <div class="plan__cta"><span class="btn btn--lg">Скоро</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><s></s>Вопросы и ответы</span>
+        <h2 class="h2">Коротко о главном</h2>
+      </div>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Кому это подходит, а кому нет?<s></s></summary>
+        <p>Подходит и стартапу без единого клиента, и зрелой компании. Размер вашей базы не важен — важно, что у вас есть, что отдать клиенту партнёра: услуга, экспертиза, сертификат, мини-продукт, диагностика. Если клиентов пока нет, партнёрство даже логичнее рекламы: первые приходят через пользу внутри чужого предложения. Не подойдёт тем, кто ищет готовую базу контактов на продажу — мы не рекламная сеть.</p>
+      </details>
+      <details>
+        <summary>У меня узкая ниша. Найдётся ли кто-то для меня?<s></s></summary>
+        <p>Партнёр — это бизнес с общей аудиторией, а не из вашей ниши. У кофейни и онлайн-школы английского ниши разные, а клиент один: занятой горожанин, который заходит за кофе по дороге. Чем уже ваша ниша, тем интереснее неочевидные связки.</p>
+      </details>
+      <details>
+        <summary>Что я отдаю партнёру и что получаю взамен?<s></s></summary>
+        <p>Отдаёте не базу и не деньги, а пользу для его клиента: сертификат, мини-курс, пробный товар, доступ, разбор. Партнёр вкладывает это в своё предложение, его клиент получает больше, а к вам приходит человек, который уже воспользовался вашей пользой внутри чужой сделки.</p>
+      </details>
+      <details>
+        <summary>Партнёр получит мою базу клиентов?<s></s></summary>
+        <p>Нет. Партнёр видит только описание вашей ценности и условия, на которых она достаётся его клиенту. Ваша база, выручка и контакты остаются у вас. Данные храним по 152-ФЗ.</p>
+      </details>
+      <details>
+        <summary>Чем это отличается от бартера или реферальной программы?<s></s></summary>
+        <p>Бартер — устная договорённость «расскажем друг про друга». Реферальная программа — оплата за приведённого клиента. Здесь никто никому не платит за переходы и никто не обменивается аудиториями: каждая сторона выигрывает потому, что её клиент получил больше.</p>
+      </details>
+      <details>
+        <summary>Почему сейчас бесплатно?<s></s></summary>
+        <p>Сила базы — в количестве компаний в ней: чем нас больше, тем точнее подбор и тем больше связок достаётся каждому. Поэтому вход открыт и бесплатен, а платные тарифы включатся позже.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="join">
+      <div>
+        <span class="eyebrow" style="color:#0b4a2a"><s style="background:#0b4a2a;opacity:.35"></s>Регистрация бесплатно</span>
+        <h2 class="h2">Присоединяйтесь<br>к сообществу</h2>
+        <p class="join__p">Тариф «Старт» — <b>навсегда даром</b>. Место в базе, три ИИ-стратегии партнёрств и входящие предложения от других компаний. Вместе расти быстрее.</p>
+      </div>
+      <form class="form" onsubmit="return false">
+        <input type="text" placeholder="Имя *" aria-label="Имя">
+        <input type="email" placeholder="Эл. почта *" aria-label="Эл. почта">
+        <input type="tel" placeholder="Телефон" aria-label="Телефон">
+        <input type="text" placeholder="Чем занимается бизнес?" aria-label="Чем занимается бизнес">
+        <label><input type="checkbox"><span>Соглашаюсь с <a href="#">политикой конфиденциальности</a>, <a href="#">офертой</a> и обработкой персональных данных</span></label>
+        <button class="btn btn--dark btn--lg" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <span class="brand" style="color:#fff;padding:0"><i>✦</i>Кроссмарк</span>
+        <p class="footer__note">Партнёрское сообщество и база компаний для кросс-маркетинга.</p>
+      </div>
+      <div>
+        <h4>Продукт</h4>
+        <ul>
+          <li><a href="#why">Проблема</a></li>
+          <li><a href="#how">Как работает</a></li>
+          <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <ul>
+          <li><a href="#">Конфиденциальность</a></li>
+          <li><a href="#">Оферта</a></li>
+          <li><a href="#">Партнёрское соглашение</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="#">Телеграм</a></li>
+          <li><a href="#">MAX</a></li>
+          <li><a href="tel:+79628284808">+7 962 828-48-08</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__legal">© 2022—н.в. Кроссмарк. Все права защищены.<br>
+      ООО «Лаборатория умных ассистентов» · ИНН 5404314058 · 630029, Новосибирск, ул. 1-я Чулымская, 117, оф. 1</p>
+  </div>
+</footer>
+
+</body>
+</html>
