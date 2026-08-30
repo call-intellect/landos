@@ -78,14 +78,14 @@ section{scroll-margin-top:24px}
 
 .hero{position:relative}
 .hero__photo{
-  position:absolute;top:0;left:0;right:0;height:1020px;
+  position:absolute;top:0;left:0;right:0;height:1080px;
   background-image:url("assets/hero-community-ru.png");
-  background-size:140% auto;background-position:50% 100%;
+  background-size:190% auto;background-position:50% 100%;
   background-color:#dcdfe4;
 }
 .hero__photo::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(242,244,247,.68) 0%,rgba(242,244,247,.72) 30%,rgba(242,244,247,.66) 44%,rgba(242,244,247,.18) 64%,rgba(242,244,247,.55) 88%,rgba(242,244,247,.92) 100%);
+  background:linear-gradient(180deg,rgba(242,244,247,.24) 0%,rgba(242,244,247,.16) 28%,rgba(242,244,247,.42) 40%,rgba(242,244,247,.76) 52%,rgba(242,244,247,.78) 72%,rgba(242,244,247,.58) 88%,rgba(242,244,247,.9) 100%);
 }
 .hero__in{position:relative;z-index:2;max-width:1233px;margin:0 auto;padding:0 20px}
 
@@ -105,7 +105,7 @@ section{scroll-margin-top:24px}
 .nav-item:hover{background:var(--paper)}
 .bar__right{margin-left:auto}
 
-.hero__stage{padding:44px 0 0;text-align:center}
+.hero__stage{padding:286px 0 0;text-align:center}
 .hero__kicker{
   display:inline-flex;align-items:center;gap:9px;
   background:rgba(255,255,255,.9);border:1px solid rgba(203,205,214,.5);
@@ -134,7 +134,7 @@ h1{
   font-size:14px;line-height:17px;color:var(--ink);
 }
 .micro s{display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--control);vertical-align:middle;margin:0 8px 3px;text-decoration:none}
-.reel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.reel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 19%,#000 81%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 19%,#000 81%,transparent 100%)}
 .reel+.reel{margin-top:14px}
 .track{display:flex;gap:16px;width:max-content;animation:slide 52s linear infinite}
 .track--back{animation-direction:reverse;animation-duration:64s}
@@ -384,7 +384,7 @@ details p{font-weight:300;font-size:16px;line-height:24px;color:var(--muted);mar
     </div>
   </div>
 
-  <div style="position:relative;z-index:2;padding:56px 0 64px">
+  <div style="position:relative;z-index:2;padding:72px 0 72px">
     <div class="reel"><div class="track" id="bub-a"></div></div>
     <div class="reel"><div class="track track--back" id="bub-b"></div></div>
   </div>
